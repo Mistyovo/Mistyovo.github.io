@@ -2573,6 +2573,13 @@ mark.search-keyword {
   color: #ff2a2a;
   font-weight: bold;
 }
+mjx-container[jax="CHTML"][display="true"],
+.has-jax {
+  overflow: auto hidden;
+}
+mjx-container[display="true"] + br {
+  display: none;
+}
 .use-motion .animated {
   animation-fill-mode: none;
   visibility: inherit;
@@ -2836,13 +2843,20 @@ mark.search-keyword {
 }
 .post-body p a {
   color: #0593d3;
-  border-bottom: none;
   border-bottom: 1px solid #0593d3;
 }
 .post-body p a:hover {
   color: #fc6423;
-  border-bottom: none;
   border-bottom: 1px solid #fc6423;
+}
+.post-button .btn {
+  color: #00bfff;
+  border: 2px solid #0593d3;
+}
+.post-button .btn:hover {
+  color: #fff;
+  background: #0593d3;
+  border: 2px solid #0593d3;
 }
 ::selection {
   background: #00bfff;

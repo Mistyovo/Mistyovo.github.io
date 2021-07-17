@@ -1,21 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/07/15/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>“科学上网”</title>
+    <url>/2021/07/17/Scientific-surfing-on-the-Internet/</url>
+    <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>经常，我们需要访问国外网站进行学习的时候，发现它被防火墙墙了，这时候我们就应该学会科学上网。。。</p>
+<span id="more"></span>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote>
+<p>连上网络的电脑一台</p>
+<p>具有以下能力的脑子</p>
+<p>较强的语文阅读理解能力（作者语文不好</p>
+<p>基本的英语阅读理解能力（国外网站</p>
+<p>（不用money）</p>
+</blockquote>
+<h2 id="开干"><a href="#开干" class="headerlink" title="开干"></a>开干</h2><p>请允许我<del>隆重</del>低调地介绍这个网站-&gt;几鸡</p>
+<p>由于特殊原因其官网经常被封杀，我特地列出了其用过的官网</p>
+<table>
+<thead>
+<tr>
+<th align="center">网址（短网址）</th>
+<th align="center">网址（.best）</th>
+<th align="center">网址（.space）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><font color = "blue">cc.ax</font></td>
+<td align="center"><font color = "red">j01.best</font></td>
+<td align="center"><font color = "red">j01.space</font></td>
+</tr>
+<tr>
+<td align="center"><font color = "blue">j.mr</font></td>
+<td align="center"></td>
+<td align="center"><font color = "green">j02.space</font></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><font color = "green">j03.space</font></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><font color = "green">j04.space</font></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>上表中<br><font color = "green">标绿</font>的为当前可用网址<br><font color = "red">标红</font>的为翻墙后可用网址<br><font color = "blue">标蓝</font>的为已AFO的网址<br>（update: 2021/7/17）</p>
+</blockquote>
+<p>使用邮箱注册完账号后登入，这时你就拥有一个自己的账户</p>
+<p>你会发现它是有限流量的，但它每日签到可领1G左右的流量，每月重置为10G，正常情况下是用不完的</p>
+<p>首页有几个专栏，介绍一下</p>
+<p>【安装】</p>
+<p>【订阅】</p>
+<p>下载SSR(ShadowsockR)，请参考我的另一篇文章-&gt;<a href="https://github.com/HMBSbige/ShadowsocksR-Windows/releases">点击跳转</a></p>
 ]]></content>
+      <tags>
+        <tag>IPLC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSR(ShadowsockR)食用方法</title>
+    <url>/2021/07/17/SSR-ShadowsockR-usage/</url>
+    <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>SSR(ShadowsockR)是一款网络代理软件</p>
+<span id="more"></span>
+
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>官网下载地址：ShadowsockR(<a href="https://github.com/HMBSbige/ShadowsocksR-Windows/releases">https://github.com/HMBSbige/ShadowsocksR-Windows/releases</a>)</p>
+<h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><p>打开软件后，右键任务栏的图标</p>
+<h3 id="系统代理"><a href="#系统代理" class="headerlink" title="系统代理"></a>系统代理</h3><table>
+<thead>
+<tr>
+<th align="center">模式</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">直连模式</td>
+<td align="left">所有应用都没有翻墙的状态。</td>
+</tr>
+<tr>
+<td align="center">PAC模式</td>
+<td align="left">PAC模式是比较常用的SSR会自动识别分流哪些应用需要走代理。（推荐使用，省流量）</td>
+</tr>
+<tr>
+<td align="center">全局模式</td>
+<td align="left">所有应用都都走代理线路，部份情况下如果PAC还是无法打开那么就需要开启全局模式。</td>
+</tr>
+</tbody></table>
+<h3 id="规则设置"><a href="#规则设置" class="headerlink" title="规则设置"></a>规则设置</h3><blockquote>
+<p>作者也不知道怎么用（有啥用</p>
+</blockquote>
+<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>你订阅的节点都会在这里显示</p>
+<p>连接和修改节点必须在这里点，左键任务栏图标的“编辑服务器”是无效的</p>
+<h3 id="订阅-设置"><a href="#订阅-设置" class="headerlink" title="订阅-设置"></a>订阅-设置</h3><p>添加订阅：点击添加</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">网址</td>
+<td align="left">填你的订阅链接</td>
+</tr>
+<tr>
+<td align="center">订阅备注</td>
+<td align="left">（顾名思义）</td>
+</tr>
+</tbody></table>
+<h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><p>顾名思义，里面的东西我也看不懂</p>
+<h3 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h3><p>一些设置、FAQ和更新</p>
+<h3 id="捐赠"><a href="#捐赠" class="headerlink" title="捐赠"></a>捐赠</h3><p>你懂得</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>C++图形库安装教程</title>
+    <url>/2021/07/16/C++-Graphics-Library-installation-tutorial/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Visual Studio Code配置C++开发环境</title>
+    <url>/2021/07/16/Visual-Studio-Code-configuration-C-development-environment/</url>
+    <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>无…umm…还是扯点什么吧。</p>
+<p>在高大上的Visual Studio IDE的影响下，Microsoft推出了轻量级代码编辑器Visual Studio Code。为了好奇心也为了方便学习和工作，本文讲解Visual Studio Code如何配置C++开发环境</p>
+<p>作者巨懒！全文无图！嘿嘿(*^▽^*)</p>
+<span id="more"></span>
+
+<h2 id="下载和安装"><a href="#下载和安装" class="headerlink" title="下载和安装"></a>下载和安装</h2><h3 id="下载Visual-Studio-Code"><a href="#下载Visual-Studio-Code" class="headerlink" title="下载Visual Studio Code"></a>下载Visual Studio Code</h3><p>点击<a href="https://code.visualstudio.com/">这里</a>转到Visual Studio Code官网</p>
+<p>下载对应版本的安装包（或压缩包），安装过程略</p>
+<h3 id="下载C-编译器"><a href="#下载C-编译器" class="headerlink" title="下载C++编译器"></a>下载C++编译器</h3><p>主流的C++编译器有<code>MinGW</code>和<code>mingw-w64</code>可供选择</p>
+<p>推荐使用后者，<a href="http://www.mingw-w64.org/">官网网址</a></p>
+<p>点击上方Download按钮</p>
+<p>点击Mingw-W64-builds点击Sourceforge跳转到一个国外的网盘</p>
+<p>点击Files（上面的步骤太麻烦了？-&gt;<a href="https://sourceforge.net/projects/mingw-w64/files/">便民链接</a>）</p>
+<p>滚动条往下拉，可以选择版本</p>
+<table>
+<thead>
+<tr>
+<th align="left">版本</th>
+<th align="left">使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">MinGW-W64 Online Installer</td>
+<td align="left">在线安装版，不建议在国内下载，速度贼慢</td>
+</tr>
+<tr>
+<td align="left">MinGW-W64 GCC-版本号</td>
+<td align="left">整合包，为了方便下载，这边直接提供了8.1.0的便民下载链接（快夸我快夸我）</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">版本</th>
+<th align="center">版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/sjlj/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0.7z">x86_64-posix-sjlj(推荐)</a></td>
+<td align="center"><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/seh/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z">x86_64-posix-seh</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/sjlj/x86_64-8.1.0-release-win32-sjlj-rt_v6-rev0.7z">x86_64-win32-sjlj</a></td>
+<td align="center"><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z">x86_64-win32-seh</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/8.1.0/threads-posix/sjlj/i686-8.1.0-release-posix-sjlj-rt_v6-rev0.7z">i686-posix-sjlj</a></td>
+<td align="center"><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/8.1.0/threads-posix/dwarf/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z">i686-posix-dwarf</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/8.1.0/threads-win32/sjlj/i686-8.1.0-release-win32-sjlj-rt_v6-rev0.7z">i686-win32-sjlj</a></td>
+<td align="center"><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/8.1.0/threads-win32/dwarf/i686-8.1.0-release-win32-dwarf-rt_v6-rev0.7z">i686-win32-dwarf</a></td>
+</tr>
+</tbody></table>
+<p>下好后解压到如下位置（建议，因为我之后都会拿这个举例子）：</p>
+<blockquote>
+<p><code>C:\Program Files\mingw-w64\</code><br>(为啥是这个路径呢？因为在线安装版的默认位置就是这)</p>
+</blockquote>
+<p>复制bin文件夹的路径：</p>
+<blockquote>
+<p><code>C:\Program Files\mingw-w64\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin</code></p>
+</blockquote>
+<p>然后一通操作：</p>
+<p>在桌面上，右键“计算机”，点击“属性”，点击“高级系统设置”，点击“环境变量”</p>
+<p>找到<code>PATH</code>双击，没有就“新建”</p>
+<table>
+<thead>
+<tr>
+<th align="left">变量名</th>
+<th align="left">变量值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">PATH</td>
+<td align="left">(上面复制的路径)</td>
+</tr>
+</tbody></table>
+<p>然后“确定”-&gt;“确定”-&gt;“确定”</p>
+<p>按键盘上的<code>Win+R</code>，输入<code>cmd</code>回车</p>
+<p>输入<code>g++</code>回车，如果出现：</p>
+<blockquote>
+<p>g++: fatal error: no input files<br>compilation terminated.</p>
+</blockquote>
+<p>则说明配置成功了，输入<code>g++ -v</code>可查看版本信息</p>
+<h2 id="Visual-Studio-Code-配置"><a href="#Visual-Studio-Code-配置" class="headerlink" title="Visual Studio Code 配置"></a>Visual Studio Code 配置</h2><p>打开一个文件夹，新建一个名为<code>.vscode</code>的文件夹<br>创建两个新文件，及其内容分别为：</p>
+<h3 id="扔代码咯"><a href="#扔代码咯" class="headerlink" title="扔代码咯"></a>扔代码咯</h3><p>launch.json</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Run C/C++ CMD&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build &amp; run file&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Run C/C++&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build &amp; run file&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Debug C/C++ CMD&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build &amp; debug file&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Debug C/C++&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build &amp; debug file&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>tasks.json</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;build &amp; debug file&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">                <span class="string">&quot;$&#123;fileBasenameNoExtension&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;$&#123;file&#125;&quot;</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;build &amp; run file&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">                <span class="string">&quot;$&#123;fileBasenameNoExtension&#125;&quot;</span>,</span><br><span class="line">                <span class="string">&quot;$&#123;file&#125;&quot;</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存，重启Visual Studio Code就可以愉快的写代码了</p>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">F5</td>
+<td align="center">运行</td>
+</tr>
+<tr>
+<td align="center">Ctrl + F5</td>
+<td align="center">运行</td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>美化、增强DEV-C++编辑器~</title>
+    <url>/2021/07/17/DEV-C/</url>
+    <content><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>鉴于使用<code>原版DEV-C++</code>不得不说十分滞后，人家<code>Visual Studio</code>多高端</p>
+<p>于是小S写下此文章,使用一些奇技淫巧，美化和增强此IDE，使其用起来比<code>Visual Studio</code>更舒服</p>
+<p>温习提示：前方高能、有关DEV-C++的东西我全写这里了（信息量较大，建议使用侧边目录辅助阅读</p>
+<h1 id="样式美化、个性化（新手）"><a href="#样式美化、个性化（新手）" class="headerlink" title="样式美化、个性化（新手）"></a>样式美化、个性化（新手）</h1><h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_200701103238vttuwku5.png"><br>点击顶部菜单栏<code>工具</code></p>
+<p>点击下拉列表中的<code>编译器选项</code></p>
+<p>点击新弹出的窗口中的<code>基本</code></p>
+<p>取消勾选<code>高亮显示当前行</code>，或者后面你再选择你喜欢的颜色。</p>
+<p>点击还是这个窗口中的<code>语法</code>（和“基本”在同一排）</p>
+<p>选择<code>预设</code>为 Obsidian，保存一下再进行以下修改</p>
+<p>修改以下几个地方：（都只改前景和样式，背景不改，改完记得点确定）</p>
+<blockquote>
+<p>Preprocessor: （自定义）红136+绿99+蓝173+下划线</p>
+<p>Reserved Word： （自定义）红106+绿185+蓝255+下划线</p>
+<p>Identifier： Silver</p>
+<p>String：（自定义）红255+绿128+蓝128</p>
+<p>Symbol：（自定义）同上String</p>
+</blockquote>
+<h2 id="代码补全"><a href="#代码补全" class="headerlink" title="代码补全"></a>代码补全</h2><p>点击顶部菜单栏<code>工具</code>-&gt;点击<code>编译器选项</code></p>
+<p>点击新弹出的窗口中的<code>代码补全</code></p>
+<p>点击<code>完成符号</code></p>
+<p>取消勾选<code>启用符号配对</code></p>
+<p><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_2007011032431ijwn1cy.png"></p>
+<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><p>点击顶部菜单栏<code>AStyle</code></p>
+<p>点击下拉列表中的<code>格式化选项</code></p>
+<p>选择<code>选项——括号风格</code>为Allman（个人喜欢）（默认的Java也还行）</p>
+<p>在编辑代码的时候按Ctrl+Shift+A就可以自动格式化啦</p>
+<p><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_2007011032431ijwn1cy.png"></p>
+<h2 id="编译选项优化"><a href="#编译选项优化" class="headerlink" title="编译选项优化"></a>编译选项优化</h2><p>点击顶部菜单栏<code>工具</code></p>
+<p>点击下拉列表中的<code>编译选项</code></p>
+<p>点击新弹出的窗口中的<code>代码生成/优化</code></p>
+<p>点击<code>代码警告</code></p>
+<p>设<code>显示最多警告信息（-Wall）</code>为Yes</p>
+<p>(有必要的可以设“显示所有警告为错误（-Werror）”为Yes)</p>
+<p><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_200701103248mf2j4j60.png"></p>
+<h1 id="瞎搞编译器（进阶）"><a href="#瞎搞编译器（进阶）" class="headerlink" title="瞎搞编译器（进阶）"></a>瞎搞编译器（进阶）</h1><h2 id="更新mingw版本"><a href="#更新mingw版本" class="headerlink" title="更新mingw版本"></a>更新mingw版本</h2><p>（<code>Dev-C++ 5.11</code>自带的<code>mingw-w64</code>的版本才<code>4.9.2</code>，我们可以使用自己最新版的<code>mingw-w64</code>，目前是<code>8.1.0</code>）</p>
+<p>下载<code>mingw-w64</code>，点<a href="https://sourceforge.net/projects/mingw-w64/files/">这里</a>，在文件目录下方有一个<code>MinGW-W64 GCC-8.1.0</code>，根据需要下载版本，比如<code>x86_64-posix-sjlj</code></p>
+<p>打开你<code>Dev-C++</code>安装的位置（默认在<code>C:\Program Files (x86)\Dev-Cpp</code>）</p>
+<p>用你的<code>MinGW64</code>覆盖掉自带的<code>MinGW64</code>的文件夹（记得要用文件结构相同的覆盖啊）</p>
+<ul>
+<li><p>点击<code>Dev-C++</code>菜单栏 <code>文件</code> -&gt; <code>编译选项</code> 点击上方两个加号处</p>
+</li>
+<li><p>点击Yes或No，点击Yes就会清空原有列表，点击No就会保留原来列表，建议清空（建议点击Yes）</p>
+</li>
+<li><p>如果会生成一个新列表，说明配置成功了,像这样</p>
+</li>
+</ul>
+<p><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_2007011032595eebhg9a.png"><br><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_200701103303vdtluh48.png"></p>
+<h2 id="添加其他的库"><a href="#添加其他的库" class="headerlink" title="添加其他的库"></a>添加其他的库</h2><p>感谢SourceForge</p>
+<blockquote>
+<p><a href="https://sourceforge.net/projects/scintilla/files/scintilla">Scintilla</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://sourceforge.net/projects/iup/files/">Iup</a></p>
+</blockquote>
+<p>具体添加教程懒得写了</p>
+<h1 id="其他（右手就行）"><a href="#其他（右手就行）" class="headerlink" title="其他（右手就行）"></a>其他（右手就行）</h1><h2 id="设置透明编辑器"><a href="#设置透明编辑器" class="headerlink" title="设置透明编辑器"></a>设置透明编辑器</h2><p><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_2007011033129ztt3tra.png"></p>
+<ol>
+<li>点击<a href="https://chime.tv/products/glass2k.shtml">这里</a>前往<a href="https://chime.tv/products/glass2k.shtml">Glass2k官网</a></li>
+</ol>
+<p>解压并打开<code>Glass2k.exe</code>(怎么都是英文的？！别怕)</p>
+<p>如果没有显示界面那就看看任务栏右下角有没有三个箱子堆起来的图标，右键点<code>Settings</code></p>
+<p>有三个勾选框，简单翻译一下，第一个是开机启动，第二个是记住透明度设置，第三个是深度使用该软件（建议勾选第二和第三个）（下面那个蓝蓝的条是用来设置任务栏的透明度的）</p>
+<p>接下来为了避免鼠标按键冲突，设置<code>Right Click</code>: <code>+ Ctrl + Shift</code></p>
+<p>然后打开DEV-C++，按着<code>Ctrl + Shift + 右键</code>点击DEV-C++窗口的任意地方，就会出现一个列表，选择你想要的透明度就可以啦（建议设置80%）</p>
+<ul>
+<li>可以按照下图修改</li>
+</ul>
+<p><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_2007011033170gbn318e.png"></p>
+<p>（PS:这个软件也可以用在其他一些地方哦，如：浏览器，文件夹等）</p>
+<h2 id="一些快捷键（有手就行）"><a href="#一些快捷键（有手就行）" class="headerlink" title="一些快捷键（有手就行）"></a>一些快捷键（有手就行）</h2><ol>
+<li><p>f9编译，f10运行，f11编译运行（这个应该不用我多说）</p>
+</li>
+<li><p>f5调试（记得把设定编译器配置改为TDM-GCC 4.9.2 64-bit Debug），F7下一步，F8单步进入（这个应该也不用我多说）</p>
+</li>
+<li><p>Ctrl+f11全屏/取消全屏，样例：<br><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_200701103321xv7z3idp.png"></p>
+</li>
+<li><p>当你打开了两个文件时，让你的页面停留在一个文件，按Ctrl+M就可以把另一个文件在新的页面打开，样例:<br><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_200701103326klowtiln.png"></p>
+</li>
+</ol>
+<h1 id="结语（快三连）"><a href="#结语（快三连）" class="headerlink" title="结语（快三连）"></a>结语（快三连）</h1><p><strong>文章到此就结束了，还在持续更新，给个赞再走呗</strong></p>
+]]></content>
+      <tags>
+        <tag>IDE</tag>
+      </tags>
   </entry>
 </search>
