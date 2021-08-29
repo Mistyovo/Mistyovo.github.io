@@ -114,26 +114,16 @@
 ]]></content>
   </entry>
   <entry>
-    <title>C++图形库安装教程</title>
-    <url>/2021/07/16/C++-Graphics-Library-installation-tutorial/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Visual Studio Code配置C++开发环境</title>
+    <title>Visual Studio Code配置</title>
     <url>/2021/07/16/Visual-Studio-Code-configuration-C-development-environment/</url>
     <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>无…umm…还是扯点什么吧。</p>
 <p>在高大上的Visual Studio IDE的影响下，Microsoft推出了轻量级代码编辑器Visual Studio Code。为了好奇心也为了方便学习和工作，本文讲解Visual Studio Code如何配置C++开发环境</p>
-<p>作者巨懒！全文无图！嘿嘿(*^▽^*)</p>
+<p>信息量较大，请根据目录各取所需。作者巨懒！全文无图！嘿嘿(*^▽^*)</p>
 <span id="more"></span>
 
-<h2 id="下载和安装"><a href="#下载和安装" class="headerlink" title="下载和安装"></a>下载和安装</h2><h3 id="下载Visual-Studio-Code"><a href="#下载Visual-Studio-Code" class="headerlink" title="下载Visual Studio Code"></a>下载Visual Studio Code</h3><p>点击<a href="https://code.visualstudio.com/">这里</a>转到Visual Studio Code官网</p>
+<h2 id="下载和安装"><a href="#下载和安装" class="headerlink" title="下载和安装"></a>下载和安装</h2><h3 id="下载Visual-Studio-Code代码编辑器"><a href="#下载Visual-Studio-Code代码编辑器" class="headerlink" title="下载Visual Studio Code代码编辑器"></a>下载Visual Studio Code代码编辑器</h3><p>点击<a href="https://code.visualstudio.com/">这里</a>转到Visual Studio Code官网</p>
 <p>下载对应版本的安装包（或压缩包），安装过程略</p>
-<h3 id="下载C-编译器"><a href="#下载C-编译器" class="headerlink" title="下载C++编译器"></a>下载C++编译器</h3><p>主流的C++编译器有<code>MinGW</code>和<code>mingw-w64</code>可供选择</p>
-<p>推荐使用后者，<a href="http://www.mingw-w64.org/">官网网址</a></p>
+<h3 id="下载C-编译器"><a href="#下载C-编译器" class="headerlink" title="下载C++编译器"></a>下载C++编译器</h3><p>主流的C++编译器有<code>MinGW</code>和<code>mingw-w64</code>可供选择，推荐使用后者，<a href="http://www.mingw-w64.org/">官网网址</a></p>
 <p>点击上方Download按钮</p>
 <p>点击Mingw-W64-builds点击Sourceforge跳转到一个国外的网盘</p>
 <p>点击Files（上面的步骤太麻烦了？-&gt;<a href="https://sourceforge.net/projects/mingw-w64/files/">便民链接</a>）</p>
@@ -186,8 +176,7 @@
 <blockquote>
 <p><code>C:\Program Files\mingw-w64\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin</code></p>
 </blockquote>
-<p>然后一通操作：</p>
-<p>在桌面上，右键“计算机”，点击“属性”，点击“高级系统设置”，点击“环境变量”</p>
+<p>回到桌面，右键“计算机”，点击“属性”，点击“高级系统设置”，点击“环境变量”</p>
 <p>找到<code>PATH</code>双击，没有就“新建”</p>
 <table>
 <thead>
@@ -208,6 +197,8 @@
 <p>g++: fatal error: no input files<br>compilation terminated.</p>
 </blockquote>
 <p>则说明配置成功了，输入<code>g++ -v</code>可查看版本信息</p>
+<h3 id="下载Java编译器"><a href="#下载Java编译器" class="headerlink" title="下载Java编译器"></a>下载Java编译器</h3><h3 id="下载Python编译器"><a href="#下载Python编译器" class="headerlink" title="下载Python编译器"></a>下载Python编译器</h3><p>请前往官网<a href="https://www.python.org/">官网网址</a></p>
+<p>点击Download下方的下载链接Latest: Python 3.X.X(当然这是Python3的)</p>
 <h2 id="Visual-Studio-Code-配置"><a href="#Visual-Studio-Code-配置" class="headerlink" title="Visual Studio Code 配置"></a>Visual Studio Code 配置</h2><p>打开一个文件夹，新建一个名为<code>.vscode</code>的文件夹<br>创建两个新文件，及其内容分别为：</p>
 <h3 id="扔代码咯"><a href="#扔代码咯" class="headerlink" title="扔代码咯"></a>扔代码咯</h3><p>launch.json</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Run C/C++ CMD&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build &amp; run file&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Run C/C++&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build &amp; run file&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Debug C/C++ CMD&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build &amp; debug file&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Debug C/C++&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">            <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build &amp; debug file&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -239,10 +230,11 @@
   </entry>
   <entry>
     <title>美化、增强DEV-C++编辑器~</title>
-    <url>/2021/07/17/DEV-C/</url>
+    <url>/2021/07/17/DEV-C--/</url>
     <content><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>鉴于使用<code>原版DEV-C++</code>不得不说十分滞后，人家<code>Visual Studio</code>多高端</p>
 <p>于是小S写下此文章,使用一些奇技淫巧，美化和增强此IDE，使其用起来比<code>Visual Studio</code>更舒服</p>
 <p>温习提示：前方高能、有关DEV-C++的东西我全写这里了（信息量较大，建议使用侧边目录辅助阅读</p>
+<p>这是我从我的博客园那搬过来的，图片还没搬。。。</p>
 <h1 id="样式美化、个性化（新手）"><a href="#样式美化、个性化（新手）" class="headerlink" title="样式美化、个性化（新手）"></a>样式美化、个性化（新手）</h1><h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p><img src="https://images.cnblogs.com/cnblogs_com/fox-nest/1648750/o_200701103238vttuwku5.png"><br>点击顶部菜单栏<code>工具</code></p>
 <p>点击下拉列表中的<code>编译器选项</code></p>
 <p>点击新弹出的窗口中的<code>基本</code></p>
@@ -323,6 +315,44 @@
 ]]></content>
       <tags>
         <tag>IDE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++中的Win32编程</title>
+    <url>/2021/08/28/learnwin32/</url>
+    <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>本人垃圾电脑带不动Visual Studio</p>
+<p>所以我用的是Visual Studio Code</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最好用的内网穿透软件Sakura-Frp</title>
+    <url>/2021/08/29/Sakura-Frp/</url>
+    <content><![CDATA[<h2 id="官方网址"><a href="#官方网址" class="headerlink" title="官方网址"></a>官方网址</h2><p>戳这里 -&gt; <a href="https://www.natfrp.com/">https://www.natfrp.com/</a></p>
+<p>还没有账号的点击<code>注册账号</code></p>
+<p>已有账号的点击<code>管理面板</code></p>
+<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><h3 id="管理面板"><a href="#管理面板" class="headerlink" title="管理面板"></a>管理面板</h3><ol>
+<li>在管理面板里有许多教程，可以自己看</li>
+<li>在个人信息里有你的用户秘钥，记得保管好</li>
+<li>在每日签到里，每日签到可获得1~4G流量</li>
+<li>在实名认证里完成认证，不然无法使用国内的隧道，国外的隧道经常被墙，需要支付1元的认证资格</li>
+<li>在帮助文档里，你就不需要我的帮助了</li>
+</ol>
+<h3 id="增值服务"><a href="#增值服务" class="headerlink" title="增值服务"></a>增值服务</h3><p>（白嫖党不需要）</p>
+<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><ol>
+<li>在隧道列表里你可以查看你创建过的隧道，白嫖党一共可以免费创建5条隧道</li>
+<li>在创建隧道里你可以创建你的隧道（被墙的就不要选了，选了也连不上）</li>
+<li>（远程设备没用）</li>
+<li>在软件下载里，你可以下载客户端，操作更方便</li>
+<li>在节点状态里你可以看那些隧道比较不会拥挤</li>
+<li>（验证备案没用，只要你不干违法的事）</li>
+</ol>
+<h3 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h3><p>（自己研究）</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
 </search>
