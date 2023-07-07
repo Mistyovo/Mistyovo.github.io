@@ -1,0 +1,14 @@
+#title{
+    height: 200px;
+    background-color: #519cff;
+}
+
+#title-text{
+    position: relative;
+    top: 90px;
+    text-align: center;
+    color: #fff;
+}
+#title-text h1{
+    padding: 0;
+}

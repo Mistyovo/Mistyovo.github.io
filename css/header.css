@@ -1,0 +1,40 @@
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 42px;
+    z-index: 30;
+    background-color: #FFF;
+}
+#header ul{
+    height: 42px;
+    float: right;
+}
+#header li{
+    height: 100%;
+    width: 80px;
+    line-height: 42px;
+    text-decoration: none;
+
+    text-align: center;
+    display: block;
+    float: left;
+}
+#header a{
+    display: block;
+    float: right;
+    height: 100%;
+    width:  100%;
+    font-size: 14px;
+    color: #333;
+    transition: 0.5s background-color;
+}
+#header a:hover{
+    font-size: 14px;
+    background-color: #EEE;
+    transition: 0.5s background-color;
+}
+/* #header a:visited{
+    color: ;
+} */

@@ -1,0 +1,38 @@
+#content {
+    position: relative;
+    z-index: 16;
+    left: 10%;
+    width: 60%;
+}
+
+#content .post{
+    background-color: #fff;
+    margin-bottom: 10px ;
+}
+
+
+#content .postTitle {
+    text-align: center;
+    color: #519cff;
+    padding-bottom: 0;
+}
+#content .postInfo {
+    text-align: center;
+    color: #a39e9e;
+}
+
+
+#content a,
+#content a:visited {
+    position: relative;
+    color: #519cff;
+    top: 0;
+    transition: 0.5s;
+}
+
+#content a:hover {
+    position: relative;
+    top: -3px;
+    color: #4492f8;
+    transition: 0.5s;
+}
