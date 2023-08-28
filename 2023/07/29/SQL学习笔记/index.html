@@ -1,0 +1,168 @@
+<html lang="en ">
+
+<head>
+    <meta charset="utf-8">
+<link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css">
+<link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.css">
+<script src="/highlight/highlight.min.js"></script>
+<script src="/js/scrollToTop.js"></script>
+<script src="/js/sidebarFixed.js"></script>
+<script src="/js/showBackground.js"></script>
+
+<link rel="stylesheet" href="/css/main.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="header" class="shadow">
+    <ul>
+        
+            <li>
+                <a href="/">
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archive">
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="/links">
+                    友链
+                </a>
+            </li>
+        
+            <li>
+                <a href="/sources">
+                    资源
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about">
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+</div>
+    <div id="sidebar" class="shadow">
+	<div class="avatar">
+		<img class="round-image" src="/images/avatar.jpg">
+	</div>
+	<div id="quoteContainer">
+	</div>
+	<!-- <div class="blogInfo">
+		<div class="blogInfoItem">
+			日志
+			<div class="blogInfoNumber">5</div>
+		</div>
+		<div class="blogInfoItem">
+
+			<div class="blogInfoNumber">5</div>
+		</div>
+	</div> -->
+	<div class="social">
+		<h3>社交</h3>
+		<div class="social-links">
+			<div class="social-item">
+				<a target="_blank" rel="noopener" href="https://github.com/Mistyovo">Github</a>
+			</div>
+			<div class="social-item">
+				<a target="_blank" rel="noopener" href="https://gitee.com/Snowsant">Gitee</a>
+			</div>
+			<div class="social-item">
+				<a target="_blank" rel="noopener" href="https://space.bilibili.com/400701785">哔哩哔哩</a>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="search"></div>
+	<div class="subscribe"></div>
+	<div class="advertise"></div> -->
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=110 src="//music.163.com/outchain/player?type=0&id=8555115352&auto=true&height=90"></iframe>
+</div>
+    <title>SQL学习笔记</title>
+<div id="title">
+    <div id="title-img"></div>
+    <div id="title-text"><h1>SQL学习笔记</h1></div>
+</div>
+<div id="content">
+    <div class="post">
+        <h3 id="SELECT-语句"><a href="#SELECT-语句" class="headerlink" title="SELECT 语句"></a>SELECT 语句</h3><blockquote>
+<p>SELECT 语句用于从数据库中选取数据。<br>结果被存储在一个结果表中，称为结果集。</p>
+</blockquote>
+<pre><code class="sql">SELECT column1, column2, ... FROM table_name;
+SELECT * FROM table_name;
+</code></pre>
+<h3 id="SELECT-DISTINCT-语句"><a href="#SELECT-DISTINCT-语句" class="headerlink" title="SELECT DISTINCT 语句"></a>SELECT DISTINCT 语句</h3><blockquote>
+<p>在表中，一个列可能会包含多个重复值，有时您也许希望仅仅列出不同（distinct）的值。DISTINCT 关键词用于返回唯一不同的值。</p>
+</blockquote>
+<pre><code class="sql">SELECT DISTINCT column1, column2, ... FROM table_name;
+</code></pre>
+<h3 id="WHERE-子句"><a href="#WHERE-子句" class="headerlink" title="WHERE 子句"></a>WHERE 子句</h3><blockquote>
+<p>WHERE 子句用于提取那些满足指定条件的记录。</p>
+</blockquote>
+<pre><code class="sql">SELECT column1, column2, ... FROM table_name WHERE condition;
+</code></pre>
+<h3 id="AND-amp-OR-运算符"><a href="#AND-amp-OR-运算符" class="headerlink" title="AND &amp; OR 运算符"></a>AND &amp; OR 运算符</h3><blockquote>
+<p>如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。<br>如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</p>
+</blockquote>
+<h3 id="ORDER-BY-关键字"><a href="#ORDER-BY-关键字" class="headerlink" title="ORDER BY 关键字"></a>ORDER BY 关键字</h3><blockquote>
+<p>ORDER BY 关键字用于对结果集按照一个列或者多个列进行排序。<br>ORDER BY 关键字默认按照升序对记录进行排序。如果需要按照降序对记录进行排序，您可以使用 DESC 关键字。</p>
+</blockquote>
+<pre><code class="sql">SELECT column1, column2, ... FROM table_name
+ORDER BY column1, column2, ... ASC|DESC;
+</code></pre>
+<p>ASC：表示按升序排序。DESC：表示按降序排序。</p>
+<h3 id="INSERT-INTO-语句"><a href="#INSERT-INTO-语句" class="headerlink" title="INSERT INTO 语句"></a>INSERT INTO 语句</h3><blockquote>
+<p>INSERT INTO 语句用于向表中插入新记录。</p>
+</blockquote>
+<pre><code class="sql">INSERT INTO table_name VALUES (value1,value2,value3,...);
+INSERT INTO table_name (column1,column2,column3,...) VALUES (value1,value2,value3,...);
+</code></pre>
+<h3 id="UPDATE-语句"><a href="#UPDATE-语句" class="headerlink" title="UPDATE 语句"></a>UPDATE 语句</h3><blockquote>
+<p>UPDATE 语句用于更新表中已存在的记录。</p>
+</blockquote>
+<pre><code class="sql">UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
+</code></pre>
+<h3 id="DELETE-语句"><a href="#DELETE-语句" class="headerlink" title="DELETE 语句"></a>DELETE 语句</h3><blockquote>
+<p>DELETE 语句用于删除表中的行。</p>
+</blockquote>
+<pre><code class="sql">DELETE FROM table_name WHERE condition;
+</code></pre>
+<p><strong>参考来源</strong>：<a href="runoob.com">菜鸟教程</a></p>
+
+    </div>
+</div>
+    <div id="footer">
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+<button class="stt" onclick="scrollToTop()"><i class="fa fa-chevron-circle-up"></i></button>
+<button class="sb" onclick="showBackground()"><i class="fa fa-image"></i></button>
+
+<canvas id="snowCanvas"></canvas>
+<script src="/js/snow.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	// 获取每日一言数据
+	axios.get('https://v1.hitokoto.cn/').then(response => {
+		const quote = response.data.hitokoto;
+		const container = document.getElementById('quoteContainer');
+		container.innerText = quote; // 或者使用 container.innerHTML = quote;
+	}).catch(error => {
+		console.error('获取每日一言失败', error);
+	});
+</script>
+
+<script>
+	hljs.highlightAll();
+</script>
+</body>
+
+</html>

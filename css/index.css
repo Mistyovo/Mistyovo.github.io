@@ -3,11 +3,14 @@
     z-index: 16;
     left: 10%;
     width: 60%;
+    min-height: 100%;
+    opacity: 0.95;
 }
 
 #content .post{
     background-color: #fff;
-    margin-bottom: 10px ;
+    border-radius: 5px;
+    margin: 10px 0 10px 0;
 }
 
 
