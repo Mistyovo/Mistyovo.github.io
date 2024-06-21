@@ -1,0 +1,153 @@
+<html lang="en ">
+
+<head>
+    <meta charset="utf-8">
+<link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css">
+<link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.css">
+<script src="/highlight/highlight.min.js"></script>
+<script src="/js/scrollToTop.js"></script>
+<script src="/js/sidebarFixed.js"></script>
+<script src="/js/showBackground.js"></script>
+
+<link rel="stylesheet" href="/css/main.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="header" class="shadow">
+    <ul>
+        
+            <li>
+                <a href="/">
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archive">
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="/links">
+                    友链
+                </a>
+            </li>
+        
+            <li>
+                <a href="/sources">
+                    资源
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about">
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+</div>
+    <div id="sidebar" class="shadow">
+	<div class="avatar">
+		<img class="round-image" src="/images/avatar.jpg">
+	</div>
+	<div id="quoteContainer">
+	</div>
+	<div class="blogInfo">
+		<div class="blogInfoItem">
+			博龄：
+		</div>
+		<div class="blogInfoItem">
+			日志：10
+		</div>
+	</div>
+	<div class="social">
+		<h3>社交o.O</h3>
+		<div class="social-links">
+			<div class="social-item">
+				<a target="_blank" rel="noopener" href="https://github.com/Mistyovo">Github</a>
+			</div>
+			<div class="social-item">
+				<a target="_blank" rel="noopener" href="https://gitee.com/Snowsant">Gitee</a>
+			</div>
+			<div class="social-item">
+				<a target="_blank" rel="noopener" href="https://space.bilibili.com/400701785">哔哩哔哩</a>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="search"></div>
+	<div class="subscribe"></div>
+	<div class="advertise"></div> -->
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=110 src="//music.163.com/outchain/player?type=0&id=8555115352&auto=true&height=90"></iframe>
+</div>
+    <title>vim快速入门</title>
+<div id="title">
+    <div id="title-img"></div>
+    <div id="title-text"><h1>vim快速入门</h1></div>
+</div>
+<div id="content">
+    <div class="post">
+        <h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><pre><code class="less">正常模式：无需操作/[Esc]
+命令模式：[?] [/]
+编辑模式：[i]
+可视模式：[v]字符可视
+         [V]行可视
+         [ctrl+v]块可视
+</code></pre>
+<p>注：可视模式通俗的讲就是选中，选中范围为：高亮部分+光标所在位置（可能没高亮）。也就是说只要进入了可视模式，至少会被选中一个字符</p>
+<h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><pre><code class="less">[h]左
+[j]下（像向下的箭头）
+[k]上
+[l]右
+[w]下一个单词开头
+[b]上一个单词开头
+</code></pre>
+<h3 id="复制剪切粘贴"><a href="#复制剪切粘贴" class="headerlink" title="复制剪切粘贴"></a>复制剪切粘贴</h3><pre><code class="less">[x]单个字母删除
+[d]删除
+[dd]删除当前行
+[]
+[y]复制
+[yy]复制当前行
+[p]粘贴
+</code></pre>
+<h3 id="撤销重做"><a href="#撤销重做" class="headerlink" title="撤销重做"></a>撤销重做</h3><pre><code class="less">[u]撤销
+[ctrl+r]重做
+</code></pre>
+<h3 id="组合技"><a href="#组合技" class="headerlink" title="组合技"></a>组合技</h3><pre><code class="less">[ggVG]全选      [gg]到最顶行首[V]行可视[G]到最末行首
+</code></pre>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><pre><code class="less">[: set nu]显示行号
+</code></pre>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2>
+    </div>
+</div>
+    <div id="footer">
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+<button class="stt" onclick="scrollToTop()"><i class="fa fa-chevron-circle-up"></i></button>
+<button class="sb" onclick="showBackground()"><i class="fa fa-image"></i></button>
+
+<canvas id="snowCanvas"></canvas>
+<script src="/js/snow.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	// 获取每日一言数据
+	axios.get('https://v1.hitokoto.cn/').then(response => {
+		const quote = response.data.hitokoto;
+		const container = document.getElementById('quoteContainer');
+		container.innerText = quote; // 或者使用 container.innerHTML = quote;
+	}).catch(error => {
+		console.error('获取每日一言失败', error);
+	});
+</script>
+
+<script>
+	hljs.highlightAll();
+</script>
+</body>
+
+</html>

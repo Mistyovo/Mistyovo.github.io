@@ -1,0 +1,29 @@
+.archive{
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 10px 0 10px 0;
+
+    display: flex;
+    flex-direction: row;
+}
+#content .archiveTitle{
+    width: 80%;
+}
+
+
+#content .archive a,
+#content .archive a:visited,
+#content .archive a:hover{
+    color: #aaa;
+    font-size: 16px;
+}
+
+#content .archive .postInfo{
+    padding: 20px;
+    width: 20%;
+}
+
+#content .archive h1{
+    display: block;
+    margin: 0;
+}

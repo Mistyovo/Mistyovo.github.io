@@ -1,0 +1,281 @@
+<html lang="en ">
+
+<head>
+    <meta charset="utf-8">
+<link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css">
+<link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.css">
+<script src="/highlight/highlight.min.js"></script>
+<script src="/js/scrollToTop.js"></script>
+<script src="/js/sidebarFixed.js"></script>
+<script src="/js/showBackground.js"></script>
+
+<link rel="stylesheet" href="/css/main.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="header" class="shadow">
+    <ul>
+        
+            <li>
+                <a href="/">
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archive">
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="/links">
+                    友链
+                </a>
+            </li>
+        
+            <li>
+                <a href="/sources">
+                    资源
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about">
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+</div>
+    <div id="sidebar" class="shadow">
+	<div class="avatar">
+		<img class="round-image" src="/images/avatar.jpg">
+	</div>
+	<div id="quoteContainer">
+	</div>
+	<div class="blogInfo">
+		<div class="blogInfoItem">
+			博龄：
+		</div>
+		<div class="blogInfoItem">
+			日志：10
+		</div>
+	</div>
+	<div class="social">
+		<h3>社交o.O</h3>
+		<div class="social-links">
+			<div class="social-item">
+				<a target="_blank" rel="noopener" href="https://github.com/Mistyovo">Github</a>
+			</div>
+			<div class="social-item">
+				<a target="_blank" rel="noopener" href="https://gitee.com/Snowsant">Gitee</a>
+			</div>
+			<div class="social-item">
+				<a target="_blank" rel="noopener" href="https://space.bilibili.com/400701785">哔哩哔哩</a>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="search"></div>
+	<div class="subscribe"></div>
+	<div class="advertise"></div> -->
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=110 src="//music.163.com/outchain/player?type=0&id=8555115352&auto=true&height=90"></iframe>
+</div>
+    <title>用C++读取鼠标在控制台上的操作</title>
+<div id="title">
+    <div id="title-img"></div>
+    <div id="title-text"><h1>用C++读取鼠标在控制台上的操作</h1></div>
+</div>
+<div id="content">
+    <div class="post">
+        <p>与读取键盘信息类似，读取鼠标信息也是通过 <code>ReadConsoleInput</code> 函数来实现</p>
+<p>咱先说一下需要用到的头文件：</p>
+<pre><code class="cpp">#include &lt;windows.h&gt;
+</code></pre>
+<p>响应鼠标点击事件的变量类型</p>
+<pre><code class="cpp">INPUT_RECORD
+</code></pre>
+<p>咱先介绍一下<code>ReadConsoleInput</code>这个函数</p>
+<pre><code class="cpp">typedef struct _MOUSE_EVENT_RECORD &#123; 
+        COORD dwMousePosition;		// 当前鼠标位置
+        DWORD dwButtonState;		// 鼠标按钮状态
+        DWORD dwControlKeyState;	// 键盘控制键状态
+        DWORD dwEventFlags; 		// 事件状态
+&#125; MOUSE_EVENT_RECORD;
+//这个东西一般都在&quot;INPUT_RECORD的变量名.Event.MouseEvent.以上变量&quot;
+</code></pre>
+<p>1.第一个参数存放鼠标的位置信息，类型为 COORD 坐标类型；</p>
+<p>2.第二个参数（dwButtonState）为鼠标的按键状态，包含的值如下:</p>
+<table>
+<thead>
+<tr>
+<th align="left">鼠标按键状态码（dwButtonState）</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FROM_LEFT_1ST_BUTTON_PRESSED</td>
+<td align="left">最左边按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_2ND_BUTTON_PRESSED</td>
+<td align="left">左起第二个按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_3RD_BUTTON_PRESSED</td>
+<td align="left">左起第三个按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_4TH_BUTTON_PRESSED</td>
+<td align="left">左起第四个按键</td>
+</tr>
+<tr>
+<td align="left">RIGHTMOST_BUTTON_PRESSED</td>
+<td align="left">最右边按键</td>
+</tr>
+</tbody></table>
+<p>3.第三个参数是键盘控制键状态，这个和上一章的内容是一样的；</p>
+<p>4.最后一个参数（dwEventFlag）为事件状态：</p>
+<table>
+<thead>
+<tr>
+<th align="left">事件状态码（dwEventFlag）</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DOUBLE_CLICK</td>
+<td align="left">双击</td>
+</tr>
+<tr>
+<td align="left">MOUSE_MOVED</td>
+<td align="left">移动</td>
+</tr>
+<tr>
+<td align="left">MOUSE_WHEELED</td>
+<td align="left">滚轮滚动（只适用于Windows 2000&#x2F;XP）</td>
+</tr>
+</tbody></table>
+<p>在程序开头应加上</p>
+<pre><code class="cpp">HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
+//这是用来添加鼠标输入设备的
+</code></pre>
+<p>用法举例</p>
+<pre><code class="cpp">//我写的一个简单地例子
+#include&lt;iostream&gt;
+#include&lt;windows.h&gt;
+using namespace std;
+int main()
+&#123;
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
+
+    CONSOLE_SCREEN_BUFFER_INFO bInfo;
+    INPUT_RECORD mouseRec;
+    DWORD res;
+
+    while(1)
+    &#123;
+        ReadConsoleInput(hIn, &amp;mouseRec, 1, &amp;res);//读取一个鼠标操作
+        if(mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)//如果点击了左键
+        &#123;
+            if (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)//如果是双击
+            &#123;
+                break;	//退出循环
+            &#125;
+            else//单击的情况
+            &#123;
+                cout&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.X&lt;&lt;&quot; &quot;&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.Y&lt;&lt;endl;//输出当前鼠标的位置
+            &#125;
+        &#125;
+    &#125;
+    CloseHandle(hOut);  // 关闭标准输出设备句柄  
+    CloseHandle(hIn);   // 关闭标准输入设备句柄  
+&#125;
+</code></pre>
+<p>摘自网络</p>
+<pre><code class="cpp">#include &lt;windows.h&gt;  
+#include &lt;stdio.h&gt;  
+ 
+int main(void)  
+&#123;  
+    // 获取标准输入输出设备句柄  
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);        
+    HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE); 
+    CONSOLE_SCREEN_BUFFER_INFO bInfo;
+    INPUT_RECORD	mouseRec;
+    DWORD			res;
+    COORD			crPos, crHome = &#123;0, 0&#125;;
+    printf(&quot;[Cursor Position] X: %2lu  Y: %2lu\n&quot;, 0, 0);	// 初始状态
+    while (1)
+    &#123;
+        ReadConsoleInput(hIn, &amp;mouseRec, 1, &amp;res);
+ 
+        if (mouseRec.EventType == MOUSE_EVENT)
+        &#123;
+            if (mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)
+            &#123;
+                if (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)
+                &#123;
+                    break;	// 左键双击 退出循环
+                &#125;
+            &#125;			
+            crPos = mouseRec.Event.MouseEvent.dwMousePosition;
+            GetConsoleScreenBufferInfo(hOut, &amp;bInfo);
+            SetConsoleCursorPosition(hOut, crHome);
+            printf(&quot;[Cursor Position] X: %2lu  Y: %2lu&quot;, crPos.X, crPos.Y);
+            SetConsoleCursorPosition(hOut, bInfo.dwCursorPosition);
+            switch (mouseRec.Event.MouseEvent.dwButtonState)
+            &#123;
+                case FROM_LEFT_1ST_BUTTON_PRESSED:			// 左键 输出A
+                    FillConsoleOutputCharacter(hOut, &#39;A&#39;, 1, crPos, &amp;res);
+                    break;		// 如果使用printf输出，则之前需要先设置光标的位置
+     
+                case RIGHTMOST_BUTTON_PRESSED:				// 右键 输出a
+                    FillConsoleOutputCharacter(hOut, &#39;a&#39;, 1, crPos, &amp;res);
+                    break;
+     
+                default:
+                    break;
+            &#125;
+        &#125;		
+    &#125;
+    CloseHandle(hOut);  // 关闭标准输出设备句柄  
+    CloseHandle(hIn);   // 关闭标准输入设备句柄  
+    return 0;  
+&#125;
+</code></pre>
+
+    </div>
+</div>
+    <div id="footer">
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+<button class="stt" onclick="scrollToTop()"><i class="fa fa-chevron-circle-up"></i></button>
+<button class="sb" onclick="showBackground()"><i class="fa fa-image"></i></button>
+
+<canvas id="snowCanvas"></canvas>
+<script src="/js/snow.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	// 获取每日一言数据
+	axios.get('https://v1.hitokoto.cn/').then(response => {
+		const quote = response.data.hitokoto;
+		const container = document.getElementById('quoteContainer');
+		container.innerText = quote; // 或者使用 container.innerHTML = quote;
+	}).catch(error => {
+		console.error('获取每日一言失败', error);
+	});
+</script>
+
+<script>
+	hljs.highlightAll();
+</script>
+</body>
+
+</html>
