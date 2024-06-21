@@ -31,31 +31,43 @@ h3,
 h4,
 h5,
 h6 {
-    padding: 20px 20px 5px 20px;
+    padding: 20px 20px 5px 0px;
     font-family: 'SourceHanSerifCN-VF';
 }
 
 p {
-    padding: 5px 20px;
+    padding: 5px 0px;
     font-family: 'SourceHanSerifCN-VF';
 }
-
 /* p {
     text-indent: 2em;
+}*/
+
+img {
+    width: 100%;
 }
 
-blockquote p {
-    text-indent: 2em;
-} */
+blockquote {
+    margin: 16px 0 16px 0;
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: .25em solid #dfe2e5;
+} 
 
 table {
     position: relative;
     left: 5%;
     width: 90%;
+
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #e0e0ff;
+    /* 设置偶数行背景颜色 */
+}
+
+tr:nth-child(odd) {
+    background-color: #f0f0ff;
     /* 设置偶数行背景颜色 */
 }
 

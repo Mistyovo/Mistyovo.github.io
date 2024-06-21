@@ -8,6 +8,7 @@
 }
 
 #content .post{
+    padding: 36px;
     background-color: #fff;
     border-radius: 5px;
     margin: 10px 0 10px 0;
@@ -28,7 +29,7 @@
 #content a,
 #content a:visited {
     position: relative;
-    color: #519cff;
+    color: #d08897;
     top: 0;
     transition: 0.5s;
 }
@@ -36,6 +37,6 @@
 #content a:hover {
     position: relative;
     top: -3px;
-    color: #4492f8;
+    color: #d08897;
     transition: 0.5s;
 }

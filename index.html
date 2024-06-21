@@ -160,76 +160,6 @@
     
         <div class="post shadow">
             <h1 class="postTitle">
-                <a href="/2024/06/18/麻雀学习-牌效率/">
-                    麻雀学习-牌效率
-                </a>
-            </h1>
-            <div class="postInfo">
-                2024-06-18
-            </div>
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>本文是博主自己的学习笔记，要pdf的翻阅之前的文章</p>
-</blockquote>
-<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="第一节-5组牌理论（1）"><a href="#第一节-5组牌理论（1）" class="headerlink" title="第一节 5组牌理论（1）"></a>第一节 5组牌理论（1）</h3>
-        </div>
-    
-        <div class="post shadow">
-            <h1 class="postTitle">
-                <a href="/2024/06/18/立直麻将杂记/">
-                    立直麻将杂记
-                </a>
-            </h1>
-            <div class="postInfo">
-                2024-06-18
-            </div>
-            <h2 id="1-孤立19牌的比较"><a href="#1-孤立19牌的比较" class="headerlink" title="1.孤立19牌的比较"></a>1.孤立19牌的比较</h2><p>147 &lt; 144 &lt; 14 &lt; 146 &lt; <strong>客风</strong> &lt; 145 &lt; 124 &lt; 1224 &lt; 157 &lt; 156 &lt; <strong>1</strong> &lt; 134  &lt; 1123 &lt; 1567 &lt; 1456 &lt; 14556 &lt; 15 &lt; 1346 &lt; <strong>2</strong> &lt; 13468 &lt; 1345</p>
-
-        </div>
-    
-        <div class="post shadow">
-            <h1 class="postTitle">
-                <a href="/2024/06/17/vim快速入门/">
-                    vim快速入门
-                </a>
-            </h1>
-            <div class="postInfo">
-                2024-06-17
-            </div>
-            <h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><pre><code class="less">正常模式：无需操作/[Esc]
-命令模式：[?] [/]
-编辑模式：[i]
-可视模式：[v]字符可视
-         [V]行可视
-         [ctrl+v]块可视
-</code></pre>
-<p>注：可视模式通俗的讲就是选中，选中范围为：高亮部分+光标所在位置（可能没高亮）。也就是说只要进入了可视模式，至少会被选中一个字符</p>
-<h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><pre><code class="less">[h]左
-[j]下（像向下的箭头）
-[k]上
-[l]右
-[w]下一个单词开头
-[b]上一个单词开头
-</code></pre>
-<h3 id="复制剪切粘贴"><a href="#复制剪切粘贴" class="headerlink" title="复制剪切粘贴"></a>复制剪切粘贴</h3><pre><code class="less">[x]单个字母删除
-[d]删除
-[dd]删除当前行
-[]
-[y]复制
-[yy]复制当前行
-[p]粘贴
-</code></pre>
-<h3 id="撤销重做"><a href="#撤销重做" class="headerlink" title="撤销重做"></a>撤销重做</h3><pre><code class="less">[u]撤销
-[ctrl+r]重做
-</code></pre>
-<h3 id="组合技"><a href="#组合技" class="headerlink" title="组合技"></a>组合技</h3><pre><code class="less">[ggVG]全选      [gg]到最顶行首[V]行可视[G]到最末行首
-</code></pre>
-<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><pre><code class="less">[: set nu]显示行号
-</code></pre>
-<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2>
-        </div>
-    
-        <div class="post shadow">
-            <h1 class="postTitle">
                 <a href="/2024/06/12/网络安全/">
                     CTF自学笔记
                 </a>
@@ -292,27 +222,17 @@ certutil -hashfile 文件名 md5
     
         <div class="post shadow">
             <h1 class="postTitle">
-                <a href="/2024/02/11/kali完整版安装/">
-                    kali完整版安装
+                <a href="/2024/06/18/麻雀学习-牌效率/">
+                    麻雀学习-牌效率
                 </a>
             </h1>
             <div class="postInfo">
-                2024-02-11
+                2024-06-18
             </div>
-            <h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>kali-linux自带的官方源，如果在国内访问通常比较慢。（不换源的话安装完整版kali时真的会慢死）</p>
-<pre><code class="shell">sudo vi /etc/apt/sources.list
-</code></pre>
-<p>然后会进入vi编辑器（需要一点vi的基础，不过没关系，需要的都已经标出来了）</p>
-<pre><code class="shell">#按i进入编辑
-deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-#按esc,然后按依次按:wq
-</code></pre>
-<p>更新</p>
-<pre><code class="shell">sudo apt update &amp;&amp; sudo apt -y upgrade
-</code></pre>
-<h2 id="安装完整版kali"><a href="#安装完整版kali" class="headerlink" title="安装完整版kali"></a>安装完整版kali</h2><pre><code class="shell">sudo apt install kali-linux-large
-</code></pre>
-
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>本文是博主自己的学习笔记，要pdf的翻阅之前的文章</p>
+</blockquote>
+<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="第一节-5组牌理论（1）"><a href="#第一节-5组牌理论（1）" class="headerlink" title="第一节 5组牌理论（1）"></a>第一节 5组牌理论（1）</h3>
         </div>
     
         <div class="post shadow">
@@ -358,89 +278,14 @@ deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib
     
         <div class="post shadow">
             <h1 class="postTitle">
-                <a href="/2024/02/08/日麻算符/">
-                    日麻算符
+                <a href="/2024/06/18/立直麻将杂记/">
+                    立直麻将杂记
                 </a>
             </h1>
             <div class="postInfo">
-                2024-02-08
+                2024-06-18
             </div>
-            <blockquote>
-<p>符&#x3D;20（基底符）+各牌组的符数+和牌方式<br>个位不为0的用进一法进到十位</p>
-</blockquote>
-<h2 id="牌组的符数"><a href="#牌组的符数" class="headerlink" title="牌组的符数"></a>牌组的符数</h2><table>
-<thead>
-<tr>
-<th align="center">刻子</th>
-<th align="center">暗</th>
-<th align="center">幺九</th>
-<th align="center">杠</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2</td>
-<td align="center">(累乘)*2</td>
-<td align="center">(累乘)*2</td>
-<td align="center">(累乘)*4</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">雀头</th>
-<th align="center">顺子</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2*番数</td>
-<td align="center">0</td>
-</tr>
-</tbody></table>
-<h2 id="和牌方式"><a href="#和牌方式" class="headerlink" title="和牌方式"></a>和牌方式</h2><table>
-<thead>
-<tr>
-<th align="center">门清前放铳</th>
-<th align="center">自摸</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">10</td>
-<td align="center">2</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">平和自摸</th>
-<th align="center">平和放铳</th>
-<th align="center">特殊牌型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">20（固定）</td>
-<td align="center">30（固定）</td>
-<td align="center">25（固定）</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">边张（单骑）</th>
-<th align="center">嵌张（单骑）</th>
-<th align="center">雀头（单骑）</th>
-<th align="center">双碰（非单骑）</th>
-<th align="center">两面（非单骑）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2</td>
-<td align="center">2</td>
-<td align="center">2</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-</tbody></table>
-<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p><a target="_blank" rel="noopener" href="https://lietxia.github.io/fupractice.html">https://lietxia.github.io/fupractice.html</a></p>
+            <h2 id="1-孤立19牌的比较"><a href="#1-孤立19牌的比较" class="headerlink" title="1.孤立19牌的比较"></a>1.孤立19牌的比较</h2><p>147 &lt; 144 &lt; 14 &lt; 146 &lt; <strong>客风</strong> &lt; 145 &lt; 124 &lt; 1224 &lt; 157 &lt; 156 &lt; <strong>1</strong> &lt; 134  &lt; 1123 &lt; 1567 &lt; 1456 &lt; 14556 &lt; 15 &lt; 1346 &lt; <strong>2</strong> &lt; 13468 &lt; 1345</p>
 
         </div>
     
@@ -616,6 +461,94 @@ int main(void)
     
         <div class="post shadow">
             <h1 class="postTitle">
+                <a href="/2024/02/08/日麻算符/">
+                    日麻算符
+                </a>
+            </h1>
+            <div class="postInfo">
+                2024-02-08
+            </div>
+            <blockquote>
+<p>符&#x3D;20（基底符）+各牌组的符数+和牌方式<br>个位不为0的用进一法进到十位</p>
+</blockquote>
+<h2 id="牌组的符数"><a href="#牌组的符数" class="headerlink" title="牌组的符数"></a>牌组的符数</h2><table>
+<thead>
+<tr>
+<th align="center">刻子</th>
+<th align="center">暗</th>
+<th align="center">幺九</th>
+<th align="center">杠</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="center">(累乘)*2</td>
+<td align="center">(累乘)*2</td>
+<td align="center">(累乘)*4</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">雀头</th>
+<th align="center">顺子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2*番数</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<h2 id="和牌方式"><a href="#和牌方式" class="headerlink" title="和牌方式"></a>和牌方式</h2><table>
+<thead>
+<tr>
+<th align="center">门清前放铳</th>
+<th align="center">自摸</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">10</td>
+<td align="center">2</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">平和自摸</th>
+<th align="center">平和放铳</th>
+<th align="center">特殊牌型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">20（固定）</td>
+<td align="center">30（固定）</td>
+<td align="center">25（固定）</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">边张（单骑）</th>
+<th align="center">嵌张（单骑）</th>
+<th align="center">雀头（单骑）</th>
+<th align="center">双碰（非单骑）</th>
+<th align="center">两面（非单骑）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p><a target="_blank" rel="noopener" href="https://lietxia.github.io/fupractice.html">https://lietxia.github.io/fupractice.html</a></p>
+
+        </div>
+    
+        <div class="post shadow">
+            <h1 class="postTitle">
                 <a href="/2023/07/06/日本麻将原版书籍PDF/">
                     日本麻将原版书籍PDF
                 </a>
@@ -630,6 +563,74 @@ int main(void)
 <h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><strong>资料来源于网络</strong></p>
 <p><strong>仅供交流学习使用，不得用于任何商业用途</strong></p>
 <p><a target="_blank" rel="noopener" href="https://cowtransfer.com/s/cc797d6a256440">https://cowtransfer.com/s/cc797d6a256440</a> 点击链接查看 【 PDF.zip 】 ，或访问奶牛快传 cowtransfer.com 输入传输口令 f4jzju 查看；</p>
+
+        </div>
+    
+        <div class="post shadow">
+            <h1 class="postTitle">
+                <a href="/2024/06/17/vim快速入门/">
+                    vim快速入门
+                </a>
+            </h1>
+            <div class="postInfo">
+                2024-06-17
+            </div>
+            <span id="more"></span>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><pre><code class="less">正常模式：无需操作/[Esc]
+命令模式：[?] [/]
+编辑模式：[i]
+可视模式：[v]字符可视
+         [V]行可视
+         [ctrl+v]块可视
+</code></pre>
+<p>注：可视模式通俗的讲就是选中，选中范围为：高亮部分+光标所在位置（可能没高亮）。也就是说只要进入了可视模式，至少会被选中一个字符</p>
+<h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><pre><code class="less">[h]左
+[j]下（像向下的箭头）
+[k]上
+[l]右
+[w]下一个单词开头
+[b]上一个单词开头
+</code></pre>
+<h3 id="复制剪切粘贴"><a href="#复制剪切粘贴" class="headerlink" title="复制剪切粘贴"></a>复制剪切粘贴</h3><pre><code class="less">[x]单个字母删除
+[d]删除
+[dd]删除当前行
+[]
+[y]复制
+[yy]复制当前行
+[p]粘贴
+</code></pre>
+<h3 id="撤销重做"><a href="#撤销重做" class="headerlink" title="撤销重做"></a>撤销重做</h3><pre><code class="less">[u]撤销
+[ctrl+r]重做
+</code></pre>
+<h3 id="组合技"><a href="#组合技" class="headerlink" title="组合技"></a>组合技</h3><pre><code class="less">[ggVG]全选      [gg]到最顶行首[V]行可视[G]到最末行首
+</code></pre>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><pre><code class="less">[: set nu]显示行号
+</code></pre>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2>
+        </div>
+    
+        <div class="post shadow">
+            <h1 class="postTitle">
+                <a href="/2024/02/11/kali完整版安装/">
+                    kali完整版安装
+                </a>
+            </h1>
+            <div class="postInfo">
+                2024-02-11
+            </div>
+            <h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>kali-linux自带的官方源，如果在国内访问通常比较慢。（不换源的话安装完整版kali时真的会慢死）</p>
+<pre><code class="shell">sudo vi /etc/apt/sources.list
+</code></pre>
+<p>然后会进入vi编辑器（需要一点vi的基础，不过没关系，需要的都已经标出来了）</p>
+<pre><code class="shell">#按i进入编辑
+deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib
+#按esc,然后按依次按:wq
+</code></pre>
+<p>更新</p>
+<pre><code class="shell">sudo apt update &amp;&amp; sudo apt -y upgrade
+</code></pre>
+<h2 id="安装完整版kali"><a href="#安装完整版kali" class="headerlink" title="安装完整版kali"></a>安装完整版kali</h2><pre><code class="shell">sudo apt install kali-linux-large
+</code></pre>
 
         </div>
     

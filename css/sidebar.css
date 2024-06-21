@@ -36,20 +36,21 @@
 .blogInfo {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
 }
 
 .blogInfoItem {
-    text-align: center;
+    padding: 0px 20px;
+    text-align: left;
     width: 100%;
 }
 
-.blogInfoNumber {
+/* .blogInfoNumber {
     padding: 20px;
     font-size: 20px;
     font-weight: 500;
-}
+} */
 
 .social {
     padding: 10px;
