@@ -7,7 +7,7 @@
     opacity: 0.95;
 }
 
-#content .post{
+#content .post {
     padding: 36px;
     background-color: #fff;
     border-radius: 5px;
@@ -19,7 +19,9 @@
     text-align: center;
     color: #519cff;
     padding-bottom: 0;
+    font-size: 24px;
 }
+
 #content .postInfo {
     text-align: center;
     color: #a39e9e;
@@ -39,4 +41,14 @@
     top: -3px;
     color: var(--color-hl1);
     transition: 0.5s;
+}
+
+#content .post ul ,
+#content .post ol{
+    line-height: 30px;
+}
+
+#content .post ul li ,
+#content .post ol li {
+    line-height: 30px;
 }

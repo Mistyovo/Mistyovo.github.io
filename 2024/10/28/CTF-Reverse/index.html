@@ -1,7 +1,9 @@
-<html lang="zh-Hans ">
+<html lang="zh-Hans" >
 
 <head>
     <meta charset="utf-8">
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css">
 <link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.css">
 <script src="/highlight/highlight.min.js"></script>
@@ -60,7 +62,7 @@
 			博龄：114514
 		</div>
 		<div class="blogInfoItem">
-			日志：20
+			日志：22
 		</div>
 	</div>
 	<div class="social">
@@ -92,7 +94,7 @@
 <div id="content">
 	<div class="post">
 		
-		
+		<h2 id="Windows逆向"><a href="#Windows逆向" class="headerlink" title="Windows逆向"></a>Windows逆向</h2><h2 id="Android逆向"><a href="#Android逆向" class="headerlink" title="Android逆向"></a>Android逆向</h2><h2 id="MacOS逆向"><a href="#MacOS逆向" class="headerlink" title="MacOS逆向"></a>MacOS逆向</h2><h2 id="HarmoyOS逆向"><a href="#HarmoyOS逆向" class="headerlink" title="HarmoyOS逆向"></a>HarmoyOS逆向</h2><h2 id="System-Driver逆向"><a href="#System-Driver逆向" class="headerlink" title="System Driver逆向"></a>System Driver逆向</h2>
 		
 	</div>
 </div>
@@ -100,28 +102,44 @@
 	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 </div>
-
 <button class="stt" onclick="scrollToTop()"><i class="fa fa-chevron-circle-up"></i></button>
 <button class="sb" onclick="showBackground()"><i class="fa fa-image"></i></button>
 
+<!-- 雪花特效 Javascript -->
 <canvas id="snowCanvas"></canvas>
 <script src="/js/snow.js"></script>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- 每日一言 Javascript -->
 <script>
-	// 获取每日一言数据
 	axios.get('https://v1.hitokoto.cn/').then(response => {
 		const quote = response.data.hitokoto;
 		const container = document.getElementById('quoteContainer');
-		container.innerText = quote; // 或者使用 container.innerHTML = quote;
+		container.innerText = quote; 
 	}).catch(error => {
 		console.error('获取每日一言失败', error);
 	});
 </script>
 
+<!-- 代码高亮Javascript -->
 <script>
 	hljs.highlightAll();
 </script>
+
+<!-- Latex Javascript -->
+<script>
+	MathJax = {
+		tex: {
+			inlineMath: [
+				['$', '$'],
+				['\\(', '\\)']
+			]
+		}
+	};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+
 </body>
 
 </html>

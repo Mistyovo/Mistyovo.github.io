@@ -1,7 +1,9 @@
-<html lang="zh-Hans ">
+<html lang="zh-Hans" >
 
 <head>
     <meta charset="utf-8">
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css">
 <link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.css">
 <script src="/highlight/highlight.min.js"></script>
@@ -60,7 +62,7 @@
 			博龄：114514
 		</div>
 		<div class="blogInfoItem">
-			日志：20
+			日志：22
 		</div>
 	</div>
 	<div class="social">
@@ -82,25 +84,22 @@
 	<div class="advertise"></div> -->
 	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=110 src="//music.163.com/outchain/player?type=0&id=8555115352&auto=true&height=90"></iframe>
 </div>
-    <title>wsl-kali完整版安装</title>
+    <title>虚拟机ali系统配置Pwn做题环境</title>
 <div id="title">
 	<div id="title-img"></div>
 	<div id="title-text">
-		<h1>wsl-kali完整版安装</h1>
+		<h1>虚拟机ali系统配置Pwn做题环境</h1>
 	</div>
 </div>
 <div id="content">
 	<div class="post">
 		
-		<h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>kali-linux自带的官方源，如果在国内访问通常比较慢。（不换源的话安装完整版kali时真的会慢死）</p>
-<pre><code class="hljs shell">sudo vi /etc/apt/sources.list</code></pre>
-<p>然后会进入vi编辑器（需要一点vi的基础，不过没关系，需要的都已经标出来了）</p>
-<pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">按i进入编辑</span>
-deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-<span class="hljs-meta prompt_">#</span><span class="language-bash">按esc,然后按依次按:wq</span></code></pre>
-<p>更新</p>
-<pre><code class="hljs shell">sudo apt update &amp;&amp; sudo apt -y upgrade</code></pre>
-<h2 id="安装完整版kali"><a href="#安装完整版kali" class="headerlink" title="安装完整版kali"></a>安装完整版kali</h2><pre><code class="hljs shell">sudo apt install kali-linux-large</code></pre>
+		<h3 id="下载VMware版的Pre-built-Virtual-Machines-Kali"><a href="#下载VMware版的Pre-built-Virtual-Machines-Kali" class="headerlink" title="下载VMware版的Pre-built Virtual Machines Kali"></a>下载VMware版的Pre-built Virtual Machines Kali</h3><p>官网链接-&gt;[<a target="_blank" rel="noopener" href="https://www.kali.org/get-kali/#kali-virtual-machines]https://www.kali.org/get-kali/#kali-virtual-machines">https://www.kali.org/get-kali/#kali-virtual-machines]https://www.kali.org/get-kali/#kali-virtual-machines</a></p>
+<h3 id="下载VMware-Workstation-Pro"><a href="#下载VMware-Workstation-Pro" class="headerlink" title="下载VMware Workstation Pro"></a>下载VMware Workstation Pro</h3><p>建议的安装方式为：最新正版安装包 + 序列号</p>
+<p><a target="_blank" rel="noopener" href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">Desktop Hypervisor Solutions | VMware</a></p>
+<p>打开上面的网址，点击<strong>Download Fusion Or Workstaion</strong>按钮，然后他会提示你登入，第一次登入的话需要先注册（这不废话</p>
+<p>据说目前已经支持Personal许可免费使用VMware WorkStation</p>
+<h3 id="用VMware打开Kali"><a href="#用VMware打开Kali" class="headerlink" title="用VMware打开Kali"></a>用VMware打开Kali</h3>
 		
 	</div>
 </div>
@@ -108,28 +107,44 @@ deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 </div>
-
 <button class="stt" onclick="scrollToTop()"><i class="fa fa-chevron-circle-up"></i></button>
 <button class="sb" onclick="showBackground()"><i class="fa fa-image"></i></button>
 
+<!-- 雪花特效 Javascript -->
 <canvas id="snowCanvas"></canvas>
 <script src="/js/snow.js"></script>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- 每日一言 Javascript -->
 <script>
-	// 获取每日一言数据
 	axios.get('https://v1.hitokoto.cn/').then(response => {
 		const quote = response.data.hitokoto;
 		const container = document.getElementById('quoteContainer');
-		container.innerText = quote; // 或者使用 container.innerHTML = quote;
+		container.innerText = quote; 
 	}).catch(error => {
 		console.error('获取每日一言失败', error);
 	});
 </script>
 
+<!-- 代码高亮Javascript -->
 <script>
 	hljs.highlightAll();
 </script>
+
+<!-- Latex Javascript -->
+<script>
+	MathJax = {
+		tex: {
+			inlineMath: [
+				['$', '$'],
+				['\\(', '\\)']
+			]
+		}
+	};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+
 </body>
 
 </html>

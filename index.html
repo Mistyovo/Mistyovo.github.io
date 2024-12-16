@@ -1,7 +1,9 @@
-<html lang="zh-Hans ">
+<html lang="zh-Hans" >
 
 <head>
     <meta charset="utf-8">
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css">
 <link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.css">
 <script src="/highlight/highlight.min.js"></script>
@@ -60,7 +62,7 @@
 			博龄：114514
 		</div>
 		<div class="blogInfoItem">
-			日志：20
+			日志：22
 		</div>
 	</div>
 	<div class="social">
@@ -90,6 +92,1207 @@
 	</div>
 </div>
 <div id="content">
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/12/15/Linux系统调用号表/">
+				Linux系统调用号表
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-12-15
+		</div>
+		
+		<h2 id="32位"><a href="#32位" class="headerlink" title="32位"></a>32位</h2><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> _ASM_X86_UNISTD_32_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> _ASM_X86_UNISTD_32_H 1</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_restart_syscall 0</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_exit 1</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fork 2</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_read 3</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_write 4</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_open 5</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_close 6</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_waitpid 7</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_creat 8</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_link 9</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_unlink 10</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_execve 11</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_chdir 12</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_time 13</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mknod 14</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_chmod 15</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lchown 16</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_break 17</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_oldstat 18</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lseek 19</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpid 20</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mount 21</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_umount 22</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setuid 23</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getuid 24</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_stime 25</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ptrace 26</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_alarm 27</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_oldfstat 28</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pause 29</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_utime 30</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_stty 31</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_gtty 32</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_access 33</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_nice 34</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ftime 35</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sync 36</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_kill 37</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rename 38</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mkdir 39</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rmdir 40</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_dup 41</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pipe 42</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_times 43</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_prof 44</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_brk 45</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setgid 46</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getgid 47</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_signal 48</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_geteuid 49</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getegid 50</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_acct 51</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_umount2 52</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lock 53</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ioctl 54</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fcntl 55</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mpx 56</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setpgid 57</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ulimit 58</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_oldolduname 59</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_umask 60</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_chroot 61</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ustat 62</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_dup2 63</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getppid 64</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpgrp 65</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setsid 66</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sigaction 67</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sgetmask 68</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ssetmask 69</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setreuid 70</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setregid 71</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sigsuspend 72</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sigpending 73</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sethostname 74</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setrlimit 75</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getrlimit 76</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getrusage 77</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_gettimeofday 78</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_settimeofday 79</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getgroups 80</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setgroups 81</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_select 82</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_symlink 83</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_oldlstat 84</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_readlink 85</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_uselib 86</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_swapon 87</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_reboot 88</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_readdir 89</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mmap 90</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_munmap 91</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_truncate 92</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ftruncate 93</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchmod 94</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchown 95</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpriority 96</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setpriority 97</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_profil 98</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_statfs 99</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fstatfs 100</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ioperm 101</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_socketcall 102</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_syslog 103</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setitimer 104</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getitimer 105</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_stat 106</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lstat 107</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fstat 108</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_olduname 109</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_iopl 110</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vhangup 111</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_idle 112</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vm86old 113</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_wait4 114</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_swapoff 115</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sysinfo 116</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ipc 117</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fsync 118</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sigreturn 119</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clone 120</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setdomainname 121</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_uname 122</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_modify_ldt 123</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_adjtimex 124</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mprotect 125</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sigprocmask 126</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_create_module 127</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_init_module 128</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_delete_module 129</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_get_kernel_syms 130</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_quotactl 131</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpgid 132</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchdir 133</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_bdflush 134</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sysfs 135</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_personality 136</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_afs_syscall 137</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setfsuid 138</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setfsgid 139</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR__llseek 140</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getdents 141</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR__newselect 142</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_flock 143</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_msync 144</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_readv 145</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_writev 146</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getsid 147</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fdatasync 148</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR__sysctl 149</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mlock 150</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_munlock 151</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mlockall 152</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_munlockall 153</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_setparam 154</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_getparam 155</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_setscheduler 156</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_getscheduler 157</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_yield 158</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_get_priority_max 159</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_get_priority_min 160</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_rr_get_interval 161</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_nanosleep 162</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mremap 163</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setresuid 164</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getresuid 165</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vm86 166</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_query_module 167</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_poll 168</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_nfsservctl 169</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setresgid 170</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getresgid 171</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_prctl 172</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigreturn 173</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigaction 174</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigprocmask 175</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigpending 176</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigtimedwait 177</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigqueueinfo 178</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigsuspend 179</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pread64 180</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pwrite64 181</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_chown 182</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getcwd 183</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_capget 184</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_capset 185</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sigaltstack 186</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sendfile 187</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpmsg 188</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_putpmsg 189</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vfork 190</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ugetrlimit 191</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mmap2 192</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_truncate64 193</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ftruncate64 194</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_stat64 195</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lstat64 196</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fstat64 197</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lchown32 198</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getuid32 199</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getgid32 200</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_geteuid32 201</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getegid32 202</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setreuid32 203</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setregid32 204</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getgroups32 205</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setgroups32 206</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchown32 207</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setresuid32 208</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getresuid32 209</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setresgid32 210</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getresgid32 211</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_chown32 212</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setuid32 213</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setgid32 214</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setfsuid32 215</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setfsgid32 216</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pivot_root 217</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mincore 218</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_madvise 219</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getdents64 220</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fcntl64 221</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_gettid 224</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_readahead 225</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setxattr 226</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lsetxattr 227</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fsetxattr 228</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getxattr 229</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lgetxattr 230</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fgetxattr 231</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_listxattr 232</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_llistxattr 233</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_flistxattr 234</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_removexattr 235</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lremovexattr 236</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fremovexattr 237</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_tkill 238</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sendfile64 239</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_futex 240</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_setaffinity 241</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_getaffinity 242</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_set_thread_area 243</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_get_thread_area 244</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_setup 245</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_destroy 246</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_getevents 247</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_submit 248</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_cancel 249</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fadvise64 250</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_exit_group 252</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lookup_dcookie 253</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_create 254</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_ctl 255</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_wait 256</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_remap_file_pages 257</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_set_tid_address 258</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_create 259</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_settime 260</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_gettime 261</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_getoverrun 262</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_delete 263</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_settime 264</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_gettime 265</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_getres 266</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_nanosleep 267</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_statfs64 268</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fstatfs64 269</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_tgkill 270</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_utimes 271</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fadvise64_64 272</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vserver 273</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mbind 274</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_get_mempolicy 275</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_set_mempolicy 276</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_open 277</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_unlink 278</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_timedsend 279</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_timedreceive 280</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_notify 281</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_getsetattr 282</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_kexec_load 283</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_waitid 284</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_add_key 286</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_request_key 287</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_keyctl 288</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ioprio_set 289</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ioprio_get 290</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_inotify_init 291</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_inotify_add_watch 292</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_inotify_rm_watch 293</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_migrate_pages 294</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_openat 295</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mkdirat 296</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mknodat 297</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchownat 298</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_futimesat 299</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fstatat64 300</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_unlinkat 301</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_renameat 302</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_linkat 303</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_symlinkat 304</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_readlinkat 305</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchmodat 306</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_faccessat 307</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pselect6 308</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ppoll 309</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_unshare 310</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_set_robust_list 311</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_get_robust_list 312</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_splice 313</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sync_file_range 314</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_tee 315</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vmsplice 316</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_move_pages 317</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getcpu 318</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_pwait 319</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_utimensat 320</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_signalfd 321</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timerfd_create 322</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_eventfd 323</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fallocate 324</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timerfd_settime 325</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timerfd_gettime 326</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_signalfd4 327</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_eventfd2 328</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_create1 329</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_dup3 330</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pipe2 331</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_inotify_init1 332</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_preadv 333</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pwritev 334</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_tgsigqueueinfo 335</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_perf_event_open 336</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_recvmmsg 337</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fanotify_init 338</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fanotify_mark 339</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_prlimit64 340</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_name_to_handle_at 341</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_open_by_handle_at 342</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_adjtime 343</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_syncfs 344</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sendmmsg 345</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setns 346</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_process_vm_readv 347</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_process_vm_writev 348</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_kcmp 349</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_finit_module 350</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_setattr 351</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_getattr 352</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_renameat2 353</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_seccomp 354</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getrandom 355</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_memfd_create 356</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_bpf 357</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_execveat 358</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_socket 359</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_socketpair 360</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_bind 361</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_connect 362</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_listen 363</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_accept4 364</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getsockopt 365</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setsockopt 366</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getsockname 367</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpeername 368</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sendto 369</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sendmsg 370</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_recvfrom 371</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_recvmsg 372</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_shutdown 373</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_userfaultfd 374</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_membarrier 375</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mlock2 376</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_copy_file_range 377</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_preadv2 378</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pwritev2 379</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">/* _ASM_X86_UNISTD_32_H */</span></span></code></pre>
+
+<h2 id="64位"><a href="#64位" class="headerlink" title="64位"></a>64位</h2><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> _ASM_X86_UNISTD_64_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> _ASM_X86_UNISTD_64_H 1</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_read 0</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_write 1</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_open 2</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_close 3</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_stat 4</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fstat 5</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lstat 6</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_poll 7</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lseek 8</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mmap 9</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mprotect 10</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_munmap 11</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_brk 12</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigaction 13</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigprocmask 14</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigreturn 15</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ioctl 16</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pread64 17</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pwrite64 18</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_readv 19</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_writev 20</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_access 21</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pipe 22</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_select 23</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_yield 24</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mremap 25</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_msync 26</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mincore 27</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_madvise 28</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_shmget 29</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_shmat 30</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_shmctl 31</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_dup 32</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_dup2 33</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pause 34</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_nanosleep 35</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getitimer 36</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_alarm 37</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setitimer 38</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpid 39</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sendfile 40</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_socket 41</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_connect 42</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_accept 43</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sendto 44</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_recvfrom 45</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sendmsg 46</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_recvmsg 47</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_shutdown 48</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_bind 49</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_listen 50</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getsockname 51</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpeername 52</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_socketpair 53</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setsockopt 54</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getsockopt 55</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clone 56</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fork 57</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vfork 58</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_execve 59</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_exit 60</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_wait4 61</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_kill 62</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_uname 63</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_semget 64</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_semop 65</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_semctl 66</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_shmdt 67</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_msgget 68</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_msgsnd 69</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_msgrcv 70</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_msgctl 71</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fcntl 72</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_flock 73</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fsync 74</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fdatasync 75</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_truncate 76</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ftruncate 77</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getdents 78</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getcwd 79</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_chdir 80</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchdir 81</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rename 82</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mkdir 83</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rmdir 84</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_creat 85</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_link 86</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_unlink 87</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_symlink 88</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_readlink 89</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_chmod 90</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchmod 91</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_chown 92</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchown 93</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lchown 94</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_umask 95</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_gettimeofday 96</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getrlimit 97</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getrusage 98</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sysinfo 99</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_times 100</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ptrace 101</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getuid 102</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_syslog 103</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getgid 104</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setuid 105</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setgid 106</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_geteuid 107</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getegid 108</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setpgid 109</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getppid 110</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpgrp 111</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setsid 112</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setreuid 113</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setregid 114</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getgroups 115</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setgroups 116</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setresuid 117</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getresuid 118</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setresgid 119</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getresgid 120</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpgid 121</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setfsuid 122</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setfsgid 123</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getsid 124</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_capget 125</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_capset 126</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigpending 127</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigtimedwait 128</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigqueueinfo 129</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_sigsuspend 130</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sigaltstack 131</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_utime 132</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mknod 133</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_uselib 134</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_personality 135</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ustat 136</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_statfs 137</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fstatfs 138</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sysfs 139</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpriority 140</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setpriority 141</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_setparam 142</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_getparam 143</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_setscheduler 144</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_getscheduler 145</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_get_priority_max 146</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_get_priority_min 147</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_rr_get_interval 148</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mlock 149</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_munlock 150</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mlockall 151</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_munlockall 152</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vhangup 153</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_modify_ldt 154</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pivot_root 155</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR__sysctl 156</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_prctl 157</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_arch_prctl 158</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_adjtimex 159</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setrlimit 160</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_chroot 161</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sync 162</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_acct 163</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_settimeofday 164</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mount 165</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_umount2 166</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_swapon 167</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_swapoff 168</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_reboot 169</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sethostname 170</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setdomainname 171</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_iopl 172</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ioperm 173</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_create_module 174</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_init_module 175</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_delete_module 176</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_get_kernel_syms 177</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_query_module 178</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_quotactl 179</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_nfsservctl 180</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getpmsg 181</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_putpmsg 182</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_afs_syscall 183</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_tuxcall 184</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_security 185</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_gettid 186</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_readahead 187</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setxattr 188</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lsetxattr 189</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fsetxattr 190</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getxattr 191</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lgetxattr 192</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fgetxattr 193</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_listxattr 194</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_llistxattr 195</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_flistxattr 196</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_removexattr 197</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lremovexattr 198</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fremovexattr 199</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_tkill 200</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_time 201</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_futex 202</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_setaffinity 203</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_getaffinity 204</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_set_thread_area 205</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_setup 206</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_destroy 207</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_getevents 208</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_submit 209</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_io_cancel 210</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_get_thread_area 211</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_lookup_dcookie 212</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_create 213</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_ctl_old 214</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_wait_old 215</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_remap_file_pages 216</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getdents64 217</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_set_tid_address 218</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_restart_syscall 219</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_semtimedop 220</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fadvise64 221</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_create 222</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_settime 223</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_gettime 224</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_getoverrun 225</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timer_delete 226</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_settime 227</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_gettime 228</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_getres 229</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_nanosleep 230</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_exit_group 231</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_wait 232</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_ctl 233</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_tgkill 234</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_utimes 235</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vserver 236</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mbind 237</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_set_mempolicy 238</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_get_mempolicy 239</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_open 240</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_unlink 241</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_timedsend 242</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_timedreceive 243</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_notify 244</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mq_getsetattr 245</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_kexec_load 246</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_waitid 247</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_add_key 248</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_request_key 249</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_keyctl 250</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ioprio_set 251</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ioprio_get 252</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_inotify_init 253</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_inotify_add_watch 254</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_inotify_rm_watch 255</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_migrate_pages 256</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_openat 257</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mkdirat 258</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mknodat 259</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchownat 260</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_futimesat 261</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_newfstatat 262</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_unlinkat 263</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_renameat 264</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_linkat 265</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_symlinkat 266</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_readlinkat 267</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fchmodat 268</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_faccessat 269</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pselect6 270</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_ppoll 271</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_unshare 272</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_set_robust_list 273</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_get_robust_list 274</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_splice 275</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_tee 276</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sync_file_range 277</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_vmsplice 278</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_move_pages 279</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_utimensat 280</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_pwait 281</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_signalfd 282</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timerfd_create 283</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_eventfd 284</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fallocate 285</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timerfd_settime 286</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_timerfd_gettime 287</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_accept4 288</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_signalfd4 289</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_eventfd2 290</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_epoll_create1 291</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_dup3 292</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pipe2 293</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_inotify_init1 294</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_preadv 295</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pwritev 296</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_rt_tgsigqueueinfo 297</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_perf_event_open 298</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_recvmmsg 299</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fanotify_init 300</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_fanotify_mark 301</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_prlimit64 302</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_name_to_handle_at 303</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_open_by_handle_at 304</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_clock_adjtime 305</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_syncfs 306</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sendmmsg 307</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_setns 308</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getcpu 309</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_process_vm_readv 310</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_process_vm_writev 311</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_kcmp 312</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_finit_module 313</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_setattr 314</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_sched_getattr 315</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_renameat2 316</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_seccomp 317</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_getrandom 318</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_memfd_create 319</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_kexec_file_load 320</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_bpf 321</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_execveat 322</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_userfaultfd 323</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_membarrier 324</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_mlock2 325</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_copy_file_range 326</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_preadv2 327</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> __NR_pwritev2 328</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">/* _ASM_X86_UNISTD_64_H */</span></span></code></pre>
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/10/28/CTF-Pwn/">
+				CTF-Pwn
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-10-28
+		</div>
+		
+		<h2 id="浅谈我对Pwn的学习路线和心路历程"><a href="#浅谈我对Pwn的学习路线和心路历程" class="headerlink" title="浅谈我对Pwn的学习路线和心路历程"></a>浅谈我对Pwn的学习路线和心路历程</h2><h2 id="C语言基础"><a href="#C语言基础" class="headerlink" title="C语言基础"></a>C语言基础</h2><p>好吧，其实我这里不想写C语言基础（谁都会写），但我想写的是gcc编译器的用法</p>
+<pre><code class="hljs plaintext">Usage: gcc [options] file...
+Options:
+  -pass-exit-codes         Exit with highest error code from a phase.
+  --help                   Display this information.
+  --target-help            Display target specific command line options (including assembler and linker options).
+  --help=&#123;common|optimizers|params|target|warnings|[^]&#123;joined|separate|undocumented&#125;&#125;[,...].
+                           Display specific types of command line options.
+  (Use &#x27;-v --help&#x27; to display command line options of sub-processes).
+  --version                Display compiler version information.
+  -dumpspecs               Display all of the built in spec strings.
+  -dumpversion             Display the version of the compiler.
+  -dumpmachine             Display the compiler&#x27;s target processor.
+  -foffload=&lt;targets&gt;      Specify offloading targets.
+  -print-search-dirs       Display the directories in the compiler&#x27;s search path.
+  -print-libgcc-file-name  Display the name of the compiler&#x27;s companion library.
+  -print-file-name=&lt;lib&gt;   Display the full path to library &lt;lib&gt;.
+  -print-prog-name=&lt;prog&gt;  Display the full path to compiler component &lt;prog&gt;.
+  -print-multiarch         Display the target&#x27;s normalized GNU triplet, used as
+                           a component in the library path.
+  -print-multi-directory   Display the root directory for versions of libgcc.
+  -print-multi-lib         Display the mapping between command line options and
+                           multiple library search directories.
+  -print-multi-os-directory Display the relative path to OS libraries.
+  -print-sysroot           Display the target libraries directory.
+  -print-sysroot-headers-suffix Display the sysroot suffix used to find headers.
+  -Wa,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the assembler.
+  -Wp,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the preprocessor.
+  -Wl,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the linker.
+  -Xassembler &lt;arg&gt;        Pass &lt;arg&gt; on to the assembler.
+  -Xpreprocessor &lt;arg&gt;     Pass &lt;arg&gt; on to the preprocessor.
+  -Xlinker &lt;arg&gt;           Pass &lt;arg&gt; on to the linker.
+  -save-temps              Do not delete intermediate files.
+  -save-temps=&lt;arg&gt;        Do not delete intermediate files.
+  -no-canonical-prefixes   Do not canonicalize paths when building relative
+                           prefixes to other gcc components.
+  -pipe                    Use pipes rather than intermediate files.
+  -time                    Time the execution of each subprocess.
+  -specs=&lt;file&gt;            Override built-in specs with the contents of &lt;file&gt;.
+  -std=&lt;standard&gt;          Assume that the input sources are for &lt;standard&gt;.
+  --sysroot=&lt;directory&gt;    Use &lt;directory&gt; as the root directory for headers
+                           and libraries.
+  -B &lt;directory&gt;           Add &lt;directory&gt; to the compiler&#x27;s search paths.
+  -v                       Display the programs invoked by the compiler.
+  -###                     Like -v but options quoted and commands not executed.
+  -E                       Preprocess only; do not compile, assemble or link.
+  -S                       Compile only; do not assemble or link.
+  -c                       Compile and assemble, but do not link.
+  -o &lt;file&gt;                指定输出文件的名称及路径
+  -pie                     Create a dynamically linked position independent
+                           executable.
+  -shared                  Create a shared library.
+  -x &lt;language&gt;            Specify the language of the following input files.
+                           Permissible languages include: c c++ assembler none
+                           &#x27;none&#x27; means revert to the default behavior of
+                           guessing the language based on the file&#x27;s extension.
+
+Options starting with -g, -f, -m, -O, -W, or --param are automatically
+ passed on to the various sub-processes invoked by gcc.  In order to pass
+ other options on to these processes the -W&lt;letter&gt; options must be used.
+
+For bug reporting instructions, please see:
+&lt;file:///usr/share/doc/gcc-13/README.Bugs&gt;</code></pre>
+
+
+
+<h2 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h2><h3 id="可执行文件的定义"><a href="#可执行文件的定义" class="headerlink" title="可执行文件的定义"></a>可执行文件的定义</h3><p>广义：文件中的数据是可执行代码的文件：.out、.exe、.sh、.py</p>
+<p>狭义：文件中的数据是机器码的文件：.out、.exe、.dll、.so</p>
+<h3 id="可执行文件的分类"><a href="#可执行文件的分类" class="headerlink" title="可执行文件的分类"></a>可执行文件的分类</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>Windows：PE（Portable Executable）</th>
+<th>Linux：ELF（Executable and Linkable Format）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可执行程序</td>
+<td>.exe</td>
+<td>.out</td>
+</tr>
+<tr>
+<td>动态链接库</td>
+<td>.dll</td>
+<td>.so</td>
+</tr>
+<tr>
+<td>静态链接库</td>
+<td>.lib</td>
+<td>.a</td>
+</tr>
+</tbody></table>
+<h3 id="ELF文件格式"><a href="#ELF文件格式" class="headerlink" title="ELF文件格式"></a>ELF文件格式</h3><p>ELF文件的类型包括：可执行文件（.exec）、可重定位文件（.rel）、共享目标文件（.dyn）</p>
+<p>在审视一个目标文件时，有两种视角可供选择：</p>
+<blockquote>
+<p>链接视角：通过节（Section）来划分，用来划分功能（In Disk）</p>
+<p>运行视角：通过段（Segment ）来划分，用来划分读写执行权限（In Memory）</p>
+<p>由Linker完成节到段的转化</p>
+</blockquote>
+<p>下面是一些重要的节：</p>
+<ol>
+<li><strong><code>.got</code>（Global Offset Table）</strong>：<ul>
+<li><code>.got</code> 是全局偏移表，用于动态链接。它包含指向动态分配内存地址的指针。当程序需要访问全局变量或静态变量时，通过 <code>.got</code> 表来获取正确的地址。</li>
+</ul>
+</li>
+<li><strong><code>.plt</code>（Procedure Linkage Table）</strong>：<ul>
+<li><code>.plt</code> 是过程链接表，用于处理动态函数调用。它包含一系列跳转指令，用于首次调用外部函数时解析函数地址，并将解析后的地址存储在 <code>.got</code> 表中。</li>
+</ul>
+</li>
+<li><strong><code>.symbol</code>（符号表，通常是 <code>.symtab</code> 或 <code>.dynsym</code>）</strong>：<ul>
+<li><code>.symbol</code> 表保存程序中的符号（如函数名、变量名）及其对应的地址。<code>.symtab</code> 用于调试和符号解析，包含所有符号；<code>.dynsym</code> 用于动态链接，包含需要动态解析的符号。</li>
+</ul>
+</li>
+</ol>
+<h3 id="程序装载与虚拟内存"><a href="#程序装载与虚拟内存" class="headerlink" title="程序装载与虚拟内存"></a>程序装载与虚拟内存</h3><h3 id="寄存器相关"><a href="#寄存器相关" class="headerlink" title="寄存器相关"></a>寄存器相关</h3><table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rax</td>
+<td>8 Bytes</td>
+</tr>
+<tr>
+<td>rex</td>
+<td>4 Bytes</td>
+</tr>
+<tr>
+<td>ax</td>
+<td>2 Bytes</td>
+</tr>
+<tr>
+<td>ah、al</td>
+<td>1 Bytes</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>作用</th>
+<th>作用（英文）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%rax</td>
+<td>储存返回值</td>
+<td>Return value</td>
+</tr>
+<tr>
+<td>%rbx</td>
+<td>储存函数的调用者的地址</td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%rcx</td>
+<td>第四个参数</td>
+<td>4th argument</td>
+</tr>
+<tr>
+<td>%rdx</td>
+<td>第三个参数</td>
+<td>3rd argument</td>
+</tr>
+<tr>
+<td>%rsi</td>
+<td>第二个参数</td>
+<td>2nd argument</td>
+</tr>
+<tr>
+<td>%rdi</td>
+<td>第一个参数</td>
+<td>1st argument</td>
+</tr>
+<tr>
+<td>%rbp</td>
+<td>储存函数的调用者的地址</td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%rsp</td>
+<td>栈顶指针</td>
+<td>Stack pointer</td>
+</tr>
+<tr>
+<td>%r8</td>
+<td>第五个参数</td>
+<td>5th argument</td>
+</tr>
+<tr>
+<td>%r9</td>
+<td>第六个参数</td>
+<td>6th argument</td>
+</tr>
+<tr>
+<td>%r10</td>
+<td>栈界限寄存器</td>
+<td>Caller saved</td>
+</tr>
+<tr>
+<td>%r11</td>
+<td></td>
+<td>Caller saved</td>
+</tr>
+<tr>
+<td>%r12</td>
+<td></td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%r13</td>
+<td></td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%r14</td>
+<td></td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%r15</td>
+<td></td>
+<td>Callee saved</td>
+</tr>
+</tbody></table>
+<p>一张非常常见的图片</p>
+<img src="https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/figure/register.png"  />
+
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h3 id="栈溢出（Stack-Overflow）"><a href="#栈溢出（Stack-Overflow）" class="headerlink" title="栈溢出（Stack Overflow）"></a>栈溢出（Stack Overflow）</h3><p>首先要认识32位和64位下的函数调用规则：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Br4y1K7ir/?share_source=copy_web&vd_source=44fda2d83e21cc7af820a21a73a79284">我认为一个讲的很好的B站视频</a></p>
+<h4 id="ret2text"><a href="#ret2text" class="headerlink" title="ret2text"></a>ret2text</h4><h4 id="ret2libc"><a href="#ret2libc" class="headerlink" title="ret2libc"></a>ret2libc</h4><h4 id="ret2shellcode"><a href="#ret2shellcode" class="headerlink" title="ret2shellcode"></a>ret2shellcode</h4><p>想要获得一个shell, 除了system(“&#x2F;bin&#x2F;sh”) 以外, 还有一种更好的方法, 就是系统调用中的 execve(“&#x2F;bin&#x2F;sh”, NULL, NULL)获得shell。我们可以在 Linxu系统调用号表 中找到对应的系统调用号,进行调用, 其中32位程序系统调用号用 eax 储存, 第一 、 二 、 三参数分别在 ebx 、ecx 、edx中储存。 可以用 int 80 汇编指令调用。64位程序系统调用号用 rax 储存, 第一 、 二 、 三参数分别在 rdi 、rsi 、rdx中储存。 可以用 syscall 汇编指令调用。</p>
+<p><a href="/2024/12/15/Linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%8F%B7%E8%A1%A8/">Linux系统调用号表</a></p>
+<h4 id="需要注意的一些小细节"><a href="#需要注意的一些小细节" class="headerlink" title="需要注意的一些小细节"></a>需要注意的一些小细节</h4><ol>
+<li>有的时候如果找不到合适的”pop|ret“，可以寻找”pop|pop|…|ret”，但构建payload时要记得把相应值填上</li>
+<li></li>
+</ol>
+<h3 id="格式化字符串（Format-String）"><a href="#格式化字符串（Format-String）" class="headerlink" title="格式化字符串（Format String）"></a>格式化字符串（Format String）</h3><h4 id="格式化字符串函数"><a href="#格式化字符串函数" class="headerlink" title="格式化字符串函数"></a>格式化字符串函数</h4><p>格式化字符串函数可以接受可变数量的参数，并将<strong>第一个参数作为格式化字符串，根据其来解析之后的参数</strong>。通俗来说，格式化字符串函数就是将计算机内存中表示的数据转化为我们人类可读的字符串格式。几乎所有的 C&#x2F;C++ 程序都会利用格式化字符串函数来<strong>输出信息，调试程序，或者处理字符串</strong>。一般来说，格式化字符串在利用的时候主要分为三个部分</p>
+<ul>
+<li>格式化字符串函数</li>
+<li>格式化字符串</li>
+<li>后续参数，<strong>可选</strong></li>
+</ul>
+<p>这里我们给出一个简单的例子，其实相信大多数人都接触过 printf 函数之类的。之后我们再一个一个进行介绍。</p>
+<p><img src="https://ctf-wiki.org/pwn/linux/user-mode/fmtstr/figure/printf.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">基本介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">scanf</td>
+<td align="center">输入到stdin</td>
+</tr>
+<tr>
+<td align="center">printf</td>
+<td align="center">输出到 stdout</td>
+</tr>
+<tr>
+<td align="center">fprintf</td>
+<td align="center">输出到指定 FILE 流</td>
+</tr>
+<tr>
+<td align="center">vprintf</td>
+<td align="center">根据参数列表格式化输出到 stdout</td>
+</tr>
+<tr>
+<td align="center">vfprintf</td>
+<td align="center">根据参数列表格式化输出到指定 FILE 流</td>
+</tr>
+<tr>
+<td align="center">sprintf</td>
+<td align="center">输出到字符串</td>
+</tr>
+<tr>
+<td align="center">snprintf</td>
+<td align="center">输出指定字节数到字符串</td>
+</tr>
+<tr>
+<td align="center">vsprintf</td>
+<td align="center">根据参数列表格式化输出到字符串</td>
+</tr>
+<tr>
+<td align="center">vsnprintf</td>
+<td align="center">根据参数列表格式化输出指定字节到字符串</td>
+</tr>
+<tr>
+<td align="center">setproctitle</td>
+<td align="center">设置 argv</td>
+</tr>
+<tr>
+<td align="center">syslog</td>
+<td align="center">输出日志</td>
+</tr>
+<tr>
+<td align="center">err, verr, warn, vwarn 等</td>
+<td align="center">。。。</td>
+</tr>
+</tbody></table>
+<h4 id="格式化字符串"><a href="#格式化字符串" class="headerlink" title="格式化字符串"></a>格式化字符串</h4><p>这里我们了解一下格式化字符串的格式，其基本格式如下</p>
+<pre><code class="hljs C++"><span class="hljs-string">&quot;%[parameter][flags][field width][.precision][length]type&quot;</span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>作用 or 含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%</td>
+<td>格式化占位符的开始标志。</td>
+</tr>
+<tr>
+<td><strong>[parameter]</strong></td>
+<td>指定参数的顺序。在C99及以后的版本中，可以使用<code>*</code>来指定宽度或精度，其值从参数列表中获取。<br>可以用xx$来定位到后xx个参数</td>
+</tr>
+<tr>
+<td><strong>[flags]</strong></td>
+<td>用于控制输出格式的标志。</td>
+</tr>
+<tr>
+<td><strong>[field width]</strong></td>
+<td>指定输出的最小宽度。如果实际输出长度小于该宽度，将用空格或指定的填充字符填充。</td>
+</tr>
+<tr>
+<td><strong>[.precision]</strong></td>
+<td>指定精度。对于浮点数，表示小数点后的位数；对于字符串，表示最大输出长度。</td>
+</tr>
+<tr>
+<td><strong>[length]</strong></td>
+<td>指定参数的长度修饰符，如<code>h</code>（短整型）、<code>l</code>（长整型）、<code>ll</code>（长长整型）、<code>j</code>（intmax_t）、<code>z</code>（size_t）、<code>t</code>（ptrdiff_t）等。</td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>必需，指定参数类型。</td>
+</tr>
+</tbody></table>
+<pre><code class="hljs c"><span class="hljs-comment">// Number</span>
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, num);	<span class="hljs-comment">// int</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%ld&quot;</span>，num);	<span class="hljs-comment">// long</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld&quot;</span> ,num);<span class="hljs-comment">// long long</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%u&quot;</span>, num); <span class="hljs-comment">//unsigned int</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lu&quot;</span>, num); <span class="hljs-comment">//unsigned long</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%llu&quot;</span>, num); <span class="hljs-comment">//unsigned long long</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>, num);	<span class="hljs-comment">// float</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lf&quot;</span>, num);	<span class="hljs-comment">// float</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lf&quot;</span> ,num);	<span class="hljs-comment">// double </span>
+
+<span class="hljs-comment">// Character &amp; String</span>
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, chr) <span class="hljs-comment">// char</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, str) <span class="hljs-comment">// char[]</span>
+
+<span class="hljs-comment">// Address</span>
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%n&quot;</span>, addr); <span class="hljs-comment">// 作用为：修改addr指向的值改为，%n之前处理的字符个数</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p&quot;</span>, addr); <span class="hljs-comment">// 作用为：将addr以16进制的形式输出</span></code></pre>
+
+
+
+<h4 id="漏洞利用-1"><a href="#漏洞利用-1" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><h5 id="程序崩溃"><a href="#程序崩溃" class="headerlink" title="程序崩溃"></a>程序崩溃</h5><p>通常来说，利用格式化字符串漏洞使得程序崩溃是最为简单的利用方式，因为我们只需要输入若干个 %s 即可</p>
+<pre><code class="hljs plaintext">%s%s%s%s%s%s%s%s%s%s%s%s%s%s</code></pre>
+
+<p>这是因为栈上不可能每个值都对应了合法的地址，所以总是会有某个地址可以使得程序崩溃。这一利用，虽然攻击者本身似乎并不能控制程序，但是这样却可以造成程序不可用。比如说，如果远程服务有一个格式化字符串漏洞，那么我们就可以攻击其可用性，使服务崩溃，进而使得用户不能够访问。</p>
+<h5 id="泄露内存"><a href="#泄露内存" class="headerlink" title="泄露内存"></a>泄露内存</h5><p>利用格式化字符串漏洞，我们还可以获取我们所想要输出的内容。一般会有如下几种操作</p>
+<ul>
+<li>泄露栈内存<ul>
+<li>获取某个变量的值</li>
+<li>获取某个变量对应地址的内存</li>
+<li>修改栈内存上地址指向数据的值：第一步，泄露出字符串在栈上的地址；第二步，将地址写进字符串；第三步，利用%$定位字符串上的这个地址，并修改其指向的值</li>
+</ul>
+</li>
+<li>泄露任意地址内存<ul>
+<li>利用 GOT 表得到 libc 函数地址，进而获取 libc，进而获取其它 libc 函数地址</li>
+<li>盲打，dump 整个程序，获取有用信息。</li>
+</ul>
+</li>
+</ul>
+<h4 id="其他一些有关字符串的技巧"><a href="#其他一些有关字符串的技巧" class="headerlink" title="其他一些有关字符串的技巧"></a>其他一些有关字符串的技巧</h4><h5 id="strncmp"><a href="#strncmp" class="headerlink" title="strncmp"></a>strncmp</h5><pre><code class="hljs Cpp"><span class="hljs-comment">//函数原型</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">strncmp</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *str1, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *str2, <span class="hljs-type">size_t</span> n)</span></span></code></pre>
+
+<p>可以让其中的 n &#x3D; 0 这样两个字符串永远相等，函数返回值永远为0</p>
+<h3 id="整数溢出（Integer-Overflow）"><a href="#整数溢出（Integer-Overflow）" class="headerlink" title="整数溢出（Integer Overflow）"></a>整数溢出（Integer Overflow）</h3><h3 id="堆利用（Heap-Exploitation）"><a href="#堆利用（Heap-Exploitation）" class="headerlink" title="堆利用（Heap Exploitation）"></a>堆利用（Heap Exploitation）</h3><h3 id="IO-FILE利用（IO-FILE-Exploitation）"><a href="#IO-FILE利用（IO-FILE-Exploitation）" class="headerlink" title="IO_FILE利用（IO_FILE Exploitation）"></a>IO_FILE利用（IO_FILE Exploitation）</h3><h2 id="Linux保护机制及其漏洞和绕过方法"><a href="#Linux保护机制及其漏洞和绕过方法" class="headerlink" title="Linux保护机制及其漏洞和绕过方法"></a>Linux保护机制及其漏洞和绕过方法</h2><h3 id="RELRO"><a href="#RELRO" class="headerlink" title="RELRO"></a>RELRO</h3><p>RELRO（ReLocation Read-Only）是一种安全机制，通过将程序的重定位表设置为只读来防止GOT（全局偏移表）覆写攻击，分为Partial RELRO（部分只读）和Full RELRO（完全只读），前者仅保护GOT表的一部分，后者则保护所有关键数据结构</p>
+<h3 id="STACK-CANARY"><a href="#STACK-CANARY" class="headerlink" title="STACK CANARY"></a>STACK CANARY</h3><p>Stack Canary是一种栈保护机制，旨在防止缓冲区溢出攻击。其原理是在函数调用时，在栈帧顶部插入一个随机值（canary），并在函数返回时检查该值是否被篡改。若被篡改，则表明栈溢出发生，程序将立即停止执行。这种机制通过在函数入口处插入canary值，并在函数返回时验证其完整性来检测栈溢出。Stack Canary并非理论上绝对安全，仅能有效缓解顺序覆盖的栈溢出攻击。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">leak_canary</span>():
+    <span class="hljs-keyword">global</span> canary
+    canary = <span class="hljs-string">b&quot;\x00&quot;</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(canary) &lt; <span class="hljs-number">8</span>:
+        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>):
+            <span class="hljs-keyword">try</span>:
+                <span class="hljs-keyword">with</span> remote(<span class="hljs-string">&quot;node5.buuoj.cn&quot;</span>, <span class="hljs-number">26857</span>) <span class="hljs-keyword">as</span> io:
+                    payload = <span class="hljs-string">b&quot;A&quot;</span> * (<span class="hljs-number">0x5C</span>) + canary + <span class="hljs-built_in">bytes</span>([x])
+                    io.sendline(payload)
+                    io.recv()
+                    canary += <span class="hljs-built_in">bytes</span>([x])
+                    <span class="hljs-keyword">break</span>
+            <span class="hljs-keyword">except</span> EOFError:
+                <span class="hljs-keyword">continue</span>
+            <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+                log.error(<span class="hljs-string">f&quot;Unexpected error: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)
+                <span class="hljs-keyword">continue</span>
+    log.success(<span class="hljs-string">f&quot;Canary: <span class="hljs-subst">&#123;canary.<span class="hljs-built_in">hex</span>()&#125;</span>&quot;</span>)
+
+leak_canary()</code></pre>
+
+
+
+<h3 id="NX"><a href="#NX" class="headerlink" title="NX"></a>NX</h3><p>NX（No-eXecute）是一种安全机制，旨在防止攻击者在堆栈中执行恶意代码。其基本原理是将数据所在内存页标识为不可执行，当程序溢出成功转入shellcode时，程序会尝试在数据页面上执行指令，此时CPU就会抛出异常，而不是去执行恶意指令。NX的实现由软件和硬件共同完成，硬件层利用CPU的NX位，软件层面需要操作系统支持NX以配置页表</p>
+<h3 id="ASLR和PIE"><a href="#ASLR和PIE" class="headerlink" title="ASLR和PIE"></a>ASLR和PIE</h3><p>ASLR（Address Space Layout Randomization）和PIE（Position-Independent Executable）是计算机安全领域的重要概念，旨在增强程序的安全性。ASLR通过随机化程序在内存中的地址布局，防止攻击者预测内存地址，从而降低缓冲区溢出攻击的成功率。PIE则允许程序在内存中任意位置执行，不依赖于固定的内存地址，这与ASLR结合使用，进一步增强了程序的安全性。</p>
+<h3 id="FORTIFY-SOURCE"><a href="#FORTIFY-SOURCE" class="headerlink" title="FORTIFY_SOURCE"></a>FORTIFY_SOURCE</h3><p>FORTIFY_SOURCE 是 GCC 和 Clang 编译器提供的一个编译选项，旨在增强 C 和 C++ 程序的安全性，通过在编译期间插入额外的检查来防止常见的缓冲区溢出和其他类型的内存损坏。它通过定义宏 <code>_FORTIFY_SOURCE</code> 来控制对一些函数的调用进行加固，确保在编译时和运行时检测缓冲区溢出和格式化字符串漏洞。FORTIFY_SOURCE 提供两个级别：<code>-D_FORTIFY_SOURCE=1</code> 进行较弱的检查，<code>-D_FORTIFY_SOURCE=2</code> 进行较强的检查，后者在运行时也会进行检查，以防止缓冲区溢出。</p>
+<h2 id="自用python文件开头"><a href="#自用python文件开头" class="headerlink" title="自用python文件开头"></a>自用python文件开头</h2><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
+<span class="hljs-comment"># from LibcSearcher import *</span>
+context.terminal = [<span class="hljs-string">&quot;tmux&quot;</span>, <span class="hljs-string">&quot;splitw&quot;</span>, <span class="hljs-string">&quot;-h&quot;</span>]
+context.log_level = <span class="hljs-string">&quot;debug&quot;</span>
+<span class="hljs-comment"># r = process(&quot;./pwn&quot;)</span>
+r = gdb.debug(<span class="hljs-string">&quot;./pwn&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)
+<span class="hljs-comment"># r = remote(&quot;node5.buuoj.cn&quot;,)</span>
+e = ELF(<span class="hljs-string">&quot;./pwn&quot;</span>)
+
+<span class="hljs-comment"># ----------------------Dividing-Line----------------------</span></code></pre>
+
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/07/14/高中学习心得/">
+				高中学习心得
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-07-14
+		</div>
+		
+		This page has been hidden. :>
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/12/11/虚拟机Kali系统配置Pwn做题环境/">
+				虚拟机ali系统配置Pwn做题环境
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-12-11
+		</div>
+		
+		<h3 id="下载VMware版的Pre-built-Virtual-Machines-Kali"><a href="#下载VMware版的Pre-built-Virtual-Machines-Kali" class="headerlink" title="下载VMware版的Pre-built Virtual Machines Kali"></a>下载VMware版的Pre-built Virtual Machines Kali</h3><p>官网链接-&gt;[<a target="_blank" rel="noopener" href="https://www.kali.org/get-kali/#kali-virtual-machines]https://www.kali.org/get-kali/#kali-virtual-machines">https://www.kali.org/get-kali/#kali-virtual-machines]https://www.kali.org/get-kali/#kali-virtual-machines</a></p>
+<h3 id="下载VMware-Workstation-Pro"><a href="#下载VMware-Workstation-Pro" class="headerlink" title="下载VMware Workstation Pro"></a>下载VMware Workstation Pro</h3><p>建议的安装方式为：最新正版安装包 + 序列号</p>
+<p><a target="_blank" rel="noopener" href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">Desktop Hypervisor Solutions | VMware</a></p>
+<p>打开上面的网址，点击<strong>Download Fusion Or Workstaion</strong>按钮，然后他会提示你登入，第一次登入的话需要先注册（这不废话</p>
+<p>据说目前已经支持Personal许可免费使用VMware WorkStation</p>
+<h3 id="用VMware打开Kali"><a href="#用VMware打开Kali" class="headerlink" title="用VMware打开Kali"></a>用VMware打开Kali</h3>
+		
+	</div>
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
@@ -136,15 +1339,87 @@
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/07/14/高中学习心得/">
-				高中学习心得
+			<a href="/2024/12/11/毒瘤的WSL杂记/">
+				毒瘤的WSL+Kali+Pwn环境杂记
 			</a>
 		</h1>
 		<div class="postInfo">
-			2024-07-14
+			2024-12-11
 		</div>
 		
-		This page has been hidden. :>
+		<blockquote>
+<p>被毒瘤的WSL给整麻了</p>
+</blockquote>
+<h2 id="删除已安装好的Linux-发行版"><a href="#删除已安装好的Linux-发行版" class="headerlink" title="删除已安装好的Linux 发行版"></a>删除已安装好的Linux 发行版</h2><pre><code class="hljs plaintext">wsl --unregister kali-linux</code></pre>
+
+<p>一定要卸干净了，重启后再开始后续的安装</p>
+<h2 id="安装Kali-Linux-WSL发行版"><a href="#安装Kali-Linux-WSL发行版" class="headerlink" title="安装Kali-Linux WSL发行版"></a>安装Kali-Linux WSL发行版</h2><p>打开Microsoft Store搜索Kali并安装</p>
+<h2 id="选择默认打开的WSL发行版"><a href="#选择默认打开的WSL发行版" class="headerlink" title="选择默认打开的WSL发行版"></a>选择默认打开的WSL发行版</h2><p>首先查看已安装的所有的lWSL发行版</p>
+<pre><code class="hljs plaintext">wsl --list --verbose</code></pre>
+
+<p>选择默认的WSL发行版</p>
+<pre><code class="hljs plaintext">wsl --set-default kali-linux</code></pre>
+
+<h2 id="将WSL发行版安装到其他的盘"><a href="#将WSL发行版安装到其他的盘" class="headerlink" title="将WSL发行版安装到其他的盘"></a>将WSL发行版安装到其他的盘</h2><pre><code class="hljs plaintext">wsl -l -v
+wsl --export kali-linux D:\kali-linux.tar
+wsl --unregister kali-linux
+wsl --import kali-linux D:\wsl-kali-linux D:\kali-linux.tar --version 2</code></pre>
+
+
+
+<h2 id="安装Kali完整版"><a href="#安装Kali完整版" class="headerlink" title="安装Kali完整版"></a>安装Kali完整版</h2><p>kali-linux的官方源在国内访问通常较慢，不换源装几个小时，换源装十几分钟，自己看着办吧。</p>
+<pre><code class="hljs shell">sudo vi /etc/apt/sources.list</code></pre>
+
+<p>然后会进入vi编辑器（需要一点vi的基础，不过没关系，需要的都已经标出来了），这里给的是中科大源</p>
+<pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">按i进入编辑</span>
+deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib
+deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib
+<span class="hljs-meta prompt_">#</span><span class="language-bash">按esc,然后按依次按:wq</span></code></pre>
+
+<p>更新并安装工具包</p>
+<pre><code class="hljs shell">sudo apt update &amp;&amp; sudo apt upgrade
+sudo apt install -y kali-linux-default # 标准工具包
+sudo apt install -y kali-linux-large # 巨大工具包
+<span class="hljs-meta prompt_"># </span><span class="language-bash">-y表示<span class="hljs-built_in">yes</span></span></code></pre>
+
+<h2 id="WSL下做Pwn题的必备工具"><a href="#WSL下做Pwn题的必备工具" class="headerlink" title="WSL下做Pwn题的必备工具"></a>WSL下做Pwn题的必备工具</h2><pre><code class="hljs bash"><span class="hljs-comment"># apt</span>
+apt install python3-pwntools
+apt install ROPgadget
+apt install checksec
+apt install tmux <span class="hljs-comment">#用来解决不能gdb.attach的问题</span>
+
+git <span class="hljs-built_in">clone</span> https://github.com/lieanu/LibcSearcher.git
+<span class="hljs-built_in">cd</span> LibcSearcher
+python setup.py develop
+
+git <span class="hljs-built_in">clone</span> https://github.com/pwndbg/pwndbg.git
+<span class="hljs-built_in">cd</span> pwndbg
+./setup.sh</code></pre>
+
+
+
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2023/07/06/日本麻将资料整理/">
+				日本麻将资料整理
+			</a>
+		</h1>
+		<div class="postInfo">
+			2023-07-06
+		</div>
+		
+		<p><strong>书名一览（若要保证浏览体验，请关闭翻译）</strong></p>
+<blockquote>
+<p>《ASAPIN 天才雀士に麻雀のことを聞いたらバカ勝ちできた》<br>《Guzaku 傑作「何切る」300選》<br>《Guzaku 定石「何切る」301選》<br>《owata 三人麻雀の極意》<br>《ZERO ゼロ秒思考の麻雀》<br>《ZERO 麻雀強者の0秒思考》<br>《かにマジン 日本一麻雀が強いサラリーマンの必勝法》<br>《きよ アマチュア地方最強位が作る新麻雀マニュアル》<br>《みーにん 「統計学」のマージャン戦術》<br>《みーにん 知るだけで強くなる麻雀の2択》<br>《ゆうせー 実戦でよく出る!麻雀講義》<br>《中島準也 理論的思考で勝つ麻雀》<br>《二階堂亜樹 勝てる麻雀の基本》<br>《土井泰昭 勝つ人は知っている現代麻雀30の新常識》<br>《土田浩翔 運を育てる》<br>《堀内正人 麻雀の麒麟児の一打》<br>《堀慎吾 麻雀だから君は負けるんです》<br>《多井隆晴 多井熱》<br>《小林剛 スーパーデジタル麻雀》<br>《川村晃裕 麻雀勝ち組の鳴きテクニック》<br>《平澤元気 よくわかる麻雀の勝ち方》<br>《平澤元気 現代麻雀の秘技相手に対応させる技術》<br>《平澤元気 絶対にラスを引かない麻雀ラス回避35の技術》<br>《日本プロ麻雀連盟 麻雀基本手筋コレクション》<br>《朝倉康心 麻雀の失敗学》<br>《比嘉秀仁 強者の最近手筋100》<br>《水上直紀 麻雀AI戦術》<br>《独歩 序盤の鉄戦略》<br>《独歩 鉄押しの条件》<br>《石橋伸洋 進化するデジタル麻雀》<br>《石橋伸洋 黒いデジタル麻雀》<br>《福地誠 これだけで勝てる!麻雀の基本形80》<br>《福地誠 手作りと押し引きの鉄戦術》<br>《福地誠 麻雀10倍勝てるテクニック》<br>《福地誠 麻雀の正解》<br>《福地誠 麻雀テクニック》<br>《福地誠 麻雀勝ち組の選択》<br>《福地誠 麻雀勝ち組の選択II》<br>《菊池翔 絶対に負けない最強麻雀戦術》<br>《藤田晋 仕事が麻雀で麻雀が仕事》<br>《近代麻雀 プロに挑戦!!麻雀検定》<br>《近代麻雀 麻雀プロMリーグ選手名鑑》<br>《近藤誠一 大きく打ち大きく勝つ麻雀》<br>《鈴木たろう ゼウスの選択》<br>《馬場裕一 バビーのメンチン何切る》<br>《鳳南研究所 現代麻雀の神ワザ》</p>
+</blockquote>
+<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><strong>资料来源于网络</strong></p>
+<p><strong>仅供交流学习使用，不得用于任何商业用途</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cowtransfer.com/s/cc797d6a256440">https://cowtransfer.com/s/cc797d6a256440</a> 点击链接查看 【 PDF.zip 】 ，或访问奶牛快传 cowtransfer.com 输入传输口令 f4jzju 查看；</p>
+
 		
 	</div>
 	
@@ -319,27 +1594,6 @@ HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2023/07/06/日本麻将资料整理/">
-				日本麻将资料整理
-			</a>
-		</h1>
-		<div class="postInfo">
-			2023-07-06
-		</div>
-		
-		<p><strong>书名一览（若要保证浏览体验，请关闭翻译）</strong></p>
-<blockquote>
-<p>《ASAPIN 天才雀士に麻雀のことを聞いたらバカ勝ちできた》<br>《Guzaku 傑作「何切る」300選》<br>《Guzaku 定石「何切る」301選》<br>《owata 三人麻雀の極意》<br>《ZERO ゼロ秒思考の麻雀》<br>《ZERO 麻雀強者の0秒思考》<br>《かにマジン 日本一麻雀が強いサラリーマンの必勝法》<br>《きよ アマチュア地方最強位が作る新麻雀マニュアル》<br>《みーにん 「統計学」のマージャン戦術》<br>《みーにん 知るだけで強くなる麻雀の2択》<br>《ゆうせー 実戦でよく出る!麻雀講義》<br>《中島準也 理論的思考で勝つ麻雀》<br>《二階堂亜樹 勝てる麻雀の基本》<br>《土井泰昭 勝つ人は知っている現代麻雀30の新常識》<br>《土田浩翔 運を育てる》<br>《堀内正人 麻雀の麒麟児の一打》<br>《堀慎吾 麻雀だから君は負けるんです》<br>《多井隆晴 多井熱》<br>《小林剛 スーパーデジタル麻雀》<br>《川村晃裕 麻雀勝ち組の鳴きテクニック》<br>《平澤元気 よくわかる麻雀の勝ち方》<br>《平澤元気 現代麻雀の秘技相手に対応させる技術》<br>《平澤元気 絶対にラスを引かない麻雀ラス回避35の技術》<br>《日本プロ麻雀連盟 麻雀基本手筋コレクション》<br>《朝倉康心 麻雀の失敗学》<br>《比嘉秀仁 強者の最近手筋100》<br>《水上直紀 麻雀AI戦術》<br>《独歩 序盤の鉄戦略》<br>《独歩 鉄押しの条件》<br>《石橋伸洋 進化するデジタル麻雀》<br>《石橋伸洋 黒いデジタル麻雀》<br>《福地誠 これだけで勝てる!麻雀の基本形80》<br>《福地誠 手作りと押し引きの鉄戦術》<br>《福地誠 麻雀10倍勝てるテクニック》<br>《福地誠 麻雀の正解》<br>《福地誠 麻雀テクニック》<br>《福地誠 麻雀勝ち組の選択》<br>《福地誠 麻雀勝ち組の選択II》<br>《菊池翔 絶対に負けない最強麻雀戦術》<br>《藤田晋 仕事が麻雀で麻雀が仕事》<br>《近代麻雀 プロに挑戦!!麻雀検定》<br>《近代麻雀 麻雀プロMリーグ選手名鑑》<br>《近藤誠一 大きく打ち大きく勝つ麻雀》<br>《鈴木たろう ゼウスの選択》<br>《馬場裕一 バビーのメンチン何切る》<br>《鳳南研究所 現代麻雀の神ワザ》</p>
-</blockquote>
-<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><strong>资料来源于网络</strong></p>
-<p><strong>仅供交流学习使用，不得用于任何商业用途</strong></p>
-<p><a target="_blank" rel="noopener" href="https://cowtransfer.com/s/cc797d6a256440">https://cowtransfer.com/s/cc797d6a256440</a> 点击链接查看 【 PDF.zip 】 ，或访问奶牛快传 cowtransfer.com 输入传输口令 f4jzju 查看；</p>
-
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
 			<a href="/2024/07/25/日语学习资源/">
 				日语学习资源
 			</a>
@@ -439,6 +1693,169 @@ HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
 </tr>
 </tbody></table>
 <h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p><a target="_blank" rel="noopener" href="https://lietxia.github.io/fupractice.html">https://lietxia.github.io/fupractice.html</a></p>
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/11/29/推进构建亚太命运共同体/">
+				推进构建亚太命运共同体
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-11-29
+		</div>
+		
+		<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在全球化的背景下，亚太地区作为全球经济最具活力的板块之一，其合作与发展对于整个世界的繁荣与稳定具有重要意义。2024年11月16日，习近平主席在亚太经合组织第三十一次领导人非正式会议上发表了题为“共担时代责任，共促亚太发展”的重要讲话，强调了构建开放融通的亚太合作格局、培育绿色创新的亚太增长动能、树牢普惠包容的亚太发展理念的重要性。本文旨在探讨如何通过这些措施推动构建亚太命运共同体，以实现区域的共同发展与繁荣。</p>
+<h2 id="一、当前亚太地区面临的挑战"><a href="#一、当前亚太地区面临的挑战" class="headerlink" title="一、当前亚太地区面临的挑战"></a>一、当前亚太地区面临的挑战</h2><p>当前，世界经济面临百年未有之大变局，经济增长乏力，开放指数下滑，亚太合作亦面临地缘政治、单边主义和保护主义上升等挑战。这些挑战不仅影响了区域经济的稳定与发展，也对全球经济的循环和供应链的稳定构成了威胁。</p>
+<h2 id="二、构建开放融通的亚太合作格局"><a href="#二、构建开放融通的亚太合作格局" class="headerlink" title="二、构建开放融通的亚太合作格局"></a>二、构建开放融通的亚太合作格局</h2><p>为应对上述挑战，首要任务是构建一个开放融通的亚太合作格局。开放性是亚太地区经济增长的重要驱动力。构建开放融通的亚太合作格局，首先需要坚持多边主义和开放型经济的大方向。这意味着亚太各国应坚定维护以世界贸易组织为核心的多边贸易体制，激活亚太经合组织在全球经贸规则中的“解化器”作用，推进区域经济一体化和互联互通，拆除阻碍贸易、投资、技术、服务流通的壁垒，维护产业链供应链的稳定通畅。</p>
+<p>中国作为亚太地区的重要成员，其开放政策为区域合作提供了新的动力。中国坚持以开放促改革，主动对接国际高标准经贸规则，积极扩大自主开放，推动电信、互联网、教育、文化、医疗等领域的有序开放。通过实施《区域全面经济伙伴关系协定》、加入《全面与进步跨太平洋伙伴关系协定》和《数字经济伙伴关系协定》等多边贸易协定，中国将进一步扩大面向全球的高标准自由贸易区网络，为亚太地区的开放型经济发展注入新活力。</p>
+<h2 id="三、培育绿色创新的亚太增长动能"><a href="#三、培育绿色创新的亚太增长动能" class="headerlink" title="三、培育绿色创新的亚太增长动能"></a>三、培育绿色创新的亚太增长动能</h2><p>新一轮科技革命和产业变革为亚太地区提供了新的发展机遇。亚太各国应加强在人工智能、量子信息、生命健康等前沿领域的交流合作，营造开放、公平、公正、非歧视的创新生态，推动生产力的跃升。同时，坚持生态优先、节约集约、绿色低碳发展，推进经济社会发展全面绿色转型，建设清洁美丽的亚太。</p>
+<p>中国在绿色创新方面已经采取了积极行动，正在因地制宜发展新质生产力，并深化与各方的绿色创新合作。中国提出的《全球数据跨境流动合作倡议》旨在促进高效、便利、安全的数据跨境流动，为亚太高质量发展贡献力量。此外，中国在亚太经合组织提出的贸易单证数字化、绿色供应链能力建设、人工智能交流对话、粮食产业数字化等倡议，将进一步推动亚太地区的数字化绿色化协同转型发展。</p>
+<h2 id="四、树牢普惠包容的亚太发展理念"><a href="#四、树牢普惠包容的亚太发展理念" class="headerlink" title="四、树牢普惠包容的亚太发展理念"></a>四、树牢普惠包容的亚太发展理念</h2><p>普惠包容是亚太命运共同体建设的核心理念之一。亚太各国应加强经济技术合作，加大对发展中经济体和弱势群体的支持，共同做大并分好经济发展的“蛋糕”，让更多经济体、更多民众共享发展成果。中国在亚太经合组织推进提高居民收入、促进中小企业集群式发展的倡议，正是为了助力亚太经济的普惠包容发展。</p>
+<p>中国作为2026年亚太经合组织的东道主，期待与各方一道深化合作，造福亚太人民。中国的发展理念与秘鲁推动非正规经济向正规和全球经济转型合作的努力高度契合，体现了中国以人为本、促进社会公平正义、增进人民福祉的发展理念。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>推动构建亚太命运共同体，不仅是亚太各国共同的责任，也是实现区域长期稳定与繁荣的必由之路。通过构建开放融通的合作格局、培育绿色创新的增长动能、树牢普惠包容的发展理念，亚太各国可以共同应对全球性挑战，实现共同发展。中国作为亚太大家庭的一员，愿意与各国携手合作，共同推动亚太命运共同体的建设，为实现和平发展、互利合作、共同繁荣的世界各国现代化共同努力。</p>
+
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/10/31/将DEV-C-编辑器打造成神级IDE及美化/">
+				将DEV-C++编辑器打造成神级IDE及美化
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-10-31
+		</div>
+		
+		<h1 id="头记"><a href="#头记" class="headerlink" title="头记"></a>头记</h1><p>鉴于使用<code>原版DEV-C++</code>不得不说十分滞后，人家<code>Visual Studio</code>多高端，本人写下此文章,使用一些奇技淫巧，美化和增强此IDE，个人认为可以和<code>Visual Studio</code>相媲美</p>
+<h1 id="样式美化"><a href="#样式美化" class="headerlink" title="样式美化"></a>样式美化</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/vttuwku5.png" alt="预览"></p>
+<ol>
+<li><p>点击顶部菜单栏<code>工具</code></p>
+</li>
+<li><p>点击下拉列表中的<code>编译器选项</code></p>
+</li>
+<li><p>点击新弹出的窗口中的<code>基本</code></p>
+</li>
+<li><p>取消勾选<code>高亮显示当前行</code>，或者后面你再选择你喜欢的颜色。</p>
+</li>
+<li><p>点击还是这个窗口中的<code>语法</code>（和“基本”在同一排）</p>
+</li>
+<li><p>选择<code>预设</code>为 Obsidian，保存一下再进行以下修改</p>
+</li>
+<li><p>修改以下几个地方：（都只改前景和样式，背景不改，改完记得点确定）</p>
+</li>
+</ol>
+<blockquote>
+<p>Preprocessor: （自定义）红136+绿99+蓝173+下划线</p>
+<p>Reserved Word： （自定义）红106+绿185+蓝255+下划线</p>
+<p>Identifier： Silver</p>
+<p>String：（自定义）红255+绿128+蓝128</p>
+<p>Symbol：（自定义）同上String</p>
+</blockquote>
+<h1 id="取消完成符号（个人喜好）"><a href="#取消完成符号（个人喜好）" class="headerlink" title="取消完成符号（个人喜好）"></a>取消完成符号（个人喜好）</h1><ol>
+<li><p>点击顶部菜单栏<code>工具</code>-&gt;点击<code>编译器选项</code></p>
+</li>
+<li><p>点击新弹出的窗口中的<code>代码补全</code></p>
+</li>
+<li><p>点击<code>完成符号</code></p>
+</li>
+<li><p>取消勾选<code>启用符号配对</code></p>
+</li>
+</ol>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/1ijwn1cy.png"></p>
+<h1 id="编译选项优化"><a href="#编译选项优化" class="headerlink" title="编译选项优化"></a>编译选项优化</h1><ol>
+<li><p>点击顶部菜单栏<code>工具</code></p>
+</li>
+<li><p>点击下拉列表中的<code>编译选项</code></p>
+</li>
+<li><p>点击新弹出的窗口中的<code>代码生成/优化</code></p>
+</li>
+<li><p>点击<code>代码警告</code></p>
+</li>
+<li><p>设<code>显示最多警告信息（-Wall）</code>为Yes</p>
+</li>
+<li><p>(有必要的可以设“显示所有警告为错误（-Werror）”为Yes)</p>
+</li>
+</ol>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/mf2j4j60.png" alt="像这样"></p>
+<h1 id="使用自己的mingw-w64"><a href="#使用自己的mingw-w64" class="headerlink" title="使用自己的mingw-w64"></a>使用自己的mingw-w64</h1><p>（Dev-C++ 5.11自带的mingw-w64的版本才4.9.2，我们可以使用自己最新版的mingw-w64，目前是8.1.0）</p>
+<ol>
+<li><p>mingw-w64的下载安装教程,在<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/sky-fox/post-an-li-sublime-text-3-pei-zhi-cjava-kai-fa-huan-jing">这里</a>有</p>
+</li>
+<li><p>打开Dev-C++过程中一定不要关闭</p>
+</li>
+<li><p>打开你Dev-C++安装的位置（默认在C:\Program Files (x86)\Dev-Cpp）</p>
+</li>
+<li><p>用你的MinGW64覆盖掉自带的MinGW64的文件夹</p>
+</li>
+<li><p>然后点击Dev-C++菜单栏 <code>文件</code> -&gt; <code> 编译选项</code> -&gt; 点击 <code>目录</code></p>
+</li>
+<li><p>点击<code>C包含文件</code>和<code>C++包含文件</code></p>
+</li>
+<li><p>把里面路径所有的4.9.2换成8.1.0（即你所用的版本）</p>
+</li>
+<li><p>然后重新打开Dev-C++进行配置</p>
+</li>
+</ol>
+<p>修改样例（修改后点击替换）:</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ms6hwzz.png"></p>
+<p><strong>注</strong>：如果你过程中关闭了Dev-C++重新打开时他会提示你“<strong>路径无效，是否删除无效路径</strong>”请选择<strong>否</strong>，不然你的许多头文件会用不了</p>
+<p>接下来配置一下</p>
+<ul>
+<li><p>点击Dev-C++菜单栏 <code>文件</code> -&gt; <code>编译选项</code> 点击上方两个加号处</p>
+</li>
+<li><p>点击Yes或No，点击Yes就会清空原有列表，点击No就会保留原来列表，建议清空（建议点击Yes）</p>
+</li>
+<li><p>如果会生成一个新列表，说明配置成功了,像这样</p>
+</li>
+</ul>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/5eebhg9a.png"><br><img src="https://cdn.luogu.com.cn/upload/image_hosting/vdtluh48.png"></p>
+<h1 id="格式化修改"><a href="#格式化修改" class="headerlink" title="格式化修改"></a>格式化修改</h1><ol>
+<li><p>点击顶部菜单栏<code>AStyle</code></p>
+</li>
+<li><p>点击下拉列表中的<code>格式化选项</code></p>
+</li>
+<li><p>选择<code>选项——括号风格</code>为Allman（个人喜欢）（默认的Java也还行）</p>
+</li>
+<li><p>在编辑代码的时候按Ctrl+Shift+A就可以自动格式化啦</p>
+</li>
+</ol>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/o8x9q60g.png" alt="预览"></p>
+<h1 id="设置透明编辑器"><a href="#设置透明编辑器" class="headerlink" title="设置透明编辑器"></a>设置透明编辑器</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ztt3tra.png" alt="预览"></p>
+<ol>
+<li><p>点击<a target="_blank" rel="noopener" href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">这里</a>下载<a target="_blank" rel="noopener" href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">Glass2k程序</a></p>
+</li>
+<li><p>解压并打开<code>Glass2k.exe</code>(怎么都是英文的？！别怕)</p>
+</li>
+<li><p>如果没有显示界面那就看看任务栏右下角有没有三个箱子堆起来的图标，右键点<code>Settings</code></p>
+</li>
+<li><p>有三个勾选框，简单翻译一下，第一个是开机启动，第二个是记住透明度设置，第三个是深度使用该软件（建议勾选第二和第三个）（下面那个蓝蓝的条是用来设置任务栏的透明度的）</p>
+</li>
+<li><p>接下来为了避免鼠标按键冲突，设置<code>Right Click</code>: <code>+ Ctrl + Shift</code></p>
+</li>
+<li><p>然后打开DEV-C++，按着<code>Ctrl + Shift + 右键</code>点击DEV-C++窗口的任意地方，就会出现一个列表，选择你想要的透明度就可以啦（建议设置80%）</p>
+</li>
+</ol>
+<ul>
+<li>可以按照下图修改</li>
+</ul>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/0gbn318e.png" alt="预览"></p>
+<p>（PS:这个软件也可以用在其他一些地方哦，如：浏览器，文件夹等）</p>
+<h1 id="一些快捷键"><a href="#一些快捷键" class="headerlink" title="一些快捷键"></a>一些快捷键</h1><ol>
+<li><p>f9编译，f10运行，f11编译运行（这个应该不用我多说）</p>
+</li>
+<li><p>f5调试（记得把设定编译器配置改为TDM-GCC 4.9.2 64-bit Debug），F7下一步，F8单步进入（这个应该也不用我多说）</p>
+</li>
+<li><p>Ctrl+f11全屏&#x2F;取消全屏，样例：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/xv7z3idp.png"></p>
+</li>
+<li><p>当你打开了两个文件时，让你的页面停留在一个文件，按Ctrl+M就可以把另一个文件在新的页面打开，样例:<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/klowtiln.png"></p>
+</li>
+</ol>
+<h1 id="最后的一些话"><a href="#最后的一些话" class="headerlink" title="最后的一些话"></a>最后的一些话</h1><p>Dev-C++跟目前的主流代码编辑器相比已被拉开巨大的差距，但</p>
+<p><strong>文章到此就结束了，还在持续更新，给个赞再走呗</strong></p>
 
 		
 	</div>
@@ -1798,169 +3215,6 @@ HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/11/29/推进构建亚太命运共同体/">
-				推进构建亚太命运共同体
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-11-29
-		</div>
-		
-		<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在全球化的背景下，亚太地区作为全球经济最具活力的板块之一，其合作与发展对于整个世界的繁荣与稳定具有重要意义。2024年11月16日，习近平主席在亚太经合组织第三十一次领导人非正式会议上发表了题为“共担时代责任，共促亚太发展”的重要讲话，强调了构建开放融通的亚太合作格局、培育绿色创新的亚太增长动能、树牢普惠包容的亚太发展理念的重要性。本文旨在探讨如何通过这些措施推动构建亚太命运共同体，以实现区域的共同发展与繁荣。</p>
-<h2 id="一、当前亚太地区面临的挑战"><a href="#一、当前亚太地区面临的挑战" class="headerlink" title="一、当前亚太地区面临的挑战"></a>一、当前亚太地区面临的挑战</h2><p>当前，世界经济面临百年未有之大变局，经济增长乏力，开放指数下滑，亚太合作亦面临地缘政治、单边主义和保护主义上升等挑战。这些挑战不仅影响了区域经济的稳定与发展，也对全球经济的循环和供应链的稳定构成了威胁。</p>
-<h2 id="二、构建开放融通的亚太合作格局"><a href="#二、构建开放融通的亚太合作格局" class="headerlink" title="二、构建开放融通的亚太合作格局"></a>二、构建开放融通的亚太合作格局</h2><p>为应对上述挑战，首要任务是构建一个开放融通的亚太合作格局。开放性是亚太地区经济增长的重要驱动力。构建开放融通的亚太合作格局，首先需要坚持多边主义和开放型经济的大方向。这意味着亚太各国应坚定维护以世界贸易组织为核心的多边贸易体制，激活亚太经合组织在全球经贸规则中的“解化器”作用，推进区域经济一体化和互联互通，拆除阻碍贸易、投资、技术、服务流通的壁垒，维护产业链供应链的稳定通畅。</p>
-<p>中国作为亚太地区的重要成员，其开放政策为区域合作提供了新的动力。中国坚持以开放促改革，主动对接国际高标准经贸规则，积极扩大自主开放，推动电信、互联网、教育、文化、医疗等领域的有序开放。通过实施《区域全面经济伙伴关系协定》、加入《全面与进步跨太平洋伙伴关系协定》和《数字经济伙伴关系协定》等多边贸易协定，中国将进一步扩大面向全球的高标准自由贸易区网络，为亚太地区的开放型经济发展注入新活力。</p>
-<h2 id="三、培育绿色创新的亚太增长动能"><a href="#三、培育绿色创新的亚太增长动能" class="headerlink" title="三、培育绿色创新的亚太增长动能"></a>三、培育绿色创新的亚太增长动能</h2><p>新一轮科技革命和产业变革为亚太地区提供了新的发展机遇。亚太各国应加强在人工智能、量子信息、生命健康等前沿领域的交流合作，营造开放、公平、公正、非歧视的创新生态，推动生产力的跃升。同时，坚持生态优先、节约集约、绿色低碳发展，推进经济社会发展全面绿色转型，建设清洁美丽的亚太。</p>
-<p>中国在绿色创新方面已经采取了积极行动，正在因地制宜发展新质生产力，并深化与各方的绿色创新合作。中国提出的《全球数据跨境流动合作倡议》旨在促进高效、便利、安全的数据跨境流动，为亚太高质量发展贡献力量。此外，中国在亚太经合组织提出的贸易单证数字化、绿色供应链能力建设、人工智能交流对话、粮食产业数字化等倡议，将进一步推动亚太地区的数字化绿色化协同转型发展。</p>
-<h2 id="四、树牢普惠包容的亚太发展理念"><a href="#四、树牢普惠包容的亚太发展理念" class="headerlink" title="四、树牢普惠包容的亚太发展理念"></a>四、树牢普惠包容的亚太发展理念</h2><p>普惠包容是亚太命运共同体建设的核心理念之一。亚太各国应加强经济技术合作，加大对发展中经济体和弱势群体的支持，共同做大并分好经济发展的“蛋糕”，让更多经济体、更多民众共享发展成果。中国在亚太经合组织推进提高居民收入、促进中小企业集群式发展的倡议，正是为了助力亚太经济的普惠包容发展。</p>
-<p>中国作为2026年亚太经合组织的东道主，期待与各方一道深化合作，造福亚太人民。中国的发展理念与秘鲁推动非正规经济向正规和全球经济转型合作的努力高度契合，体现了中国以人为本、促进社会公平正义、增进人民福祉的发展理念。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>推动构建亚太命运共同体，不仅是亚太各国共同的责任，也是实现区域长期稳定与繁荣的必由之路。通过构建开放融通的合作格局、培育绿色创新的增长动能、树牢普惠包容的发展理念，亚太各国可以共同应对全球性挑战，实现共同发展。中国作为亚太大家庭的一员，愿意与各国携手合作，共同推动亚太命运共同体的建设，为实现和平发展、互利合作、共同繁荣的世界各国现代化共同努力。</p>
-
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2024/10/31/将DEV-C-编辑器打造成神级IDE及美化/">
-				将DEV-C++编辑器打造成神级IDE及美化
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-10-31
-		</div>
-		
-		<h1 id="头记"><a href="#头记" class="headerlink" title="头记"></a>头记</h1><p>鉴于使用<code>原版DEV-C++</code>不得不说十分滞后，人家<code>Visual Studio</code>多高端，本人写下此文章,使用一些奇技淫巧，美化和增强此IDE，个人认为可以和<code>Visual Studio</code>相媲美</p>
-<h1 id="样式美化"><a href="#样式美化" class="headerlink" title="样式美化"></a>样式美化</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/vttuwku5.png" alt="预览"></p>
-<ol>
-<li><p>点击顶部菜单栏<code>工具</code></p>
-</li>
-<li><p>点击下拉列表中的<code>编译器选项</code></p>
-</li>
-<li><p>点击新弹出的窗口中的<code>基本</code></p>
-</li>
-<li><p>取消勾选<code>高亮显示当前行</code>，或者后面你再选择你喜欢的颜色。</p>
-</li>
-<li><p>点击还是这个窗口中的<code>语法</code>（和“基本”在同一排）</p>
-</li>
-<li><p>选择<code>预设</code>为 Obsidian，保存一下再进行以下修改</p>
-</li>
-<li><p>修改以下几个地方：（都只改前景和样式，背景不改，改完记得点确定）</p>
-</li>
-</ol>
-<blockquote>
-<p>Preprocessor: （自定义）红136+绿99+蓝173+下划线</p>
-<p>Reserved Word： （自定义）红106+绿185+蓝255+下划线</p>
-<p>Identifier： Silver</p>
-<p>String：（自定义）红255+绿128+蓝128</p>
-<p>Symbol：（自定义）同上String</p>
-</blockquote>
-<h1 id="取消完成符号（个人喜好）"><a href="#取消完成符号（个人喜好）" class="headerlink" title="取消完成符号（个人喜好）"></a>取消完成符号（个人喜好）</h1><ol>
-<li><p>点击顶部菜单栏<code>工具</code>-&gt;点击<code>编译器选项</code></p>
-</li>
-<li><p>点击新弹出的窗口中的<code>代码补全</code></p>
-</li>
-<li><p>点击<code>完成符号</code></p>
-</li>
-<li><p>取消勾选<code>启用符号配对</code></p>
-</li>
-</ol>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/1ijwn1cy.png"></p>
-<h1 id="编译选项优化"><a href="#编译选项优化" class="headerlink" title="编译选项优化"></a>编译选项优化</h1><ol>
-<li><p>点击顶部菜单栏<code>工具</code></p>
-</li>
-<li><p>点击下拉列表中的<code>编译选项</code></p>
-</li>
-<li><p>点击新弹出的窗口中的<code>代码生成/优化</code></p>
-</li>
-<li><p>点击<code>代码警告</code></p>
-</li>
-<li><p>设<code>显示最多警告信息（-Wall）</code>为Yes</p>
-</li>
-<li><p>(有必要的可以设“显示所有警告为错误（-Werror）”为Yes)</p>
-</li>
-</ol>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/mf2j4j60.png" alt="像这样"></p>
-<h1 id="使用自己的mingw-w64"><a href="#使用自己的mingw-w64" class="headerlink" title="使用自己的mingw-w64"></a>使用自己的mingw-w64</h1><p>（Dev-C++ 5.11自带的mingw-w64的版本才4.9.2，我们可以使用自己最新版的mingw-w64，目前是8.1.0）</p>
-<ol>
-<li><p>mingw-w64的下载安装教程,在<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/sky-fox/post-an-li-sublime-text-3-pei-zhi-cjava-kai-fa-huan-jing">这里</a>有</p>
-</li>
-<li><p>打开Dev-C++过程中一定不要关闭</p>
-</li>
-<li><p>打开你Dev-C++安装的位置（默认在C:\Program Files (x86)\Dev-Cpp）</p>
-</li>
-<li><p>用你的MinGW64覆盖掉自带的MinGW64的文件夹</p>
-</li>
-<li><p>然后点击Dev-C++菜单栏 <code>文件</code> -&gt; <code> 编译选项</code> -&gt; 点击 <code>目录</code></p>
-</li>
-<li><p>点击<code>C包含文件</code>和<code>C++包含文件</code></p>
-</li>
-<li><p>把里面路径所有的4.9.2换成8.1.0（即你所用的版本）</p>
-</li>
-<li><p>然后重新打开Dev-C++进行配置</p>
-</li>
-</ol>
-<p>修改样例（修改后点击替换）:</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ms6hwzz.png"></p>
-<p><strong>注</strong>：如果你过程中关闭了Dev-C++重新打开时他会提示你“<strong>路径无效，是否删除无效路径</strong>”请选择<strong>否</strong>，不然你的许多头文件会用不了</p>
-<p>接下来配置一下</p>
-<ul>
-<li><p>点击Dev-C++菜单栏 <code>文件</code> -&gt; <code>编译选项</code> 点击上方两个加号处</p>
-</li>
-<li><p>点击Yes或No，点击Yes就会清空原有列表，点击No就会保留原来列表，建议清空（建议点击Yes）</p>
-</li>
-<li><p>如果会生成一个新列表，说明配置成功了,像这样</p>
-</li>
-</ul>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/5eebhg9a.png"><br><img src="https://cdn.luogu.com.cn/upload/image_hosting/vdtluh48.png"></p>
-<h1 id="格式化修改"><a href="#格式化修改" class="headerlink" title="格式化修改"></a>格式化修改</h1><ol>
-<li><p>点击顶部菜单栏<code>AStyle</code></p>
-</li>
-<li><p>点击下拉列表中的<code>格式化选项</code></p>
-</li>
-<li><p>选择<code>选项——括号风格</code>为Allman（个人喜欢）（默认的Java也还行）</p>
-</li>
-<li><p>在编辑代码的时候按Ctrl+Shift+A就可以自动格式化啦</p>
-</li>
-</ol>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/o8x9q60g.png" alt="预览"></p>
-<h1 id="设置透明编辑器"><a href="#设置透明编辑器" class="headerlink" title="设置透明编辑器"></a>设置透明编辑器</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ztt3tra.png" alt="预览"></p>
-<ol>
-<li><p>点击<a target="_blank" rel="noopener" href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">这里</a>下载<a target="_blank" rel="noopener" href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">Glass2k程序</a></p>
-</li>
-<li><p>解压并打开<code>Glass2k.exe</code>(怎么都是英文的？！别怕)</p>
-</li>
-<li><p>如果没有显示界面那就看看任务栏右下角有没有三个箱子堆起来的图标，右键点<code>Settings</code></p>
-</li>
-<li><p>有三个勾选框，简单翻译一下，第一个是开机启动，第二个是记住透明度设置，第三个是深度使用该软件（建议勾选第二和第三个）（下面那个蓝蓝的条是用来设置任务栏的透明度的）</p>
-</li>
-<li><p>接下来为了避免鼠标按键冲突，设置<code>Right Click</code>: <code>+ Ctrl + Shift</code></p>
-</li>
-<li><p>然后打开DEV-C++，按着<code>Ctrl + Shift + 右键</code>点击DEV-C++窗口的任意地方，就会出现一个列表，选择你想要的透明度就可以啦（建议设置80%）</p>
-</li>
-</ol>
-<ul>
-<li>可以按照下图修改</li>
-</ul>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/0gbn318e.png" alt="预览"></p>
-<p>（PS:这个软件也可以用在其他一些地方哦，如：浏览器，文件夹等）</p>
-<h1 id="一些快捷键"><a href="#一些快捷键" class="headerlink" title="一些快捷键"></a>一些快捷键</h1><ol>
-<li><p>f9编译，f10运行，f11编译运行（这个应该不用我多说）</p>
-</li>
-<li><p>f5调试（记得把设定编译器配置改为TDM-GCC 4.9.2 64-bit Debug），F7下一步，F8单步进入（这个应该也不用我多说）</p>
-</li>
-<li><p>Ctrl+f11全屏&#x2F;取消全屏，样例：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/xv7z3idp.png"></p>
-</li>
-<li><p>当你打开了两个文件时，让你的页面停留在一个文件，按Ctrl+M就可以把另一个文件在新的页面打开，样例:<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/klowtiln.png"></p>
-</li>
-</ol>
-<h1 id="最后的一些话"><a href="#最后的一些话" class="headerlink" title="最后的一些话"></a>最后的一些话</h1><p>Dev-C++跟目前的主流代码编辑器相比已被拉开巨大的差距，但</p>
-<p><strong>文章到此就结束了，还在持续更新，给个赞再走呗</strong></p>
-
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
 			<a href="/2024/12/01/公安学基础理论讲义课后习题答案/">
 				公安学基础理论讲义课后习题答案（自用笔记）
 			</a>
@@ -2049,6 +3303,44 @@ HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
 <h3 id="6-试述改革和完善我国公安机关管理体制的创新举措。"><a href="#6-试述改革和完善我国公安机关管理体制的创新举措。" class="headerlink" title="6.试述改革和完善我国公安机关管理体制的创新举措。"></a>6.试述改革和完善我国公安机关管理体制的创新举措。</h3><p>。。。</p>
 <h3 id="7-如何正确处理地方党委政府与公安机关的关系。"><a href="#7-如何正确处理地方党委政府与公安机关的关系。" class="headerlink" title="7.如何正确处理地方党委政府与公安机关的关系。"></a>7.如何正确处理地方党委政府与公安机关的关系。</h3><p>。。。</p>
 
+		
+	</div>
+	
+	<div class="post shadow">
+		<h1 class="postTitle">
+			<a href="/2024/06/17/vim快速入门/">
+				vim快速入门
+			</a>
+		</h1>
+		<div class="postInfo">
+			2024-06-17
+		</div>
+		
+		<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><pre><code class="hljs less">正常模式：无需操作/<span class="hljs-selector-attr">[Esc]</span>
+命令模式：<span class="hljs-selector-attr">[?]</span> <span class="hljs-selector-attr">[/]</span>
+编辑模式：<span class="hljs-selector-attr">[i]</span>
+可视模式：<span class="hljs-selector-attr">[v]</span>字符可视
+         <span class="hljs-selector-attr">[V]</span>行可视
+         <span class="hljs-selector-attr">[ctrl+v]</span>块可视</code></pre>
+<p>注：可视模式通俗的讲就是选中，选中范围为：高亮部分+光标所在位置（可能没高亮）。也就是说只要进入了可视模式，至少会被选中一个字符</p>
+<h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[h]</span>左
+<span class="hljs-selector-attr">[j]</span>下（像向下的箭头）
+<span class="hljs-selector-attr">[k]</span>上
+<span class="hljs-selector-attr">[l]</span>右
+<span class="hljs-selector-attr">[w]</span>下一个单词开头
+<span class="hljs-selector-attr">[b]</span>上一个单词开头</code></pre>
+<h3 id="复制剪切粘贴"><a href="#复制剪切粘贴" class="headerlink" title="复制剪切粘贴"></a>复制剪切粘贴</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[x]</span>单个字母删除
+<span class="hljs-selector-attr">[d]</span>删除
+<span class="hljs-selector-attr">[dd]</span>删除当前行
+<span class="hljs-selector-attr">[]</span>
+<span class="hljs-selector-attr">[y]</span>复制
+<span class="hljs-selector-attr">[yy]</span>复制当前行
+<span class="hljs-selector-attr">[p]</span>粘贴</code></pre>
+<h3 id="撤销重做"><a href="#撤销重做" class="headerlink" title="撤销重做"></a>撤销重做</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[u]</span>撤销
+<span class="hljs-selector-attr">[ctrl+r]</span>重做</code></pre>
+<h3 id="组合技"><a href="#组合技" class="headerlink" title="组合技"></a>组合技</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[ggVG]</span>全选      <span class="hljs-selector-attr">[gg]</span>到最顶行首<span class="hljs-selector-attr">[V]</span>行可视<span class="hljs-selector-attr">[G]</span>到最末行首</code></pre>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[: set nu]</span>显示行号</code></pre>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2>
 		
 	</div>
 	
@@ -2183,66 +3475,6 @@ HANDLE hIn = <span class="hljs-built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
 </tr>
 </tbody></table>
 
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2024/02/11/kali完整版安装/">
-				wsl-kali完整版安装
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-02-11
-		</div>
-		
-		<h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>kali-linux自带的官方源，如果在国内访问通常比较慢。（不换源的话安装完整版kali时真的会慢死）</p>
-<pre><code class="hljs shell">sudo vi /etc/apt/sources.list</code></pre>
-<p>然后会进入vi编辑器（需要一点vi的基础，不过没关系，需要的都已经标出来了）</p>
-<pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">按i进入编辑</span>
-deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-<span class="hljs-meta prompt_">#</span><span class="language-bash">按esc,然后按依次按:wq</span></code></pre>
-<p>更新</p>
-<pre><code class="hljs shell">sudo apt update &amp;&amp; sudo apt -y upgrade</code></pre>
-<h2 id="安装完整版kali"><a href="#安装完整版kali" class="headerlink" title="安装完整版kali"></a>安装完整版kali</h2><pre><code class="hljs shell">sudo apt install kali-linux-large</code></pre>
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
-			<a href="/2024/06/17/vim快速入门/">
-				vim快速入门
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-06-17
-		</div>
-		
-		<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><pre><code class="hljs less">正常模式：无需操作/<span class="hljs-selector-attr">[Esc]</span>
-命令模式：<span class="hljs-selector-attr">[?]</span> <span class="hljs-selector-attr">[/]</span>
-编辑模式：<span class="hljs-selector-attr">[i]</span>
-可视模式：<span class="hljs-selector-attr">[v]</span>字符可视
-         <span class="hljs-selector-attr">[V]</span>行可视
-         <span class="hljs-selector-attr">[ctrl+v]</span>块可视</code></pre>
-<p>注：可视模式通俗的讲就是选中，选中范围为：高亮部分+光标所在位置（可能没高亮）。也就是说只要进入了可视模式，至少会被选中一个字符</p>
-<h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[h]</span>左
-<span class="hljs-selector-attr">[j]</span>下（像向下的箭头）
-<span class="hljs-selector-attr">[k]</span>上
-<span class="hljs-selector-attr">[l]</span>右
-<span class="hljs-selector-attr">[w]</span>下一个单词开头
-<span class="hljs-selector-attr">[b]</span>上一个单词开头</code></pre>
-<h3 id="复制剪切粘贴"><a href="#复制剪切粘贴" class="headerlink" title="复制剪切粘贴"></a>复制剪切粘贴</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[x]</span>单个字母删除
-<span class="hljs-selector-attr">[d]</span>删除
-<span class="hljs-selector-attr">[dd]</span>删除当前行
-<span class="hljs-selector-attr">[]</span>
-<span class="hljs-selector-attr">[y]</span>复制
-<span class="hljs-selector-attr">[yy]</span>复制当前行
-<span class="hljs-selector-attr">[p]</span>粘贴</code></pre>
-<h3 id="撤销重做"><a href="#撤销重做" class="headerlink" title="撤销重做"></a>撤销重做</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[u]</span>撤销
-<span class="hljs-selector-attr">[ctrl+r]</span>重做</code></pre>
-<h3 id="组合技"><a href="#组合技" class="headerlink" title="组合技"></a>组合技</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[ggVG]</span>全选      <span class="hljs-selector-attr">[gg]</span>到最顶行首<span class="hljs-selector-attr">[V]</span>行可视<span class="hljs-selector-attr">[G]</span>到最末行首</code></pre>
-<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><pre><code class="hljs less"><span class="hljs-selector-attr">[: set nu]</span>显示行号</code></pre>
-<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2>
 		
 	</div>
 	
@@ -2492,20 +3724,6 @@ ssh-keygen -t rsa -b 4096</code></pre>
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/10/28/CTF-Reverse/">
-				CTF-Reverse
-			</a>
-		</h1>
-		<div class="postInfo">
-			2024-10-28
-		</div>
-		
-		
-		
-	</div>
-	
-	<div class="post shadow">
-		<h1 class="postTitle">
 			<a href="/2024/10/28/CTF-Web/">
 				CTF-Web
 			</a>
@@ -2514,7 +3732,7 @@ ssh-keygen -t rsa -b 4096</code></pre>
 			2024-10-28
 		</div>
 		
-		<h1 id="Nmap扫描"><a href="#Nmap扫描" class="headerlink" title="Nmap扫描"></a>Nmap扫描</h1><h1 id="Web基础"><a href="#Web基础" class="headerlink" title="Web基础"></a>Web基础</h1><blockquote>
+		<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><h3 id="Nmap扫描"><a href="#Nmap扫描" class="headerlink" title="Nmap扫描"></a>Nmap扫描</h3><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><blockquote>
 <p>前端知识：HTML、CSS、Javascript</p>
 </blockquote>
 <table>
@@ -2561,7 +3779,7 @@ ssh-keygen -t rsa -b 4096</code></pre>
 <td align="center"></td>
 </tr>
 </tbody></table>
-<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><h2 id="SQL语法"><a href="#SQL语法" class="headerlink" title="SQL语法"></a>SQL语法</h2><pre><code class="hljs sql"><span class="hljs-comment">-- SQL对大小写不敏感，一定要注意每个位置要填什么东西！！！！！！！！</span>
+<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="SQL语法"><a href="#SQL语法" class="headerlink" title="SQL语法"></a>SQL语法</h3><pre><code class="hljs sql"><span class="hljs-comment">-- SQL对大小写不敏感，一定要注意每个位置要填什么东西！！！！！！！！</span>
 <span class="hljs-keyword">CREATE</span> DATABASE <span class="hljs-comment">-- 创建新数据库</span>
 <span class="hljs-keyword">ALTER</span> DATABASE <span class="hljs-comment">-- 修改数据库</span>
 
@@ -2596,13 +3814,13 @@ ssh-keygen -t rsa -b 4096</code></pre>
 <span class="hljs-comment">-- delete</span>
 <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> 表名称 <span class="hljs-keyword">WHERE</span> 列名称 <span class="hljs-operator">=</span> 值</code></pre>
 
-<h2 id="一些重要的函数"><a href="#一些重要的函数" class="headerlink" title="一些重要的函数"></a>一些重要的函数</h2><pre><code class="hljs sql">database() <span class="hljs-comment">--查看当前数据库名称</span>
+<h3 id="一些重要的函数"><a href="#一些重要的函数" class="headerlink" title="一些重要的函数"></a>一些重要的函数</h3><pre><code class="hljs sql">database() <span class="hljs-comment">--查看当前数据库名称</span>
 group_concat(列名称) <span class="hljs-comment">--将一列的东西单项显示</span></code></pre>
 
-<h1 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h1><h2 id="php文件包含漏洞"><a href="#php文件包含漏洞" class="headerlink" title="php文件包含漏洞"></a>php文件包含漏洞</h2><p>可以使用php伪协议通过对源代码base64加密来显示php源代码（否则php代码会被执行而看不到源代码），然后再解密</p>
+<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><h3 id="php文件包含漏洞"><a href="#php文件包含漏洞" class="headerlink" title="php文件包含漏洞"></a>php文件包含漏洞</h3><p>可以使用php伪协议通过对源代码base64加密来显示php源代码（否则php代码会被执行而看不到源代码），然后再解密</p>
 <pre><code class="hljs url">/?file=php://filter/read=convert.base64-encode/resource=flag.php</code></pre>
 
-<h1 id="命令执行漏洞"><a href="#命令执行漏洞" class="headerlink" title="命令执行漏洞"></a>命令执行漏洞</h1><p>cat以base64的方式打开php文件</p>
+<h2 id="命令执行漏洞"><a href="#命令执行漏洞" class="headerlink" title="命令执行漏洞"></a>命令执行漏洞</h2><p>cat以base64的方式打开php文件</p>
 <pre><code class="hljs bash"><span class="hljs-built_in">cat</span> flag.php|<span class="hljs-built_in">base64</span></code></pre>
 
 <p>MD5值相同的字符串：s878926199a 和 s155964671a</p>
@@ -2612,15 +3830,15 @@ group_concat(列名称) <span class="hljs-comment">--将一列的东西单项显
 	
 	<div class="post shadow">
 		<h1 class="postTitle">
-			<a href="/2024/10/28/CTF-Pwn/">
-				CTF-Pwn
+			<a href="/2024/10/28/CTF-Reverse/">
+				CTF-Reverse
 			</a>
 		</h1>
 		<div class="postInfo">
 			2024-10-28
 		</div>
 		
-		
+		<h2 id="Windows逆向"><a href="#Windows逆向" class="headerlink" title="Windows逆向"></a>Windows逆向</h2><h2 id="Android逆向"><a href="#Android逆向" class="headerlink" title="Android逆向"></a>Android逆向</h2><h2 id="MacOS逆向"><a href="#MacOS逆向" class="headerlink" title="MacOS逆向"></a>MacOS逆向</h2><h2 id="HarmoyOS逆向"><a href="#HarmoyOS逆向" class="headerlink" title="HarmoyOS逆向"></a>HarmoyOS逆向</h2><h2 id="System-Driver逆向"><a href="#System-Driver逆向" class="headerlink" title="System Driver逆向"></a>System Driver逆向</h2>
 		
 	</div>
 	
@@ -2653,10 +3871,10 @@ copy /B 文件名* 输出文件名
 <span class="hljs-comment">#完整性检测</span>
 certutil -hashfile 文件名 md5</code></pre>
 
-<h2 id="图片文件隐写"><a href="#图片文件隐写" class="headerlink" title="图片文件隐写"></a>图片文件隐写</h2><p><strong>隐写文本</strong></p>
+<h2 id="图片文件隐写"><a href="#图片文件隐写" class="headerlink" title="图片文件隐写"></a>图片文件隐写</h2><h3 id="PNG图片文件"><a href="#PNG图片文件" class="headerlink" title="PNG图片文件"></a>PNG图片文件</h3><p><strong>隐写文本</strong></p>
 <pre><code class="hljs plaintext">zsteg 文件名(.bmp .png)</code></pre>
 
-<p><strong>隐写图片</strong><br>lsb使用stegsolve查看各个通道</p>
+<p><strong>隐写图片</strong><br>使用stegsolve查看各个通道</p>
 <p><strong>png文件格式</strong></p>
 <table>
 <thead>
@@ -2697,11 +3915,16 @@ certutil -hashfile 文件名 md5</code></pre>
 <td align="center">AE 42 60 82</td>
 </tr>
 </tbody></table>
-<h2 id="压缩文件处理分析"><a href="#压缩文件处理分析" class="headerlink" title="压缩文件处理分析"></a>压缩文件处理分析</h2><p><strong>伪加密</strong></p>
+<h3 id="JPG图片文件"><a href="#JPG图片文件" class="headerlink" title="JPG图片文件"></a>JPG图片文件</h3><h4 id="steghide命令"><a href="#steghide命令" class="headerlink" title="steghide命令"></a>steghide命令</h4><pre><code class="hljs bash">apt install stdghide <span class="hljs-comment">#安装</span></code></pre>
+
+
+
+<h2 id="压缩文件处理分析"><a href="#压缩文件处理分析" class="headerlink" title="压缩文件处理分析"></a>压缩文件处理分析</h2><h3 id="zip压缩文件"><a href="#zip压缩文件" class="headerlink" title="zip压缩文件"></a>zip压缩文件</h3><p><strong>伪加密</strong></p>
 <p>zip:使用“hex editor”打开压缩文件，找到文件头（找50 4B 01 02）第九第十个字符，将其修改为0000<br>rar:找到第24个字节，该字节尾数为4表示加密，0表示无加密，将尾数改为0</p>
+<p>学不会的话就去用<a target="_blank" rel="noopener" href="https://github.com/asaotomo/ZipCracker">ZipCracker</a></p>
 <p><strong>真加密</strong></p>
 <p>暴力破解：通常可以使用ARCHPR软件破解，使用暴力、掩码（如果可以）<br>明文攻击：使用该方法需要注意两个关键点:<br>1、有一个明文文件，压缩后CRC值与加密压缩包中的文件一致。<br>2、明文文件的压缩算法需要与加密压缩文件的压缩算法一致。</p>
-<p><strong>RAR文件格式</strong></p>
+<h3 id="RAR压缩文件"><a href="#RAR压缩文件" class="headerlink" title="RAR压缩文件"></a>RAR压缩文件</h3><p><strong>RAR文件格式</strong></p>
 <table>
 <thead>
 <tr>
@@ -2826,7 +4049,12 @@ certutil -hashfile 文件名 md5</code></pre>
 <blockquote>
 <p>Tips:常见的HTTP流关键内容:<br>1、HTML中直接包含重要信息。<br>2、上传或下载文件内容，通常包含文件名、hash值等关键信息，常用POST请求上传。<br>3、一句话木马，POST请求，内容包含eval，内容使用base64加密</p>
 </blockquote>
-<h3 id="Python工具：scapy"><a href="#Python工具：scapy" class="headerlink" title="Python工具：scapy"></a>Python工具：scapy</h3><pre><code class="hljs py">
+<h3 id="Python工具：scapy"><a href="#Python工具：scapy" class="headerlink" title="Python工具：scapy"></a>Python工具：scapy</h3><pre><code class="hljs bash"><span class="hljs-comment"># 安装</span>
+pip install scapy</code></pre>
+
+
+
+<pre><code class="hljs py">
 <span class="hljs-comment"># 注: 此代码片段不是标准的可执行的代码，仅供参考</span>
 
 <span class="hljs-keyword">from</span> scapy.<span class="hljs-built_in">all</span> <span class="hljs-keyword">import</span> * <span class="hljs-comment"># 引用</span>
@@ -2880,28 +4108,44 @@ wrpcap(<span class="hljs-string">&quot;udp.pcap&quot;</span>, capture) <span cla
 	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 </div>
-
 <button class="stt" onclick="scrollToTop()"><i class="fa fa-chevron-circle-up"></i></button>
 <button class="sb" onclick="showBackground()"><i class="fa fa-image"></i></button>
 
+<!-- 雪花特效 Javascript -->
 <canvas id="snowCanvas"></canvas>
 <script src="/js/snow.js"></script>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- 每日一言 Javascript -->
 <script>
-	// 获取每日一言数据
 	axios.get('https://v1.hitokoto.cn/').then(response => {
 		const quote = response.data.hitokoto;
 		const container = document.getElementById('quoteContainer');
-		container.innerText = quote; // 或者使用 container.innerHTML = quote;
+		container.innerText = quote; 
 	}).catch(error => {
 		console.error('获取每日一言失败', error);
 	});
 </script>
 
+<!-- 代码高亮Javascript -->
 <script>
 	hljs.highlightAll();
 </script>
+
+<!-- Latex Javascript -->
+<script>
+	MathJax = {
+		tex: {
+			inlineMath: [
+				['$', '$'],
+				['\\(', '\\)']
+			]
+		}
+	};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+
 </body>
 
 </html>

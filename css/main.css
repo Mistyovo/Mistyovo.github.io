@@ -17,11 +17,12 @@
 * {
     padding: 0;
     margin: 0;
-    /* font-size: 12px; */
+    /* font-size: 16px; */
     /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     /* font-family: Console; */
     font-family: Consolas, 'SourceHanSerifCN-VF';
 }
+
 
 a {
     text-decoration: none;
@@ -39,17 +40,44 @@ h6 {
     font-family: 'SourceHanSerifCN-VF';
 }
 
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 21px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 19px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 17px
+}
+
 p {
     padding: 5px 0px;
+    font-size: 16px;
+    line-height: 40px;
     font-family: 'SourceHanSerifCN-VF';
 }
 
-/* p {
-    text-indent: 2em;
-}*/
-
 img {
     max-width: 100%;
+    border-radius: 10px;
+}
+
+strong {
+    line-height: 30px;
 }
 
 blockquote {
@@ -59,20 +87,47 @@ blockquote {
     border-left: .25em solid #dfe2e5;
 }
 
-table {
-    position: relative;
-    /* left: 5%; */
-    width: 100%;
+
+pre {
+    margin: 10px 0px;
 }
 
+pre code {
+    border-radius: 10px;
+}
+
+/* 表格样式开始 */
 th,
 td {
     padding: 5px;
 }
 
+table {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    /* border-collapse: collapse; */
+    overflow: hidden;
+}
+
+tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
 tr:nth-child(even) {
     background-color: var(--color-hl4);
-    /* 设置偶数行背景颜色 */
 }
 
 tr:nth-child(odd) {
@@ -80,6 +135,7 @@ tr:nth-child(odd) {
     /* 设置奇数行背景颜色 */
 }
 
+/* 表格样式结束 */
 @font-face {
     font-family: 'SourceHanSerifCN-VF';
     src: url("/ttf/SourceHanSerifCN-VF.ttf");

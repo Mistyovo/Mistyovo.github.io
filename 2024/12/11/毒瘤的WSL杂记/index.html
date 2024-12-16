@@ -84,17 +84,67 @@
 	<div class="advertise"></div> -->
 	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=110 src="//music.163.com/outchain/player?type=0&id=8555115352&auto=true&height=90"></iframe>
 </div>
-    <title>关于</title>
+    <title>毒瘤的WSL+Kali+Pwn环境杂记</title>
 <div id="title">
 	<div id="title-img"></div>
 	<div id="title-text">
-		<h1>关于</h1>
+		<h1>毒瘤的WSL+Kali+Pwn环境杂记</h1>
 	</div>
 </div>
 <div id="content">
 	<div class="post">
 		
-		<p>本人是一只打CTF和算法竞赛的小菜鸡，偶尔打打日本麻将。励志成为一名全栈渗透师，欢迎打赏哦~</p>
+		<blockquote>
+<p>被毒瘤的WSL给整麻了</p>
+</blockquote>
+<h2 id="删除已安装好的Linux-发行版"><a href="#删除已安装好的Linux-发行版" class="headerlink" title="删除已安装好的Linux 发行版"></a>删除已安装好的Linux 发行版</h2><pre><code class="hljs plaintext">wsl --unregister kali-linux</code></pre>
+
+<p>一定要卸干净了，重启后再开始后续的安装</p>
+<h2 id="安装Kali-Linux-WSL发行版"><a href="#安装Kali-Linux-WSL发行版" class="headerlink" title="安装Kali-Linux WSL发行版"></a>安装Kali-Linux WSL发行版</h2><p>打开Microsoft Store搜索Kali并安装</p>
+<h2 id="选择默认打开的WSL发行版"><a href="#选择默认打开的WSL发行版" class="headerlink" title="选择默认打开的WSL发行版"></a>选择默认打开的WSL发行版</h2><p>首先查看已安装的所有的lWSL发行版</p>
+<pre><code class="hljs plaintext">wsl --list --verbose</code></pre>
+
+<p>选择默认的WSL发行版</p>
+<pre><code class="hljs plaintext">wsl --set-default kali-linux</code></pre>
+
+<h2 id="将WSL发行版安装到其他的盘"><a href="#将WSL发行版安装到其他的盘" class="headerlink" title="将WSL发行版安装到其他的盘"></a>将WSL发行版安装到其他的盘</h2><pre><code class="hljs plaintext">wsl -l -v
+wsl --export kali-linux D:\kali-linux.tar
+wsl --unregister kali-linux
+wsl --import kali-linux D:\wsl-kali-linux D:\kali-linux.tar --version 2</code></pre>
+
+
+
+<h2 id="安装Kali完整版"><a href="#安装Kali完整版" class="headerlink" title="安装Kali完整版"></a>安装Kali完整版</h2><p>kali-linux的官方源在国内访问通常较慢，不换源装几个小时，换源装十几分钟，自己看着办吧。</p>
+<pre><code class="hljs shell">sudo vi /etc/apt/sources.list</code></pre>
+
+<p>然后会进入vi编辑器（需要一点vi的基础，不过没关系，需要的都已经标出来了），这里给的是中科大源</p>
+<pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">按i进入编辑</span>
+deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib
+deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib
+<span class="hljs-meta prompt_">#</span><span class="language-bash">按esc,然后按依次按:wq</span></code></pre>
+
+<p>更新并安装工具包</p>
+<pre><code class="hljs shell">sudo apt update &amp;&amp; sudo apt upgrade
+sudo apt install -y kali-linux-default # 标准工具包
+sudo apt install -y kali-linux-large # 巨大工具包
+<span class="hljs-meta prompt_"># </span><span class="language-bash">-y表示<span class="hljs-built_in">yes</span></span></code></pre>
+
+<h2 id="WSL下做Pwn题的必备工具"><a href="#WSL下做Pwn题的必备工具" class="headerlink" title="WSL下做Pwn题的必备工具"></a>WSL下做Pwn题的必备工具</h2><pre><code class="hljs bash"><span class="hljs-comment"># apt</span>
+apt install python3-pwntools
+apt install ROPgadget
+apt install checksec
+apt install tmux <span class="hljs-comment">#用来解决不能gdb.attach的问题</span>
+
+git <span class="hljs-built_in">clone</span> https://github.com/lieanu/LibcSearcher.git
+<span class="hljs-built_in">cd</span> LibcSearcher
+python setup.py develop
+
+git <span class="hljs-built_in">clone</span> https://github.com/pwndbg/pwndbg.git
+<span class="hljs-built_in">cd</span> pwndbg
+./setup.sh</code></pre>
+
+
+
 
 		
 	</div>

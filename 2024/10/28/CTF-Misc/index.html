@@ -1,7 +1,9 @@
-<html lang="zh-Hans ">
+<html lang="zh-Hans" >
 
 <head>
     <meta charset="utf-8">
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css">
 <link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.css">
 <script src="/highlight/highlight.min.js"></script>
@@ -60,7 +62,7 @@
 			博龄：114514
 		</div>
 		<div class="blogInfoItem">
-			日志：20
+			日志：22
 		</div>
 	</div>
 	<div class="social">
@@ -111,10 +113,10 @@ copy /B 文件名* 输出文件名
 <span class="hljs-comment">#完整性检测</span>
 certutil -hashfile 文件名 md5</code></pre>
 
-<h2 id="图片文件隐写"><a href="#图片文件隐写" class="headerlink" title="图片文件隐写"></a>图片文件隐写</h2><p><strong>隐写文本</strong></p>
+<h2 id="图片文件隐写"><a href="#图片文件隐写" class="headerlink" title="图片文件隐写"></a>图片文件隐写</h2><h3 id="PNG图片文件"><a href="#PNG图片文件" class="headerlink" title="PNG图片文件"></a>PNG图片文件</h3><p><strong>隐写文本</strong></p>
 <pre><code class="hljs plaintext">zsteg 文件名(.bmp .png)</code></pre>
 
-<p><strong>隐写图片</strong><br>lsb使用stegsolve查看各个通道</p>
+<p><strong>隐写图片</strong><br>使用stegsolve查看各个通道</p>
 <p><strong>png文件格式</strong></p>
 <table>
 <thead>
@@ -155,11 +157,16 @@ certutil -hashfile 文件名 md5</code></pre>
 <td align="center">AE 42 60 82</td>
 </tr>
 </tbody></table>
-<h2 id="压缩文件处理分析"><a href="#压缩文件处理分析" class="headerlink" title="压缩文件处理分析"></a>压缩文件处理分析</h2><p><strong>伪加密</strong></p>
+<h3 id="JPG图片文件"><a href="#JPG图片文件" class="headerlink" title="JPG图片文件"></a>JPG图片文件</h3><h4 id="steghide命令"><a href="#steghide命令" class="headerlink" title="steghide命令"></a>steghide命令</h4><pre><code class="hljs bash">apt install stdghide <span class="hljs-comment">#安装</span></code></pre>
+
+
+
+<h2 id="压缩文件处理分析"><a href="#压缩文件处理分析" class="headerlink" title="压缩文件处理分析"></a>压缩文件处理分析</h2><h3 id="zip压缩文件"><a href="#zip压缩文件" class="headerlink" title="zip压缩文件"></a>zip压缩文件</h3><p><strong>伪加密</strong></p>
 <p>zip:使用“hex editor”打开压缩文件，找到文件头（找50 4B 01 02）第九第十个字符，将其修改为0000<br>rar:找到第24个字节，该字节尾数为4表示加密，0表示无加密，将尾数改为0</p>
+<p>学不会的话就去用<a target="_blank" rel="noopener" href="https://github.com/asaotomo/ZipCracker">ZipCracker</a></p>
 <p><strong>真加密</strong></p>
 <p>暴力破解：通常可以使用ARCHPR软件破解，使用暴力、掩码（如果可以）<br>明文攻击：使用该方法需要注意两个关键点:<br>1、有一个明文文件，压缩后CRC值与加密压缩包中的文件一致。<br>2、明文文件的压缩算法需要与加密压缩文件的压缩算法一致。</p>
-<p><strong>RAR文件格式</strong></p>
+<h3 id="RAR压缩文件"><a href="#RAR压缩文件" class="headerlink" title="RAR压缩文件"></a>RAR压缩文件</h3><p><strong>RAR文件格式</strong></p>
 <table>
 <thead>
 <tr>
@@ -284,7 +291,12 @@ certutil -hashfile 文件名 md5</code></pre>
 <blockquote>
 <p>Tips:常见的HTTP流关键内容:<br>1、HTML中直接包含重要信息。<br>2、上传或下载文件内容，通常包含文件名、hash值等关键信息，常用POST请求上传。<br>3、一句话木马，POST请求，内容包含eval，内容使用base64加密</p>
 </blockquote>
-<h3 id="Python工具：scapy"><a href="#Python工具：scapy" class="headerlink" title="Python工具：scapy"></a>Python工具：scapy</h3><pre><code class="hljs py">
+<h3 id="Python工具：scapy"><a href="#Python工具：scapy" class="headerlink" title="Python工具：scapy"></a>Python工具：scapy</h3><pre><code class="hljs bash"><span class="hljs-comment"># 安装</span>
+pip install scapy</code></pre>
+
+
+
+<pre><code class="hljs py">
 <span class="hljs-comment"># 注: 此代码片段不是标准的可执行的代码，仅供参考</span>
 
 <span class="hljs-keyword">from</span> scapy.<span class="hljs-built_in">all</span> <span class="hljs-keyword">import</span> * <span class="hljs-comment"># 引用</span>
@@ -306,28 +318,44 @@ wrpcap(<span class="hljs-string">&quot;udp.pcap&quot;</span>, capture) <span cla
 	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 </div>
-
 <button class="stt" onclick="scrollToTop()"><i class="fa fa-chevron-circle-up"></i></button>
 <button class="sb" onclick="showBackground()"><i class="fa fa-image"></i></button>
 
+<!-- 雪花特效 Javascript -->
 <canvas id="snowCanvas"></canvas>
 <script src="/js/snow.js"></script>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- 每日一言 Javascript -->
 <script>
-	// 获取每日一言数据
 	axios.get('https://v1.hitokoto.cn/').then(response => {
 		const quote = response.data.hitokoto;
 		const container = document.getElementById('quoteContainer');
-		container.innerText = quote; // 或者使用 container.innerHTML = quote;
+		container.innerText = quote; 
 	}).catch(error => {
 		console.error('获取每日一言失败', error);
 	});
 </script>
 
+<!-- 代码高亮Javascript -->
 <script>
 	hljs.highlightAll();
 </script>
+
+<!-- Latex Javascript -->
+<script>
+	MathJax = {
+		tex: {
+			inlineMath: [
+				['$', '$'],
+				['\\(', '\\)']
+			]
+		}
+	};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+
 </body>
 
 </html>

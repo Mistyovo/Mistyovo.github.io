@@ -1,7 +1,9 @@
-<html lang="zh-Hans ">
+<html lang="zh-Hans" >
 
 <head>
     <meta charset="utf-8">
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css">
 <link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.css">
 <script src="/highlight/highlight.min.js"></script>
@@ -60,7 +62,7 @@
 			博龄：114514
 		</div>
 		<div class="blogInfoItem">
-			日志：20
+			日志：22
 		</div>
 	</div>
 	<div class="social">
@@ -92,7 +94,432 @@
 <div id="content">
 	<div class="post">
 		
-		
+		<h2 id="浅谈我对Pwn的学习路线和心路历程"><a href="#浅谈我对Pwn的学习路线和心路历程" class="headerlink" title="浅谈我对Pwn的学习路线和心路历程"></a>浅谈我对Pwn的学习路线和心路历程</h2><h2 id="C语言基础"><a href="#C语言基础" class="headerlink" title="C语言基础"></a>C语言基础</h2><p>好吧，其实我这里不想写C语言基础（谁都会写），但我想写的是gcc编译器的用法</p>
+<pre><code class="hljs plaintext">Usage: gcc [options] file...
+Options:
+  -pass-exit-codes         Exit with highest error code from a phase.
+  --help                   Display this information.
+  --target-help            Display target specific command line options (including assembler and linker options).
+  --help=&#123;common|optimizers|params|target|warnings|[^]&#123;joined|separate|undocumented&#125;&#125;[,...].
+                           Display specific types of command line options.
+  (Use &#x27;-v --help&#x27; to display command line options of sub-processes).
+  --version                Display compiler version information.
+  -dumpspecs               Display all of the built in spec strings.
+  -dumpversion             Display the version of the compiler.
+  -dumpmachine             Display the compiler&#x27;s target processor.
+  -foffload=&lt;targets&gt;      Specify offloading targets.
+  -print-search-dirs       Display the directories in the compiler&#x27;s search path.
+  -print-libgcc-file-name  Display the name of the compiler&#x27;s companion library.
+  -print-file-name=&lt;lib&gt;   Display the full path to library &lt;lib&gt;.
+  -print-prog-name=&lt;prog&gt;  Display the full path to compiler component &lt;prog&gt;.
+  -print-multiarch         Display the target&#x27;s normalized GNU triplet, used as
+                           a component in the library path.
+  -print-multi-directory   Display the root directory for versions of libgcc.
+  -print-multi-lib         Display the mapping between command line options and
+                           multiple library search directories.
+  -print-multi-os-directory Display the relative path to OS libraries.
+  -print-sysroot           Display the target libraries directory.
+  -print-sysroot-headers-suffix Display the sysroot suffix used to find headers.
+  -Wa,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the assembler.
+  -Wp,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the preprocessor.
+  -Wl,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the linker.
+  -Xassembler &lt;arg&gt;        Pass &lt;arg&gt; on to the assembler.
+  -Xpreprocessor &lt;arg&gt;     Pass &lt;arg&gt; on to the preprocessor.
+  -Xlinker &lt;arg&gt;           Pass &lt;arg&gt; on to the linker.
+  -save-temps              Do not delete intermediate files.
+  -save-temps=&lt;arg&gt;        Do not delete intermediate files.
+  -no-canonical-prefixes   Do not canonicalize paths when building relative
+                           prefixes to other gcc components.
+  -pipe                    Use pipes rather than intermediate files.
+  -time                    Time the execution of each subprocess.
+  -specs=&lt;file&gt;            Override built-in specs with the contents of &lt;file&gt;.
+  -std=&lt;standard&gt;          Assume that the input sources are for &lt;standard&gt;.
+  --sysroot=&lt;directory&gt;    Use &lt;directory&gt; as the root directory for headers
+                           and libraries.
+  -B &lt;directory&gt;           Add &lt;directory&gt; to the compiler&#x27;s search paths.
+  -v                       Display the programs invoked by the compiler.
+  -###                     Like -v but options quoted and commands not executed.
+  -E                       Preprocess only; do not compile, assemble or link.
+  -S                       Compile only; do not assemble or link.
+  -c                       Compile and assemble, but do not link.
+  -o &lt;file&gt;                指定输出文件的名称及路径
+  -pie                     Create a dynamically linked position independent
+                           executable.
+  -shared                  Create a shared library.
+  -x &lt;language&gt;            Specify the language of the following input files.
+                           Permissible languages include: c c++ assembler none
+                           &#x27;none&#x27; means revert to the default behavior of
+                           guessing the language based on the file&#x27;s extension.
+
+Options starting with -g, -f, -m, -O, -W, or --param are automatically
+ passed on to the various sub-processes invoked by gcc.  In order to pass
+ other options on to these processes the -W&lt;letter&gt; options must be used.
+
+For bug reporting instructions, please see:
+&lt;file:///usr/share/doc/gcc-13/README.Bugs&gt;</code></pre>
+
+
+
+<h2 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h2><h3 id="可执行文件的定义"><a href="#可执行文件的定义" class="headerlink" title="可执行文件的定义"></a>可执行文件的定义</h3><p>广义：文件中的数据是可执行代码的文件：.out、.exe、.sh、.py</p>
+<p>狭义：文件中的数据是机器码的文件：.out、.exe、.dll、.so</p>
+<h3 id="可执行文件的分类"><a href="#可执行文件的分类" class="headerlink" title="可执行文件的分类"></a>可执行文件的分类</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>Windows：PE（Portable Executable）</th>
+<th>Linux：ELF（Executable and Linkable Format）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可执行程序</td>
+<td>.exe</td>
+<td>.out</td>
+</tr>
+<tr>
+<td>动态链接库</td>
+<td>.dll</td>
+<td>.so</td>
+</tr>
+<tr>
+<td>静态链接库</td>
+<td>.lib</td>
+<td>.a</td>
+</tr>
+</tbody></table>
+<h3 id="ELF文件格式"><a href="#ELF文件格式" class="headerlink" title="ELF文件格式"></a>ELF文件格式</h3><p>ELF文件的类型包括：可执行文件（.exec）、可重定位文件（.rel）、共享目标文件（.dyn）</p>
+<p>在审视一个目标文件时，有两种视角可供选择：</p>
+<blockquote>
+<p>链接视角：通过节（Section）来划分，用来划分功能（In Disk）</p>
+<p>运行视角：通过段（Segment ）来划分，用来划分读写执行权限（In Memory）</p>
+<p>由Linker完成节到段的转化</p>
+</blockquote>
+<p>下面是一些重要的节：</p>
+<ol>
+<li><strong><code>.got</code>（Global Offset Table）</strong>：<ul>
+<li><code>.got</code> 是全局偏移表，用于动态链接。它包含指向动态分配内存地址的指针。当程序需要访问全局变量或静态变量时，通过 <code>.got</code> 表来获取正确的地址。</li>
+</ul>
+</li>
+<li><strong><code>.plt</code>（Procedure Linkage Table）</strong>：<ul>
+<li><code>.plt</code> 是过程链接表，用于处理动态函数调用。它包含一系列跳转指令，用于首次调用外部函数时解析函数地址，并将解析后的地址存储在 <code>.got</code> 表中。</li>
+</ul>
+</li>
+<li><strong><code>.symbol</code>（符号表，通常是 <code>.symtab</code> 或 <code>.dynsym</code>）</strong>：<ul>
+<li><code>.symbol</code> 表保存程序中的符号（如函数名、变量名）及其对应的地址。<code>.symtab</code> 用于调试和符号解析，包含所有符号；<code>.dynsym</code> 用于动态链接，包含需要动态解析的符号。</li>
+</ul>
+</li>
+</ol>
+<h3 id="程序装载与虚拟内存"><a href="#程序装载与虚拟内存" class="headerlink" title="程序装载与虚拟内存"></a>程序装载与虚拟内存</h3><h3 id="寄存器相关"><a href="#寄存器相关" class="headerlink" title="寄存器相关"></a>寄存器相关</h3><table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rax</td>
+<td>8 Bytes</td>
+</tr>
+<tr>
+<td>rex</td>
+<td>4 Bytes</td>
+</tr>
+<tr>
+<td>ax</td>
+<td>2 Bytes</td>
+</tr>
+<tr>
+<td>ah、al</td>
+<td>1 Bytes</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>作用</th>
+<th>作用（英文）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%rax</td>
+<td>储存返回值</td>
+<td>Return value</td>
+</tr>
+<tr>
+<td>%rbx</td>
+<td>储存函数的调用者的地址</td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%rcx</td>
+<td>第四个参数</td>
+<td>4th argument</td>
+</tr>
+<tr>
+<td>%rdx</td>
+<td>第三个参数</td>
+<td>3rd argument</td>
+</tr>
+<tr>
+<td>%rsi</td>
+<td>第二个参数</td>
+<td>2nd argument</td>
+</tr>
+<tr>
+<td>%rdi</td>
+<td>第一个参数</td>
+<td>1st argument</td>
+</tr>
+<tr>
+<td>%rbp</td>
+<td>储存函数的调用者的地址</td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%rsp</td>
+<td>栈顶指针</td>
+<td>Stack pointer</td>
+</tr>
+<tr>
+<td>%r8</td>
+<td>第五个参数</td>
+<td>5th argument</td>
+</tr>
+<tr>
+<td>%r9</td>
+<td>第六个参数</td>
+<td>6th argument</td>
+</tr>
+<tr>
+<td>%r10</td>
+<td>栈界限寄存器</td>
+<td>Caller saved</td>
+</tr>
+<tr>
+<td>%r11</td>
+<td></td>
+<td>Caller saved</td>
+</tr>
+<tr>
+<td>%r12</td>
+<td></td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%r13</td>
+<td></td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%r14</td>
+<td></td>
+<td>Callee saved</td>
+</tr>
+<tr>
+<td>%r15</td>
+<td></td>
+<td>Callee saved</td>
+</tr>
+</tbody></table>
+<p>一张非常常见的图片</p>
+<img src="https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/figure/register.png"  />
+
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h3 id="栈溢出（Stack-Overflow）"><a href="#栈溢出（Stack-Overflow）" class="headerlink" title="栈溢出（Stack Overflow）"></a>栈溢出（Stack Overflow）</h3><p>首先要认识32位和64位下的函数调用规则：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Br4y1K7ir/?share_source=copy_web&vd_source=44fda2d83e21cc7af820a21a73a79284">我认为一个讲的很好的B站视频</a></p>
+<h4 id="ret2text"><a href="#ret2text" class="headerlink" title="ret2text"></a>ret2text</h4><h4 id="ret2libc"><a href="#ret2libc" class="headerlink" title="ret2libc"></a>ret2libc</h4><h4 id="ret2shellcode"><a href="#ret2shellcode" class="headerlink" title="ret2shellcode"></a>ret2shellcode</h4><p>想要获得一个shell, 除了system(“&#x2F;bin&#x2F;sh”) 以外, 还有一种更好的方法, 就是系统调用中的 execve(“&#x2F;bin&#x2F;sh”, NULL, NULL)获得shell。我们可以在 Linxu系统调用号表 中找到对应的系统调用号,进行调用, 其中32位程序系统调用号用 eax 储存, 第一 、 二 、 三参数分别在 ebx 、ecx 、edx中储存。 可以用 int 80 汇编指令调用。64位程序系统调用号用 rax 储存, 第一 、 二 、 三参数分别在 rdi 、rsi 、rdx中储存。 可以用 syscall 汇编指令调用。</p>
+<p><a href="/2024/12/15/Linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%8F%B7%E8%A1%A8/">Linux系统调用号表</a></p>
+<h4 id="需要注意的一些小细节"><a href="#需要注意的一些小细节" class="headerlink" title="需要注意的一些小细节"></a>需要注意的一些小细节</h4><ol>
+<li>有的时候如果找不到合适的”pop|ret“，可以寻找”pop|pop|…|ret”，但构建payload时要记得把相应值填上</li>
+<li></li>
+</ol>
+<h3 id="格式化字符串（Format-String）"><a href="#格式化字符串（Format-String）" class="headerlink" title="格式化字符串（Format String）"></a>格式化字符串（Format String）</h3><h4 id="格式化字符串函数"><a href="#格式化字符串函数" class="headerlink" title="格式化字符串函数"></a>格式化字符串函数</h4><p>格式化字符串函数可以接受可变数量的参数，并将<strong>第一个参数作为格式化字符串，根据其来解析之后的参数</strong>。通俗来说，格式化字符串函数就是将计算机内存中表示的数据转化为我们人类可读的字符串格式。几乎所有的 C&#x2F;C++ 程序都会利用格式化字符串函数来<strong>输出信息，调试程序，或者处理字符串</strong>。一般来说，格式化字符串在利用的时候主要分为三个部分</p>
+<ul>
+<li>格式化字符串函数</li>
+<li>格式化字符串</li>
+<li>后续参数，<strong>可选</strong></li>
+</ul>
+<p>这里我们给出一个简单的例子，其实相信大多数人都接触过 printf 函数之类的。之后我们再一个一个进行介绍。</p>
+<p><img src="https://ctf-wiki.org/pwn/linux/user-mode/fmtstr/figure/printf.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">基本介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">scanf</td>
+<td align="center">输入到stdin</td>
+</tr>
+<tr>
+<td align="center">printf</td>
+<td align="center">输出到 stdout</td>
+</tr>
+<tr>
+<td align="center">fprintf</td>
+<td align="center">输出到指定 FILE 流</td>
+</tr>
+<tr>
+<td align="center">vprintf</td>
+<td align="center">根据参数列表格式化输出到 stdout</td>
+</tr>
+<tr>
+<td align="center">vfprintf</td>
+<td align="center">根据参数列表格式化输出到指定 FILE 流</td>
+</tr>
+<tr>
+<td align="center">sprintf</td>
+<td align="center">输出到字符串</td>
+</tr>
+<tr>
+<td align="center">snprintf</td>
+<td align="center">输出指定字节数到字符串</td>
+</tr>
+<tr>
+<td align="center">vsprintf</td>
+<td align="center">根据参数列表格式化输出到字符串</td>
+</tr>
+<tr>
+<td align="center">vsnprintf</td>
+<td align="center">根据参数列表格式化输出指定字节到字符串</td>
+</tr>
+<tr>
+<td align="center">setproctitle</td>
+<td align="center">设置 argv</td>
+</tr>
+<tr>
+<td align="center">syslog</td>
+<td align="center">输出日志</td>
+</tr>
+<tr>
+<td align="center">err, verr, warn, vwarn 等</td>
+<td align="center">。。。</td>
+</tr>
+</tbody></table>
+<h4 id="格式化字符串"><a href="#格式化字符串" class="headerlink" title="格式化字符串"></a>格式化字符串</h4><p>这里我们了解一下格式化字符串的格式，其基本格式如下</p>
+<pre><code class="hljs C++"><span class="hljs-string">&quot;%[parameter][flags][field width][.precision][length]type&quot;</span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>作用 or 含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%</td>
+<td>格式化占位符的开始标志。</td>
+</tr>
+<tr>
+<td><strong>[parameter]</strong></td>
+<td>指定参数的顺序。在C99及以后的版本中，可以使用<code>*</code>来指定宽度或精度，其值从参数列表中获取。<br>可以用xx$来定位到后xx个参数</td>
+</tr>
+<tr>
+<td><strong>[flags]</strong></td>
+<td>用于控制输出格式的标志。</td>
+</tr>
+<tr>
+<td><strong>[field width]</strong></td>
+<td>指定输出的最小宽度。如果实际输出长度小于该宽度，将用空格或指定的填充字符填充。</td>
+</tr>
+<tr>
+<td><strong>[.precision]</strong></td>
+<td>指定精度。对于浮点数，表示小数点后的位数；对于字符串，表示最大输出长度。</td>
+</tr>
+<tr>
+<td><strong>[length]</strong></td>
+<td>指定参数的长度修饰符，如<code>h</code>（短整型）、<code>l</code>（长整型）、<code>ll</code>（长长整型）、<code>j</code>（intmax_t）、<code>z</code>（size_t）、<code>t</code>（ptrdiff_t）等。</td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>必需，指定参数类型。</td>
+</tr>
+</tbody></table>
+<pre><code class="hljs c"><span class="hljs-comment">// Number</span>
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, num);	<span class="hljs-comment">// int</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%ld&quot;</span>，num);	<span class="hljs-comment">// long</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld&quot;</span> ,num);<span class="hljs-comment">// long long</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%u&quot;</span>, num); <span class="hljs-comment">//unsigned int</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lu&quot;</span>, num); <span class="hljs-comment">//unsigned long</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%llu&quot;</span>, num); <span class="hljs-comment">//unsigned long long</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>, num);	<span class="hljs-comment">// float</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lf&quot;</span>, num);	<span class="hljs-comment">// float</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lf&quot;</span> ,num);	<span class="hljs-comment">// double </span>
+
+<span class="hljs-comment">// Character &amp; String</span>
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, chr) <span class="hljs-comment">// char</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, str) <span class="hljs-comment">// char[]</span>
+
+<span class="hljs-comment">// Address</span>
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%n&quot;</span>, addr); <span class="hljs-comment">// 作用为：修改addr指向的值改为，%n之前处理的字符个数</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p&quot;</span>, addr); <span class="hljs-comment">// 作用为：将addr以16进制的形式输出</span></code></pre>
+
+
+
+<h4 id="漏洞利用-1"><a href="#漏洞利用-1" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><h5 id="程序崩溃"><a href="#程序崩溃" class="headerlink" title="程序崩溃"></a>程序崩溃</h5><p>通常来说，利用格式化字符串漏洞使得程序崩溃是最为简单的利用方式，因为我们只需要输入若干个 %s 即可</p>
+<pre><code class="hljs plaintext">%s%s%s%s%s%s%s%s%s%s%s%s%s%s</code></pre>
+
+<p>这是因为栈上不可能每个值都对应了合法的地址，所以总是会有某个地址可以使得程序崩溃。这一利用，虽然攻击者本身似乎并不能控制程序，但是这样却可以造成程序不可用。比如说，如果远程服务有一个格式化字符串漏洞，那么我们就可以攻击其可用性，使服务崩溃，进而使得用户不能够访问。</p>
+<h5 id="泄露内存"><a href="#泄露内存" class="headerlink" title="泄露内存"></a>泄露内存</h5><p>利用格式化字符串漏洞，我们还可以获取我们所想要输出的内容。一般会有如下几种操作</p>
+<ul>
+<li>泄露栈内存<ul>
+<li>获取某个变量的值</li>
+<li>获取某个变量对应地址的内存</li>
+<li>修改栈内存上地址指向数据的值：第一步，泄露出字符串在栈上的地址；第二步，将地址写进字符串；第三步，利用%$定位字符串上的这个地址，并修改其指向的值</li>
+</ul>
+</li>
+<li>泄露任意地址内存<ul>
+<li>利用 GOT 表得到 libc 函数地址，进而获取 libc，进而获取其它 libc 函数地址</li>
+<li>盲打，dump 整个程序，获取有用信息。</li>
+</ul>
+</li>
+</ul>
+<h4 id="其他一些有关字符串的技巧"><a href="#其他一些有关字符串的技巧" class="headerlink" title="其他一些有关字符串的技巧"></a>其他一些有关字符串的技巧</h4><h5 id="strncmp"><a href="#strncmp" class="headerlink" title="strncmp"></a>strncmp</h5><pre><code class="hljs Cpp"><span class="hljs-comment">//函数原型</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">strncmp</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *str1, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *str2, <span class="hljs-type">size_t</span> n)</span></span></code></pre>
+
+<p>可以让其中的 n &#x3D; 0 这样两个字符串永远相等，函数返回值永远为0</p>
+<h3 id="整数溢出（Integer-Overflow）"><a href="#整数溢出（Integer-Overflow）" class="headerlink" title="整数溢出（Integer Overflow）"></a>整数溢出（Integer Overflow）</h3><h3 id="堆利用（Heap-Exploitation）"><a href="#堆利用（Heap-Exploitation）" class="headerlink" title="堆利用（Heap Exploitation）"></a>堆利用（Heap Exploitation）</h3><h3 id="IO-FILE利用（IO-FILE-Exploitation）"><a href="#IO-FILE利用（IO-FILE-Exploitation）" class="headerlink" title="IO_FILE利用（IO_FILE Exploitation）"></a>IO_FILE利用（IO_FILE Exploitation）</h3><h2 id="Linux保护机制及其漏洞和绕过方法"><a href="#Linux保护机制及其漏洞和绕过方法" class="headerlink" title="Linux保护机制及其漏洞和绕过方法"></a>Linux保护机制及其漏洞和绕过方法</h2><h3 id="RELRO"><a href="#RELRO" class="headerlink" title="RELRO"></a>RELRO</h3><p>RELRO（ReLocation Read-Only）是一种安全机制，通过将程序的重定位表设置为只读来防止GOT（全局偏移表）覆写攻击，分为Partial RELRO（部分只读）和Full RELRO（完全只读），前者仅保护GOT表的一部分，后者则保护所有关键数据结构</p>
+<h3 id="STACK-CANARY"><a href="#STACK-CANARY" class="headerlink" title="STACK CANARY"></a>STACK CANARY</h3><p>Stack Canary是一种栈保护机制，旨在防止缓冲区溢出攻击。其原理是在函数调用时，在栈帧顶部插入一个随机值（canary），并在函数返回时检查该值是否被篡改。若被篡改，则表明栈溢出发生，程序将立即停止执行。这种机制通过在函数入口处插入canary值，并在函数返回时验证其完整性来检测栈溢出。Stack Canary并非理论上绝对安全，仅能有效缓解顺序覆盖的栈溢出攻击。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">leak_canary</span>():
+    <span class="hljs-keyword">global</span> canary
+    canary = <span class="hljs-string">b&quot;\x00&quot;</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(canary) &lt; <span class="hljs-number">8</span>:
+        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>):
+            <span class="hljs-keyword">try</span>:
+                <span class="hljs-keyword">with</span> remote(<span class="hljs-string">&quot;node5.buuoj.cn&quot;</span>, <span class="hljs-number">26857</span>) <span class="hljs-keyword">as</span> io:
+                    payload = <span class="hljs-string">b&quot;A&quot;</span> * (<span class="hljs-number">0x5C</span>) + canary + <span class="hljs-built_in">bytes</span>([x])
+                    io.sendline(payload)
+                    io.recv()
+                    canary += <span class="hljs-built_in">bytes</span>([x])
+                    <span class="hljs-keyword">break</span>
+            <span class="hljs-keyword">except</span> EOFError:
+                <span class="hljs-keyword">continue</span>
+            <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+                log.error(<span class="hljs-string">f&quot;Unexpected error: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)
+                <span class="hljs-keyword">continue</span>
+    log.success(<span class="hljs-string">f&quot;Canary: <span class="hljs-subst">&#123;canary.<span class="hljs-built_in">hex</span>()&#125;</span>&quot;</span>)
+
+leak_canary()</code></pre>
+
+
+
+<h3 id="NX"><a href="#NX" class="headerlink" title="NX"></a>NX</h3><p>NX（No-eXecute）是一种安全机制，旨在防止攻击者在堆栈中执行恶意代码。其基本原理是将数据所在内存页标识为不可执行，当程序溢出成功转入shellcode时，程序会尝试在数据页面上执行指令，此时CPU就会抛出异常，而不是去执行恶意指令。NX的实现由软件和硬件共同完成，硬件层利用CPU的NX位，软件层面需要操作系统支持NX以配置页表</p>
+<h3 id="ASLR和PIE"><a href="#ASLR和PIE" class="headerlink" title="ASLR和PIE"></a>ASLR和PIE</h3><p>ASLR（Address Space Layout Randomization）和PIE（Position-Independent Executable）是计算机安全领域的重要概念，旨在增强程序的安全性。ASLR通过随机化程序在内存中的地址布局，防止攻击者预测内存地址，从而降低缓冲区溢出攻击的成功率。PIE则允许程序在内存中任意位置执行，不依赖于固定的内存地址，这与ASLR结合使用，进一步增强了程序的安全性。</p>
+<h3 id="FORTIFY-SOURCE"><a href="#FORTIFY-SOURCE" class="headerlink" title="FORTIFY_SOURCE"></a>FORTIFY_SOURCE</h3><p>FORTIFY_SOURCE 是 GCC 和 Clang 编译器提供的一个编译选项，旨在增强 C 和 C++ 程序的安全性，通过在编译期间插入额外的检查来防止常见的缓冲区溢出和其他类型的内存损坏。它通过定义宏 <code>_FORTIFY_SOURCE</code> 来控制对一些函数的调用进行加固，确保在编译时和运行时检测缓冲区溢出和格式化字符串漏洞。FORTIFY_SOURCE 提供两个级别：<code>-D_FORTIFY_SOURCE=1</code> 进行较弱的检查，<code>-D_FORTIFY_SOURCE=2</code> 进行较强的检查，后者在运行时也会进行检查，以防止缓冲区溢出。</p>
+<h2 id="自用python文件开头"><a href="#自用python文件开头" class="headerlink" title="自用python文件开头"></a>自用python文件开头</h2><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
+<span class="hljs-comment"># from LibcSearcher import *</span>
+context.terminal = [<span class="hljs-string">&quot;tmux&quot;</span>, <span class="hljs-string">&quot;splitw&quot;</span>, <span class="hljs-string">&quot;-h&quot;</span>]
+context.log_level = <span class="hljs-string">&quot;debug&quot;</span>
+<span class="hljs-comment"># r = process(&quot;./pwn&quot;)</span>
+r = gdb.debug(<span class="hljs-string">&quot;./pwn&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)
+<span class="hljs-comment"># r = remote(&quot;node5.buuoj.cn&quot;,)</span>
+e = ELF(<span class="hljs-string">&quot;./pwn&quot;</span>)
+
+<span class="hljs-comment"># ----------------------Dividing-Line----------------------</span></code></pre>
+
+
 		
 	</div>
 </div>
@@ -100,28 +527,44 @@
 	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 </div>
-
 <button class="stt" onclick="scrollToTop()"><i class="fa fa-chevron-circle-up"></i></button>
 <button class="sb" onclick="showBackground()"><i class="fa fa-image"></i></button>
 
+<!-- 雪花特效 Javascript -->
 <canvas id="snowCanvas"></canvas>
 <script src="/js/snow.js"></script>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- 每日一言 Javascript -->
 <script>
-	// 获取每日一言数据
 	axios.get('https://v1.hitokoto.cn/').then(response => {
 		const quote = response.data.hitokoto;
 		const container = document.getElementById('quoteContainer');
-		container.innerText = quote; // 或者使用 container.innerHTML = quote;
+		container.innerText = quote; 
 	}).catch(error => {
 		console.error('获取每日一言失败', error);
 	});
 </script>
 
+<!-- 代码高亮Javascript -->
 <script>
 	hljs.highlightAll();
 </script>
+
+<!-- Latex Javascript -->
+<script>
+	MathJax = {
+		tex: {
+			inlineMath: [
+				['$', '$'],
+				['\\(', '\\)']
+			]
+		}
+	};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+
 </body>
 
 </html>
