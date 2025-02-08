@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"検索…","empty":"検索結果が見つかりませんでした: ${query}","hits_time":"${hits} の結果が ${time} ms で見つかりました","hits":"${hits} 件の結果が見つかりました"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="文件隐写通过文件头信息判断文件类型、文件头残缺或错误：十六进制（hex）文件类型识别 file 文件名 文件分离操作 #分析文件 binwalk 文件名 #分离文件 binwalk -e 文件名 foremost 文件名 -o 输出文件夹 dd if&#x3D;输入文件名 of&#x3D;输出文件名 bs&#x3D;bytes count&#x3D;bs的块数 skip&#x3D;跳过的块数 文件合并操作linux下： cat 文件名1 文件名2">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CTF-Misc">
+<meta property="og:url" content="http://example.com/old_posts/CTF-Misc.html">
+<meta property="og:site_name" content="M15+y0v()&#39;5 8lo9">
+<meta property="og:description" content="文件隐写通过文件头信息判断文件类型、文件头残缺或错误：十六进制（hex）文件类型识别 file 文件名 文件分离操作 #分析文件 binwalk 文件名 #分离文件 binwalk -e 文件名 foremost 文件名 -o 输出文件夹 dd if&#x3D;输入文件名 of&#x3D;输出文件名 bs&#x3D;bytes count&#x3D;bs的块数 skip&#x3D;跳过的块数 文件合并操作linux下： cat 文件名1 文件名2">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2024-10-28T10:49:51.000Z">
+<meta property="article:modified_time" content="2024-12-11T12:27:25.271Z">
+<meta property="article:author" content="Mistyovo">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/old_posts/CTF-Misc">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"ja","comments":true,"permalink":"http://example.com/old_posts/CTF-Misc.html","path":"old_posts/CTF-Misc.html","title":"CTF-Misc"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CTF-Misc | M15+y0v()'5 8lo9
+</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="ナビゲーションバーの切り替え" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">M15+y0v()'5 8lo9</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="検索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>ホーム</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>プロフィール</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>タグ</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>カテゴリ</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>アーカイブ</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          見出し
+        </li>
+        <li class="sidebar-nav-overview">
+          概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E9%9A%90%E5%86%99"><span class="nav-number">1.</span> <span class="nav-text">文件隐写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E9%9A%90%E5%86%99"><span class="nav-number">2.</span> <span class="nav-text">图片文件隐写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PNG%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">PNG图片文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JPG%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">JPG图片文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#steghide%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.1.</span> <span class="nav-text">steghide命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">压缩文件处理分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zip%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">zip压缩文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RAR%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">RAR压缩文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E9%87%8F%E5%8F%96%E8%AF%81%E6%8A%80%E6%9C%AF%E3%80%81%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">流量取证技术、流量分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Wireshark%EF%BC%88%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">Wireshark（开源软件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python%E5%B7%A5%E5%85%B7%EF%BC%9Ascapy"><span class="nav-number">4.2.</span> <span class="nav-text">Python工具：scapy</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mistyovo"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Mistyovo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">ポスト</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="ja"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">CTF-Misc
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h2 id="文件隐写"><a href="#文件隐写" class="headerlink" title="文件隐写"></a>文件隐写</h2><p>通过文件头信息判断文件类型、文件头残缺或错误：十六进制（hex）<br><strong>文件类型识别</strong></p>
+<pre><code class="highlight bash">file 文件名</code></pre>
+<p><strong>文件分离操作</strong></p>
+<pre><code class="highlight bash"><span class="comment">#分析文件</span>
+binwalk 文件名
+<span class="comment">#分离文件</span>
+binwalk -e 文件名
+foremost 文件名 -o 输出文件夹
+<span class="built_in">dd</span> <span class="keyword">if</span>=输入文件名 of=输出文件名 bs=bytes count=bs的块数 skip=跳过的块数</code></pre>
+<p><strong>文件合并操作</strong><br>linux下：</p>
+<pre><code class="highlight bash"><span class="built_in">cat</span> 文件名1 文件名2 ... &gt; 输出文件名
+<span class="comment">#完整性检测</span>
+<span class="built_in">md5sum</span> 文件名</code></pre>
+<p>windows下：</p>
+<pre><code class="highlight bash">copy /B 文件名1+文件名2+... 输出文件名
+copy /B 文件名* 输出文件名
+<span class="comment">#完整性检测</span>
+certutil -hashfile 文件名 md5</code></pre>
+
+<h2 id="图片文件隐写"><a href="#图片文件隐写" class="headerlink" title="图片文件隐写"></a>图片文件隐写</h2><h3 id="PNG图片文件"><a href="#PNG图片文件" class="headerlink" title="PNG图片文件"></a>PNG图片文件</h3><p><strong>隐写文本</strong></p>
+<pre><code class="highlight plaintext">zsteg 文件名(.bmp .png)</code></pre>
+
+<p><strong>隐写图片</strong><br>使用stegsolve查看各个通道</p>
+<p><strong>png文件格式</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">大小</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">文件头</td>
+<td align="center">8字节</td>
+<td align="center">89 50 4e 47 0d 0a 1a 0a</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">4字节</td>
+<td align="center">（作者自己还没搞懂这里是什么）</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">4字节</td>
+<td align="center">文件头数据块IHDR(header chunk)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">4字节</td>
+<td align="center">图片的宽</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">4字节</td>
+<td align="center">图片的高</td>
+</tr>
+<tr>
+<td align="center">文件尾</td>
+<td align="center">4字节</td>
+<td align="center">AE 42 60 82</td>
+</tr>
+</tbody></table>
+<h3 id="JPG图片文件"><a href="#JPG图片文件" class="headerlink" title="JPG图片文件"></a>JPG图片文件</h3><h4 id="steghide命令"><a href="#steghide命令" class="headerlink" title="steghide命令"></a>steghide命令</h4><pre><code class="highlight bash">apt install stdghide <span class="comment">#安装</span></code></pre>
+
+
+
+<h2 id="压缩文件处理分析"><a href="#压缩文件处理分析" class="headerlink" title="压缩文件处理分析"></a>压缩文件处理分析</h2><h3 id="zip压缩文件"><a href="#zip压缩文件" class="headerlink" title="zip压缩文件"></a>zip压缩文件</h3><p><strong>伪加密</strong></p>
+<p>zip:使用“hex editor”打开压缩文件，找到文件头（找50 4B 01 02）第九第十个字符，将其修改为0000<br>rar:找到第24个字节，该字节尾数为4表示加密，0表示无加密，将尾数改为0</p>
+<p>学不会的话就去用<a target="_blank" rel="noopener" href="https://github.com/asaotomo/ZipCracker">ZipCracker</a></p>
+<p><strong>真加密</strong></p>
+<p>暴力破解：通常可以使用ARCHPR软件破解，使用暴力、掩码（如果可以）<br>明文攻击：使用该方法需要注意两个关键点:<br>1、有一个明文文件，压缩后CRC值与加密压缩包中的文件一致。<br>2、明文文件的压缩算法需要与加密压缩文件的压缩算法一致。</p>
+<h3 id="RAR压缩文件"><a href="#RAR压缩文件" class="headerlink" title="RAR压缩文件"></a>RAR压缩文件</h3><p><strong>RAR文件格式</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">大小</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">HEAD_CRC</td>
+<td align="center">2字节</td>
+<td align="center">所有块或块部分的CRC</td>
+</tr>
+<tr>
+<td align="center">HEAD_TYPE</td>
+<td align="center">1 字节</td>
+<td align="center">块类型</td>
+</tr>
+<tr>
+<td align="center">HEAD_FLAGS</td>
+<td align="center">2 字节</td>
+<td align="center">块标记</td>
+</tr>
+<tr>
+<td align="center">HEAD_SIZE</td>
+<td align="center">2 字节</td>
+<td align="center">块大小#如果块标记的第一位被置1的话，还存在:</td>
+</tr>
+<tr>
+<td align="center">ADD_SIZE</td>
+<td align="center">4 字节</td>
+<td align="center">可选结构 -增加块大小</td>
+</tr>
+</tbody></table>
+<p>由上可知，文件块的第3个字节为块类型，也叫头类型</p>
+<table>
+<thead>
+<tr>
+<th align="center">HEAD_TYPE</th>
+<th align="center">块类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x72</td>
+<td align="center">标记块</td>
+</tr>
+<tr>
+<td align="center">0x73</td>
+<td align="center">压缩文件头块</td>
+</tr>
+<tr>
+<td align="center">0x74</td>
+<td align="center">文件头块</td>
+</tr>
+<tr>
+<td align="center">0x75</td>
+<td align="center">注释头</td>
+</tr>
+</tbody></table>
+<h2 id="流量取证技术、流量分析"><a href="#流量取证技术、流量分析" class="headerlink" title="流量取证技术、流量分析"></a>流量取证技术、流量分析</h2><p>CTF比赛中，流量包的取证分析是另一项重要的考察方向。<br>通常比赛中会提供一个包含流量数据的PCAP 文件，有时候也会需要选手们先进行修复或重构传输文件后，再进行分析</p>
+<h3 id="Wireshark（开源软件）"><a href="#Wireshark（开源软件）" class="headerlink" title="Wireshark（开源软件）"></a>Wireshark（开源软件）</h3><p><strong>认识Wireshark</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">No.</th>
+<th align="center">Time</th>
+<th align="center">Source</th>
+<th align="center">Destination</th>
+<th align="center">Protocol</th>
+<th align="center">Length</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">编号</td>
+<td align="center">时间</td>
+<td align="center">来源</td>
+<td align="center">目的地</td>
+<td align="center">协议</td>
+<td align="center">长度</td>
+<td align="center">信息</td>
+</tr>
+</tbody></table>
+<p><strong>Wireshark过滤器</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">过滤</th>
+<th align="left">命令示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">IP</td>
+<td align="left">ip.src eq x.x.x.x or ip dst eq x.x.x.x <br> ip.addr eq x.x.x.x <br> …</td>
+</tr>
+<tr>
+<td align="center">端口</td>
+<td align="left">tcp.port eq x or udp.port eq x <br> tcp.dstport &#x3D;&#x3D; x <br> tcp.srcport &#x3D;&#x3D; x <br> tcp.port &gt;&#x3D; x and tcp.port &lt;&#x3D; y <br> …</td>
+</tr>
+<tr>
+<td align="center">协议</td>
+<td align="left">tcp&#x2F;udp&#x2F;arp&#x2F;icmp&#x2F;http&#x2F;ftp&#x2F;dns&#x2F;ip…</td>
+</tr>
+<tr>
+<td align="center">MAC</td>
+<td align="left">eth.dst &#x3D;&#x3D; x:x:x:x:x:x <br> …</td>
+</tr>
+<tr>
+<td align="center">包长度</td>
+<td align="left">udp.length &#x3D;&#x3D; x <br> tcp.len &gt;&#x3D; x <br> ip.len &#x3D; x <br> frame.len &#x3D;&#x3D; x <br> …</td>
+</tr>
+<tr>
+<td align="center">HTTP模式</td>
+<td align="left">http.request.method &#x3D;&#x3D; “GET” <br>http.request.metho &#x3D;&#x3D; “POST” <br>http.request.uri &#x3D;&#x3D; “&#x2F;img&#x2F;logo-edu.gif” <br>http contains “GET” <br>http contains “HTTP&#x2F;1.” <br>http.request.method &#x3D;&#x3D; “GET” &amp;&amp; http contains “User-Agent:” <br>http contains “flag” <br>http contains”key” <br> tcp contains “flag” <br> …</td>
+</tr>
+</tbody></table>
+<p><strong>Wireshark协议分析</strong><br>工具栏 -&gt; Statistics（统计） -&gt; Protocol Hierarchy（协议分级）</p>
+<blockquote>
+<p>Tips: 根据数据包特征进行筛选<br>比如查看数据包的时候，有的数据包有某种特征，比如有http(80)。就可以筛选出这种特征出来<br>右键 -&gt; 作为过滤器应用 -&gt; 选中</p>
+</blockquote>
+<p><strong>Wireshark流汇聚</strong><br>在关注的http数据包或tcp数据包中选择流汇聚，可以将HTTP流或TCP流汇汇聚或还原成数据，在弹出的框中可以看到数据内容。<br>右键 -&gt; 追踪流 -&gt; http流</p>
+<blockquote>
+<p>Tips:常见的HTTP流关键内容:<br>1、HTML中直接包含重要信息。<br>2、上传或下载文件内容，通常包含文件名、hash值等关键信息，常用POST请求上传。<br>3、一句话木马，POST请求，内容包含eval，内容使用base64加密</p>
+</blockquote>
+<h3 id="Python工具：scapy"><a href="#Python工具：scapy" class="headerlink" title="Python工具：scapy"></a>Python工具：scapy</h3><pre><code class="highlight bash"><span class="comment"># 安装</span>
+pip install scapy</code></pre>
+
+
+
+<pre><code class="highlight py">
+<span class="comment"># 注: 此代码片段不是标准的可执行的代码，仅供参考</span>
+
+<span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> * <span class="comment"># 引用</span>
+
+pkts = rdpcap(<span class="string">&quot;xxx.pcap&quot;</span>) <span class="comment"># 读取流量包</span>
+
+<span class="keyword">for</span> pkt <span class="keyword">in</span> pkts:
+    <span class="built_in">print</span>(pkt.show()) <span class="comment"># 直接打印数据包</span>
+    <span class="keyword">if</span> pkt.haslayer(xxx) <span class="comment"># 判断是否有特定层</span>
+        <span class="built_in">print</span>(pkt[xxx].XXX)
+
+capture = sniff(<span class="built_in">filter</span>=<span class="string">&quot;udp&quot;</span>, count=<span class="number">5</span>)
+wrpcap(<span class="string">&quot;udp.pcap&quot;</span>, capture) <span class="comment"># 将数据包写入新的数据包</span>
+</code></pre>
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mistyovo</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

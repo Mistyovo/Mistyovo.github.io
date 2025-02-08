@@ -19,24 +19,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":false,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"検索…","empty":"検索結果が見つかりませんでした: ${query}","hits_time":"${hits} の結果が ${time} ms で見つかりました","hits":"${hits} 件の結果が見つかりました"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="カテゴリ">
-<meta property="og:url" content="http://example.com/categories/index.html">
+    <meta name="description" content="被毒瘤的WSL给整麻了  删除已安装好的Linux 发行版wsl --unregister kali-linux  一定要卸干净了，重启后再开始后续的安装 安装Kali-Linux WSL发行版打开Microsoft Store搜索Kali并安装 选择默认打开的WSL发行版首先查看已安装的所有的lWSL发行版 wsl --list --verbose  选择默认的WSL发行版 wsl --set">
+<meta property="og:type" content="website">
+<meta property="og:title" content="毒瘤的WSL+Kali+Pwn环境杂记">
+<meta property="og:url" content="http://example.com/old_posts/%E6%AF%92%E7%98%A4%E7%9A%84WSL%E6%9D%82%E8%AE%B0.html">
 <meta property="og:site_name" content="M15+y0v()&#39;5 8lo9">
+<meta property="og:description" content="被毒瘤的WSL给整麻了  删除已安装好的Linux 发行版wsl --unregister kali-linux  一定要卸干净了，重启后再开始后续的安装 安装Kali-Linux WSL发行版打开Microsoft Store搜索Kali并安装 选择默认打开的WSL发行版首先查看已安装的所有的lWSL发行版 wsl --list --verbose  选择默认的WSL发行版 wsl --set">
 <meta property="og:locale" content="ja_JP">
-<meta property="article:published_time" content="2024-08-18T06:25:48.000Z">
-<meta property="article:modified_time" content="2025-01-28T12:22:28.726Z">
+<meta property="article:published_time" content="2024-12-11T01:04:29.000Z">
+<meta property="article:modified_time" content="2024-12-11T12:12:44.601Z">
 <meta property="article:author" content="Mistyovo">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/categories/">
+<link rel="canonical" href="http://example.com/old_posts/%E6%AF%92%E7%98%A4%E7%9A%84WSL%E6%9D%82%E8%AE%B0">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"ja","comments":true,"permalink":"http://example.com/categories/index.html","path":"categories/index.html","title":"カテゴリ"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"ja","comments":true,"permalink":"http://example.com/old_posts/%E6%AF%92%E7%98%A4%E7%9A%84WSL%E6%9D%82%E8%AE%B0.html","path":"old_posts/毒瘤的WSL杂记.html","title":"毒瘤的WSL+Kali+Pwn环境杂记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>カテゴリ | M15+y0v()'5 8lo9
+<title>毒瘤的WSL+Kali+Pwn环境杂记 | M15+y0v()'5 8lo9
 </title>
   
 
@@ -96,7 +98,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           見出し
@@ -109,6 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%B7%B2%E5%AE%89%E8%A3%85%E5%A5%BD%E7%9A%84Linux-%E5%8F%91%E8%A1%8C%E7%89%88"><span class="nav-number">1.</span> <span class="nav-text">删除已安装好的Linux 发行版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Kali-Linux-WSL%E5%8F%91%E8%A1%8C%E7%89%88"><span class="nav-number">2.</span> <span class="nav-text">安装Kali-Linux WSL发行版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E7%9A%84WSL%E5%8F%91%E8%A1%8C%E7%89%88"><span class="nav-number">3.</span> <span class="nav-text">选择默认打开的WSL发行版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86WSL%E5%8F%91%E8%A1%8C%E7%89%88%E5%AE%89%E8%A3%85%E5%88%B0%E5%85%B6%E4%BB%96%E7%9A%84%E7%9B%98"><span class="nav-number">4.</span> <span class="nav-text">将WSL发行版安装到其他的盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Kali%E5%AE%8C%E6%95%B4%E7%89%88"><span class="nav-number">5.</span> <span class="nav-text">安装Kali完整版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WSL%E4%B8%8B%E5%81%9APwn%E9%A2%98%E7%9A%84%E5%BF%85%E5%A4%87%E5%B7%A5%E5%85%B7"><span class="nav-number">6.</span> <span class="nav-text">WSL下做Pwn题的必备工具</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -148,7 +151,7 @@
     
     <div class="post-block" lang="ja"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">カテゴリ
+<h1 class="post-title" itemprop="name headline">毒瘤的WSL+Kali+Pwn环境杂记
 </h1>
 
 <div class="post-meta-container">
@@ -159,14 +162,58 @@
       
       
       
-      <div class="post-body"><div class="category-all-page">
-  <div class="category-all-title">
-    カテゴリなし
-  </div>
-  <div class="category-all">
-    
-  </div>
-</div>
+      <div class="post-body">
+          <blockquote>
+<p>被毒瘤的WSL给整麻了</p>
+</blockquote>
+<h2 id="删除已安装好的Linux-发行版"><a href="#删除已安装好的Linux-发行版" class="headerlink" title="删除已安装好的Linux 发行版"></a>删除已安装好的Linux 发行版</h2><pre><code class="highlight plaintext">wsl --unregister kali-linux</code></pre>
+
+<p>一定要卸干净了，重启后再开始后续的安装</p>
+<h2 id="安装Kali-Linux-WSL发行版"><a href="#安装Kali-Linux-WSL发行版" class="headerlink" title="安装Kali-Linux WSL发行版"></a>安装Kali-Linux WSL发行版</h2><p>打开Microsoft Store搜索Kali并安装</p>
+<h2 id="选择默认打开的WSL发行版"><a href="#选择默认打开的WSL发行版" class="headerlink" title="选择默认打开的WSL发行版"></a>选择默认打开的WSL发行版</h2><p>首先查看已安装的所有的lWSL发行版</p>
+<pre><code class="highlight plaintext">wsl --list --verbose</code></pre>
+
+<p>选择默认的WSL发行版</p>
+<pre><code class="highlight plaintext">wsl --set-default kali-linux</code></pre>
+
+<h2 id="将WSL发行版安装到其他的盘"><a href="#将WSL发行版安装到其他的盘" class="headerlink" title="将WSL发行版安装到其他的盘"></a>将WSL发行版安装到其他的盘</h2><pre><code class="highlight plaintext">wsl -l -v
+wsl --export kali-linux D:\kali-linux.tar
+wsl --unregister kali-linux
+wsl --import kali-linux D:\wsl-kali-linux D:\kali-linux.tar --version 2</code></pre>
+
+
+
+<h2 id="安装Kali完整版"><a href="#安装Kali完整版" class="headerlink" title="安装Kali完整版"></a>安装Kali完整版</h2><p>kali-linux的官方源在国内访问通常较慢，不换源装几个小时，换源装十几分钟，自己看着办吧。</p>
+<pre><code class="highlight shell">sudo vi /etc/apt/sources.list</code></pre>
+
+<p>然后会进入vi编辑器（需要一点vi的基础，不过没关系，需要的都已经标出来了），这里给的是中科大源</p>
+<pre><code class="highlight shell"><span class="meta prompt_">#</span><span class="language-bash">按i进入编辑</span>
+deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib
+deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib
+<span class="meta prompt_">#</span><span class="language-bash">按esc,然后按依次按:wq</span></code></pre>
+
+<p>更新并安装工具包</p>
+<pre><code class="highlight shell">sudo apt update &amp;&amp; sudo apt upgrade
+sudo apt install -y kali-linux-default # 标准工具包
+sudo apt install -y kali-linux-large # 巨大工具包
+<span class="meta prompt_"># </span><span class="language-bash">-y表示<span class="built_in">yes</span></span></code></pre>
+
+<h2 id="WSL下做Pwn题的必备工具"><a href="#WSL下做Pwn题的必备工具" class="headerlink" title="WSL下做Pwn题的必备工具"></a>WSL下做Pwn题的必备工具</h2><pre><code class="highlight bash"><span class="comment"># apt</span>
+apt install python3-pwntools
+apt install ROPgadget
+apt install checksec
+apt install tmux <span class="comment">#用来解决不能gdb.attach的问题</span>
+
+git <span class="built_in">clone</span> https://github.com/lieanu/LibcSearcher.git
+<span class="built_in">cd</span> LibcSearcher
+python setup.py develop
+
+git <span class="built_in">clone</span> https://github.com/pwndbg/pwndbg.git
+<span class="built_in">cd</span> pwndbg
+./setup.sh</code></pre>
+
+
+
 
       </div>
       
